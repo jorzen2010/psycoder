@@ -13,26 +13,17 @@ namespace psycoder.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
+      
         public ActionResult Reg()
         {
             return View();
         }
 
-        public ActionResult Default()
+        public ActionResult SucaiList()
+        {
+            return View();
+        }
+        public ActionResult HudongList()
         {
             return View();
         }
