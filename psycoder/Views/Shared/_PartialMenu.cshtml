@@ -1,22 +1,24 @@
 ﻿
-<div class="menulist pull-left">
-    <h4 style="color:green"><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 首页</a></h4>
+<div class="menulist">
+    <h4 style="color:green"><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 首页</a></h4>
     <hr>
     <h4><span class="glyphicon glyphicon-th" aria-hidden="true"></span> 小程序素材</h4>
     <ul>
-        <li><a href="@Url.Action("SucaiList","Home")">图文素材</a></li>
-        <li><a href="@Url.Action("SucaiList", "Home")">音频课程</a></li>
-        <li><a href="@Url.Action("SucaiList", "Home")">视频课程</a></li>
+        <li><a href="@Url.Action("TuwenList","Home")">图文素材</a></li>
+        <li><a href="@Url.Action("AudioList", "Home")">音频课程</a></li>
+        <li><a href="@Url.Action("VideoList", "Home")">视频课程</a></li>
     </ul>
     <hr>
     <h4><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 互动管理</h4>
     <ul>
 
-        <li><a href="@Url.Action("HudongList", "Home")">自由书写</a></li>
-        <li><a href="@Url.Action("HudongList", "Home")">用户咨询</a></li>
-        <li><a href="@Url.Action("HudongList", "Home")">广告设置</a></li>
+        <li><a href="@Url.Action("ZiyouList", "Home")">自由书写</a></li>
+        <li><a href="@Url.Action("WentiList", "Home")">问题引导</a></li>
+        <li><a href="@Url.Action("ZixunList", "Home")">用户咨询</a></li>
+        <li><a href="@Url.Action("HudongSet", "Home")">互动设置</a></li>
         <!--
-        <li><a href="">摇一摇</a></li>
+        <li><a href="@Url.Action("HudongList", "Home")">活动设置</a>
+        </li><li><a href="">摇一摇</a></li>
         <li><a href="">量表定制</a></li>
         -->
 
@@ -25,10 +27,14 @@
 
     <h4><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 共享讲课素材</h4>
     <ul>
-        <li><a href=""> 案例素材</a></li>
-        <li><a href=""> 图片素材</a></li>
-        <li><a href=""> 音频素材</a></li>
-        <li><a href=""> 视频素材</a></li>
+        <li><a href="@Url.Action("ScAnli", "Home")"> 案例素材</a></li>
+        <li><a href="@Url.Action("ScTupian", "Home")"> 图片素材</a></li>
+        <li><a href="@Url.Action("ScAudio", "Home")"> 音频素材</a></li>
+        <li><a href="@Url.Action("ScVideo", "Home")"> 视频素材</a></li>
+        <!--
+            <li><a href=""> PPT素材</a></li>
+        -->
+
     </ul>
     <!--
         <hr>
@@ -38,6 +44,7 @@
         <li>讲课技术</li>
         <li>接待技术</li>
         <li>网络营销技术</li>
+        <li>PPT课件制作技术</li>
     </ul>
 
     <hr>
@@ -59,8 +66,12 @@
         -->
     <h4><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 个人设置</h4>
     <ul>
-        <li><a href="">小程序设置</a></li>
-        <li><a href="">安全设置</a></li>
-        <li><a href="">违规记录</a></li>
+        <li><a href="@Url.Action("Setting", "Home")">小程序设置</a></li>
+        <li><a href="@Url.Action("SafeCenter", "Home")">安全设置</a></li>
+        <li><a href="@Url.Action("ZhuceInfo", "Home")">注册信息</a></li>
+        <!--
+            <li><a href="@Url.Action("Weigui", "Home")">违规记录</a></li>
+        -->
+        
     </ul>
 </div>

@@ -86,7 +86,7 @@ color:#cccccc;
     background-color:#f7f8fa;
     margin-top:10px;
     padding:10px;
-    width:20%;
+
 }
     .menulist h4 {
          line-height:30px;
@@ -101,8 +101,12 @@ color:#cccccc;
 
 .content {
      background-color:#f7f8fa;
-     width:80%;
+ 
 }
+
+.content h3{
+     color:#333333;
+} 
 .content_main {
     background-color:#ffffff;
     border-color:#ffffff;
@@ -156,5 +160,51 @@ color:#cccccc;
 
 /*列表页面设置*/
 .tablist {
+    background-color:#ffffff;
     margin-top:40px;
 }
+.xcxset {
+    margin-bottom:40px;
+    clear:both;
+}
+
+.xcxset ul{
+    margin-top:40px;
+    padding:0px;
+}
+
+.xcxset ul li {
+    list-style:none;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+.scxtitle {
+    width:10%;
+    color:#808080;
+    line-height:60px;    
+}
+.scxcontent {
+    width:90%;
+    line-height:60px;
+    padding-left:10px;
+    border-bottom:1px solid #cccccc;
+    overflow:hidden;
+}
+
+
+.tabcontent {
+    margin-top:40px;
+    background-color:#ffffff;
+
+}
+.safecontent {
+    margin-top:20px;
+    font-size:16px;
+    border-bottom:1px solid #cccccc;
+}
+    .safecontent p {
+        font-size:14px;
+        color:#808080;
+        line-height:30px;
+    }

@@ -147,3 +147,7 @@ D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.csprojResolveAssemblyReferenc
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.dll
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.pdb
 D:\MyPro\2018\psycoder\psycoder\bin\Newtonsoft.Json.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\Common.dll
+D:\MyPro\2018\psycoder\psycoder\bin\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2018\psycoder\psycoder\bin\ChnCharInfo.dll
+D:\MyPro\2018\psycoder\psycoder\bin\Common.pdb

@@ -14,16 +14,22 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" type="text/css" href="~/Src/css/web.css" />
+    @RenderSection("TopCss", required: false)
+    @RenderSection("TopScripts", required: false)
     <title>心理咨询师公众平台</title>
 </head>
 <body style=" background-color: #f7f8fa;">
 
     @Html.Partial("_PartialHeader")
-    <div class="main">
+    <div class="main row">
 
-        
-        @Html.Partial("_PartialMenu")
-        @RenderBody()
+        <div class="col-md-2">
+            @Html.Partial("_PartialMenu")
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+
     </div>
     <div class="footer">
         <div class="footer_content">
@@ -40,5 +46,6 @@
     <!-- AdminLTE App -->
     <script src="~/dist/js/app.min.js"></script>
     <script type="text/javascript" src="~/Src/js/web.js"></script>
+    @RenderSection("BottomScripts", required: false)
 </body>
 </html>

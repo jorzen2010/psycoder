@@ -154,6 +154,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliyunVideo\business\AliyunVideoServices.cs" />
+    <Compile Include="AliyunVideo\Model\AliyunCommonParaConfig.cs" />
+    <Compile Include="AliyunVideo\Model\CommonParam.cs" />
+    <Compile Include="AliyunVideo\Model\VideoModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -1554,8 +1558,20 @@
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PartialHeader.cshtml" />
-    <Content Include="Views\Home\SucaiList.cshtml" />
-    <Content Include="Views\Home\HudongList.cshtml" />
+    <Content Include="Views\Home\ZiyouList.cshtml" />
+    <Content Include="Views\Home\TuwenList.cshtml" />
+    <Content Include="Views\Home\VideoList.cshtml" />
+    <Content Include="Views\Home\AudioList.cshtml" />
+    <Content Include="Views\Home\HudongSet.cshtml" />
+    <Content Include="Views\Home\WentiList.cshtml" />
+    <Content Include="Views\Home\ZixunList.cshtml" />
+    <Content Include="Views\Home\ScAnli.cshtml" />
+    <Content Include="Views\Home\ScTupian.cshtml" />
+    <Content Include="Views\Home\ScAudio.cshtml" />
+    <Content Include="Views\Home\ScVideo.cshtml" />
+    <Content Include="Views\Home\SafeCenter.cshtml" />
+    <Content Include="Views\Home\ZhuceInfo.cshtml" />
+    <Content Include="Views\Home\Setting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1566,6 +1582,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{97bb8354-ad37-40d1-ad0d-7eee6026d2aa}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

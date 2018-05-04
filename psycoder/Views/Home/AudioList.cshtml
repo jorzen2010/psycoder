@@ -1,13 +1,18 @@
-﻿<div class="content pull-right">
+﻿@section Topcss {
+   <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
+}
 
-    <h3>图文素材 <small>让好文章插上你的广告，为你打工，用专家的课程，打造自己的影响力，自己没实力打造高清视频课程，借力借势免费使用权威的高清视频</small></h3>
+
+<div class="content">
+
+    <h3>音频课程 <small>用专家的音频课程，打造自己的影响力</small></h3>
     <div class="row tablist">
         <div class="col-md-12">
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab"><h5>已选择图文</h5></a></li>
-                    <li><a href="#tab_2" data-toggle="tab"><h5>全部图文</h5></a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab"><h5>已选择音频课程</h5></a></li>
+                    <li><a href="#tab_2" data-toggle="tab"><h5>全部音频课程</h5></a></li>
                     
                     <li class="pull-right"><h5><button class="btn btn-success"><i class="fa fa-gear"></i> 原创文章</button>&nbsp;&nbsp;&nbsp;</h5></li>
                 </ul>
@@ -33,7 +38,7 @@
                                                 <td>John Doe</td>
                                                 <td>11-7-2014</td>
                                                 <td><span class="label label-success">Approved</span></td>
-                                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                                <td>@ViewBag.PlayAuth </td>
                                                 <td><button class="btn btn-danger">取消选择</button></td>
                                             </tr>
                                             <tr>
@@ -153,4 +158,124 @@
         </div>
         <!-- /.col -->
     </div>
+
+    <div class="row">
+        <button class="btn btn-success" id="woceshi" data-x="@ViewBag.VideoId" data-y="@ViewBag.PlayAuth" data-z="0">初始化播放</button>
+        <button class="btn btn-success" id="woceshitz">停止播放</button>
+        <button class="btn btn-success" id="woceshibf">播放</button>
+        <div class="col-xs-12 prism-player" id="J_prismPlayer">
+        
+        </div>
+    </div>
 </div>
+
+@section BottomScripts {
+<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+
+    <script type="text/javascript">
+
+        var player = null;
+    $("#woceshi").on("click", function () {
+    //    alert($(this).data("x"));
+       // $(this).dataset.z = "asdfadsf";
+       // alert( $(this).attr("data-z"));
+      //  $(this).attr("data-z","asdfadsf");
+        // //alert("测试成功");
+
+        x = $(this).attr("data-x");
+        y = $(this).attr("data-y");
+        z = $(this).attr("data-z");
+
+        kaishibofang(x, y, z);
+
+    });
+
+    $("#woceshitz").on("click", function () {
+
+       // alert("测试成功");
+       tzbofangqi();
+
+    });
+    $("#woceshibf").on("click", function () {
+
+        // alert("测试成功");
+        bfbofangqi();
+
+    });
+
+   
+    function kaishibofang(x,y,z) {
+
+        
+
+      
+            player = new Aliplayer({
+                id: "J_prismPlayer",
+                autoplay: false,
+                mediaType: 'audio',
+                width: "50px",
+                height: "50px",
+                vid: x,
+                playauth: y,
+                controlBarVisibility: "always",
+                cover: "",
+                skinLayout: [{ "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "playButton", "align": "tl", "x": 10, "y": 8 }] }]
+            }, function (player) { player.play(); });
+
+            
+
+    }
+
+
+
+
+    function tzbofangqi() {
+
+
+        player.pause();
+
+
+
+    }
+    function bfbofangqi() {
+
+
+        player.play();
+
+
+
+    }
+
+    //初始化编辑器
+    @*var player = new prismplayer({
+        id: "J_prismPlayer",
+        autoplay: false,
+        mediaType: 'audio',
+        width: "50px",
+        height: "50px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+
+    });*@
+
+
+    @*var player = new Aliplayer({
+            id: "J_prismPlayer",
+            autoplay: false,
+            mediaType: 'audio',
+            width: "50px",
+            height: "50px",
+            vid: "@ViewBag.VideoId",
+            playauth: "@ViewBag.PlayAuth",
+            controlBarVisibility: "always",
+            cover: "",
+            skinLayout: [{ "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "playButton", "align": "tl", "x": 10, "y": 8 }] }]
+        }, function (player) {
+            console.log("播放器创建了。");
+        }
+);*@
+
+
+    </script>
+
+}
