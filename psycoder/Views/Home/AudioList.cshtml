@@ -106,7 +106,7 @@
                                                 <td>11-7-2014</td>
                                                 <td><span class="label label-success">Approved</span></td>
                                                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                <td><button class="btn btn-success">选择</button></td>
+                                                <td><button class="btn btn-success" id="woceshi" data-x="@ViewBag.VideoId" data-y="@ViewBag.PlayAuth" data-z="0">试听</button><button class="btn btn-success">选择</button></td>
                                             </tr>
                                             <tr>
                                                 <td>219</td>
@@ -114,7 +114,7 @@
                                                 <td>11-7-2014</td>
                                                 <td><span class="label label-warning">Pending</span></td>
                                                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                <td><button class="btn btn-danger">取消选择</button></td>
+                                                <td><button class="btn btn-success" id="woceshi" data-x="@ViewBag.VideoId" data-y="@ViewBag.PlayAuth" data-z="0">试听</button><button class="btn btn-danger">取消选择</button></td>
                                             </tr>
                                             <tr>
                                                 <td>657</td>
@@ -122,7 +122,7 @@
                                                 <td>11-7-2014</td>
                                                 <td><span class="label label-primary">Approved</span></td>
                                                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                <td><button class="btn btn-success">选择</button></td>
+                                                <td><button class="btn btn-success" id="woceshi" data-x="@ViewBag.VideoId" data-y="@ViewBag.PlayAuth" data-z="0">试听</button><button class="btn btn-success">选择</button></td>
                                             </tr>
                                             <tr>
                                                 <td>175</td>
@@ -130,7 +130,7 @@
                                                 <td>11-7-2014</td>
                                                 <td><span class="label label-danger">Denied</span></td>
                                                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                <td><button class="btn btn-danger">取消选择</button></td>
+                                                <td><button class="btn btn-success" id="woceshi" data-x="@ViewBag.VideoId" data-y="@ViewBag.PlayAuth" data-z="0">试听</button><button class="btn btn-danger">取消选择</button></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -159,14 +159,12 @@
         <!-- /.col -->
     </div>
 
-    <div class="row">
-        <button class="btn btn-success" id="woceshi" data-x="@ViewBag.VideoId" data-y="@ViewBag.PlayAuth" data-z="0">初始化播放</button>
-        <button class="btn btn-success" id="woceshitz">停止播放</button>
-        <button class="btn btn-success" id="woceshibf">播放</button>
-        <div class="col-xs-12 prism-player" id="J_prismPlayer">
+  
         
+
+        <div class="col-xs-12 prism-player" id="J_prismPlayer" style="display:none;">
         </div>
-    </div>
+   
 </div>
 
 @section BottomScripts {
@@ -190,28 +188,17 @@
 
     });
 
-    $("#woceshitz").on("click", function () {
 
-       // alert("测试成功");
-       tzbofangqi();
-
-    });
-    $("#woceshibf").on("click", function () {
-
-        // alert("测试成功");
-        bfbofangqi();
-
-    });
 
    
     function kaishibofang(x,y,z) {
 
         
-
-      
+        if (z == 0) {
+           // alert(z);
             player = new Aliplayer({
                 id: "J_prismPlayer",
-                autoplay: false,
+                autoplay: true,
                 mediaType: 'audio',
                 width: "50px",
                 height: "50px",
@@ -220,60 +207,36 @@
                 controlBarVisibility: "always",
                 cover: "",
                 skinLayout: [{ "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "playButton", "align": "tl", "x": 10, "y": 8 }] }]
-            }, function (player) { player.play(); });
+            }), function (player) {
 
-            
+                console.log("播放器创建了。");
+            };
 
-    }
-
-
-
-
-    function tzbofangqi() {
-
-
-        player.pause();
-
-
-
-    }
-    function bfbofangqi() {
-
-
-        player.play();
-
-
-
-    }
-
-    //初始化编辑器
-    @*var player = new prismplayer({
-        id: "J_prismPlayer",
-        autoplay: false,
-        mediaType: 'audio',
-        width: "50px",
-        height: "50px",
-        vid: "@ViewBag.VideoId",
-        playauth: "@ViewBag.PlayAuth",
-
-    });*@
-
-
-    @*var player = new Aliplayer({
-            id: "J_prismPlayer",
-            autoplay: false,
-            mediaType: 'audio',
-            width: "50px",
-            height: "50px",
-            vid: "@ViewBag.VideoId",
-            playauth: "@ViewBag.PlayAuth",
-            controlBarVisibility: "always",
-            cover: "",
-            skinLayout: [{ "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "playButton", "align": "tl", "x": 10, "y": 8 }] }]
-        }, function (player) {
-            console.log("播放器创建了。");
+            player.on('ready', function (e) {
+                //要想让阿里播放器初始化完成之后直接播放，需要做的是把初始化的过程中的autoplay设置成true；
+                player.play();
+            });
+            $("#woceshi").attr("data-z", "1");
+            $("#woceshi").html("关闭");
+            $("#woceshi").removeClass("btn-success");
+            $("#woceshi").addClass("btn-danger");
         }
-);*@
+        else {
+           // alert(z);
+            player.pause();
+            $("#woceshi").attr("data-z", "0");
+            $("#woceshi").html("试听");
+            $("#woceshi").removeClass("btn-danger");
+            $("#woceshi").addClass("btn-success");
+
+        }
+      
+            
+    }
+
+
+
+
 
 
     </script>

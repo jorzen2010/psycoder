@@ -1,0 +1,148 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Tilte = "案例图片素材";
+}
+@section Topcss {
+<link href="~/plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Tilte
+
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            新增 @ViewBag.Tilte
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "Anli", FormMethod.Post, new { @class = "form-horizontal", @name = "CreateAnli", @id = "CreateAnli" }))
+                    {
+                        <div class="box-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">标题</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                </div>
+                               
+                                
+                                 <div class="form-group">
+                                    <label class="control-label col-sm-2">内容</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="Content" name="VideoInfo" style="height:500px;"></textarea>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">上传图片</label>
+                                    <div class="col-sm-8">
+                                        <input type="file" name="txt_file" id="txt_file" multiple class="file-loading" />
+                                        <input type="text" class="form-control" id="ceshi" />
+                                    </div>
+                                </div>
+
+
+                            
+                            
+                            </div>
+
+
+                        </div>
+                    }
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <button class="btn btn-default">取消</button>
+                        <button class="btn btn-primary pull-right">保存并发布</button>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="~/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        var ue = UE.getEditor('Content');
+        $("#txt_file").fileinput({
+
+            language: 'zh', //设置语言
+
+            uploadUrl: "/file/upload?rootpath=PsyCoderFile&folder=images", //上传的地址
+
+            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+
+            //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
+
+            uploadAsync: true, //默认异步上传
+
+            showUpload: true, //是否显示上传按钮
+
+            showRemove: true, //显示移除按钮
+
+            showPreview: true, //是否显示预览
+
+            showCaption: false,//是否显示标题
+
+            browseClass: "btn btn-primary", //按钮样式    
+
+            dropZoneEnabled: true,//是否显示拖拽区域
+
+            //minImageWidth: 50, //图片的最小宽度
+
+            //minImageHeight: 50,//图片的最小高度
+
+            //maxImageWidth: 1000,//图片的最大宽度
+
+            //maxImageHeight: 1000,//图片的最大高度
+
+            //maxFileSize:0,//单位为kb，如果为0表示不限制文件大小
+
+            //minFileCount: 0,
+
+            maxFileCount: 1, //表示允许同时上传的最大文件个数
+
+            enctype: 'multipart/form-data',
+
+            validateInitialCount: true,
+
+            previewFileIcon: "<iclass='glyphicon glyphicon-king'></i>",
+
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+        }).on("fileuploaded", function (event, data, previewId, index) {
+
+            alertconfirm(data.response.MessageUrl);
+            $('#ceshi').val(data.response.MessageUrl);
+        });
+
+    </script>
+}
