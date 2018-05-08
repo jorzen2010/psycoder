@@ -35,3 +35,10 @@ D:\MyPro\2018\psycoder\Common\bin\Debug\PagedList.Mvc.xml
 D:\MyPro\2018\psycoder\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\Common\obj\Debug\Common.dll
 D:\MyPro\2018\psycoder\Common\obj\Debug\Common.pdb
+D:\MyPro\2018\psycoder\Common\bin\Debug\Common.dll.config
+D:\MyPro\2018\psycoder\Common\bin\Debug\EntityFramework.dll
+D:\MyPro\2018\psycoder\Common\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyPro\2018\psycoder\Common\bin\Debug\EntityFramework.xml
+D:\MyPro\2018\psycoder\Common\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyPro\2018\psycoder\Common\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyPro\2018\psycoder\Common\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll

@@ -4,6 +4,7 @@
 }
 @section Topcss {
 <link href="~/plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
+<link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
 
 }
 
@@ -32,28 +33,54 @@
                     {
                         <div class="box-body">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2">标题</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                               
-                                
-                                 <div class="form-group">
-                                    <label class="control-label col-sm-2">内容</label>
-                                    <div class="col-sm-8">
-                                        <textarea id="Content" name="VideoInfo" style="height:500px;"></textarea>
-                                    </div>
-                                </div>
-                            
+
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">上传图片</label>
                                     <div class="col-sm-8">
                                         <input type="file" name="txt_file" id="txt_file" multiple class="file-loading" />
-                                        <input type="text" class="form-control" id="ceshi" />
+                                </div>
+                                    </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">图片地址</label>
+                                    <div class="col-sm-8">
+                                      
+                                        <input type="text" class="form-control" id="ceshi" readonly="readonly" />
                                     </div>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">图片标题</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">标签</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" data-role="tagsinput"  id="tags" />
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">应用场景</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="zhaiyao" rows="5" class="form-control" placeholder="请详细填写此图片表达的应用场景"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">作者</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="选填：默认来源于网络" />
+                                    </div>
+                                </div>
+
+                                
+                             
+                                
 
 
                             
@@ -65,7 +92,7 @@
                     }
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <button class="btn btn-default">取消</button>
+                        <button class="btn btn-default" id="xxx">取消</button>
                         <button class="btn btn-primary pull-right">保存并发布</button>
                     </div>
                 </div>
@@ -81,17 +108,21 @@
 @section BottomScripts {
     <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
 
-    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
-    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="~/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script type="text/javascript" src="~/plugins/bootstrap-fileinput/js/locales/zh.js"></script>
+<script type="text/javascript" src="~/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+
     <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
 
 
 
     <script type="text/javascript">
 
-        var ue = UE.getEditor('Content');
+        $("#xxx").on("click", function () {
+
+            alert($("#tags").val());
+        });
+
         $("#txt_file").fileinput({
 
             language: 'zh', //设置语言
@@ -140,7 +171,7 @@
 
         }).on("fileuploaded", function (event, data, previewId, index) {
 
-            alertconfirm(data.response.MessageUrl);
+            alertconfirm("图片上传成功。图片地址为："+data.response.MessageUrl);
             $('#ceshi').val(data.response.MessageUrl);
         });
 

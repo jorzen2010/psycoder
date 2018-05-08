@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Tags Input</title>
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+
+    
+    <div class="container">
+      <section id="examples">
+        <div class="page-header">
+          <h2>案例</h2>
+        </div>
+
+        <div class="example example_markup">
+          <h3>方法一：Input输入框</h3>
+          <p>只需要在输入框中输入代码 <code>data-role="tagsinput"</code>即可.</p>
+          <div class="bs-example">
+            <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
+          </div>
+          <div class="accordion">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#accordion_example_markup">
+                  显示代码
+                </a>
+              </div>
+              <div id="accordion_example_markup" class="accordion-body collapse">
+                <div class="accordion-inner highlight">
+                  <pre><code data-language="html">&lt;input type=&quot;text&quot; value=&quot;Amsterdam,Washington,Sydney,Beijing,Cairo&quot; data-role=&quot;tagsinput&quot; /&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+           <table class="table table-bordered table-condensed"><thead><tr><th>取值方法</th><th>返回结果</th></tr></thead><tbody><tr><td><code>$("input").val()</code></td><td><pre class="val"><code data-language="javascript"></code></pre></td></tr><tr><td><code>$("input").tagsinput('items')</code></td><td><pre class="items"><code data-language="javascript"></code></pre></td></tr></tbody></table>
+        </div>
+
+        <div class="example example_multivalue">
+          <h3>方法二：多选框select</h3>
+          <p>
+           使用代码<code>&lt;select multiple /&gt;</code> 到你的select标签中即可。
+          </p>
+          <div class="bs-example">
+            <select multiple data-role="tagsinput">
+              <option value="Amsterdam">Amsterdam</option>
+              <option value="Washington">Washington</option>
+              <option value="Sydney">Sydney</option>
+              <option value="Beijing">Beijing</option>
+              <option value="Cairo">Cairo</option>
+            </select>
+          </div>
+          <div class="accordion ">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#example_multivalue">
+                  显示代码
+                </a>
+              </div>
+              <div id="example_multivalue" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <pre><code data-language="html">&lt;select multiple data-role="tagsinput"&gt;
+  &lt;option value="Amsterdam"&gt;Amsterdam&lt;/option&gt;
+  &lt;option value="Washington"&gt;Washington&lt;/option&gt;
+  &lt;option value="Sydney"&gt;Sydney&lt;/option&gt;
+  &lt;option value="Beijing"&gt;Beijing&lt;/option&gt;
+  &lt;option value="Cairo"&gt;Cairo&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+           <table class="table table-bordered table-condensed"><thead><tr><th>取值方法</th><th>返回结果</th></tr></thead><tbody><tr><td><code>$("select").val()</code></td><td><pre class="val"><code data-language="javascript"></code></pre></td></tr><tr><td><code>$("select").tagsinput('items')</code></td><td><pre class="items"><code data-language="javascript"></code></pre></td></tr></tbody></table>
+        </div>
+
+        
+          </section>
+    </div>
+
+
+      <script src="js/jquery-2.2.3.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="js/bootstrap-tagsinput.js"></script>
+      <script src="js/app.js"></script>
+
+  </body>
+</html>
+

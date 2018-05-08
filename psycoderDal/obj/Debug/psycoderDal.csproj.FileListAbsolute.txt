@@ -1,0 +1,14 @@
+D:\MyPro\2018\psycoder\psycoderDal\obj\Debug\psycoderDal.csprojResolveAssemblyReference.cache
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\psycoderDal.dll.config
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\psycoderDal.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\psycoderDal.pdb
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\EntityFramework.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\psycoderEntity.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\psycoderEntity.pdb
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\EntityFramework.xml
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\MyPro\2018\psycoder\psycoderDal\obj\Debug\psycoderDal.dll
+D:\MyPro\2018\psycoder\psycoderDal\obj\Debug\psycoderDal.pdb

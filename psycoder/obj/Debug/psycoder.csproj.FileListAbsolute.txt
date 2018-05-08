@@ -151,3 +151,7 @@ D:\MyPro\2018\psycoder\psycoder\bin\Common.dll
 D:\MyPro\2018\psycoder\psycoder\bin\Microsoft.ApplicationBlocks.Data.dll
 D:\MyPro\2018\psycoder\psycoder\bin\ChnCharInfo.dll
 D:\MyPro\2018\psycoder\psycoder\bin\Common.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\psycoderDal.dll
+D:\MyPro\2018\psycoder\psycoder\bin\psycoderEntity.dll
+D:\MyPro\2018\psycoder\psycoder\bin\psycoderDal.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\psycoderEntity.pdb
