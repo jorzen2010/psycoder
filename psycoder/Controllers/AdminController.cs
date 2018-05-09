@@ -14,10 +14,6 @@ namespace psycoder.Controllers
         {
             return View();
         }
-        public ActionResult TuwenSucai()
-        {
-            return View();
-        }
         public ActionResult AudioList()
         {
             return View();

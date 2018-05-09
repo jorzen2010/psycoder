@@ -12,3 +12,7 @@ D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\zh-Hans\EntityFramework.resources.d
 D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 D:\MyPro\2018\psycoder\psycoderDal\obj\Debug\psycoderDal.dll
 D:\MyPro\2018\psycoder\psycoderDal\obj\Debug\psycoderDal.pdb
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\Common.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\ChnCharInfo.dll
+D:\MyPro\2018\psycoder\psycoderDal\bin\Debug\Common.pdb

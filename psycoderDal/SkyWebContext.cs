@@ -23,7 +23,8 @@ namespace psycoderDal
             // base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-       
+        public DbSet<SysUser> SysUsers { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
     }
 }

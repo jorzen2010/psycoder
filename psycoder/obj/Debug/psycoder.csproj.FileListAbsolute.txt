@@ -155,3 +155,7 @@ D:\MyPro\2018\psycoder\psycoder\bin\psycoderDal.dll
 D:\MyPro\2018\psycoder\psycoder\bin\psycoderEntity.dll
 D:\MyPro\2018\psycoder\psycoder\bin\psycoderDal.pdb
 D:\MyPro\2018\psycoder\psycoder\bin\psycoderEntity.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\PagedList.dll
+D:\MyPro\2018\psycoder\psycoder\bin\PagedList.Mvc.dll
+D:\MyPro\2018\psycoder\psycoder\bin\PagedList.xml
+D:\MyPro\2018\psycoder\psycoder\bin\PagedList.Mvc.xml

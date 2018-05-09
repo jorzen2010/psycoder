@@ -27,6 +27,22 @@ namespace psycoderDal
             }
         }
 
+
+         private GenericRepository<Setting> SettingsRepository;
+
+         public GenericRepository<Setting> settingsRepository
+         {
+             get
+             {
+
+                 if (this.SettingsRepository == null)
+                 {
+                     this.SettingsRepository = new GenericRepository<Setting>(context);
+                 }
+                 return SettingsRepository;
+             }
+         }
+
        
 
      

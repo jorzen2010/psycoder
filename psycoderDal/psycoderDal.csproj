@@ -49,9 +49,14 @@
     <Compile Include="GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SkyWebContext.cs" />
+    <Compile Include="SkyWebInitializer.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{97bb8354-ad37-40d1-ad0d-7eee6026d2aa}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\psycoderEntity\psycoderEntity.csproj">
       <Project>{f9250c6e-804f-430a-aa0a-ee96694de17c}</Project>
       <Name>psycoderEntity</Name>

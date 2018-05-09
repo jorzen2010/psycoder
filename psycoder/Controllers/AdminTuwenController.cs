@@ -10,7 +10,7 @@ namespace psycoder.Controllers
     {
         //
         // GET: /AdminTuwen/
-        public ActionResult Index(int tag)
+        public ActionResult Index(int?tag,int ?p)
         {
            
             ViewBag.tag = tag;
