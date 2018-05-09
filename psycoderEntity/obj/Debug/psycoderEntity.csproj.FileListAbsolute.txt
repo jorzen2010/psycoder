@@ -10,3 +10,15 @@ D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.SqlServer.xml
 D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 D:\MyPro\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.csprojResolveAssemblyReference.cache
+E:\2018\psycoder\psycoderEntity\bin\Debug\psycoderEntity.dll.config
+E:\2018\psycoder\psycoderEntity\bin\Debug\psycoderEntity.dll
+E:\2018\psycoder\psycoderEntity\bin\Debug\psycoderEntity.pdb
+E:\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.dll
+E:\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.SqlServer.dll
+E:\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.xml
+E:\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.SqlServer.xml
+E:\2018\psycoder\psycoderEntity\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\2018\psycoder\psycoderEntity\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.csprojResolveAssemblyReference.cache
+E:\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.dll
+E:\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.pdb

@@ -90,8 +90,6 @@ namespace psycoder.Controllers
                 mailEntity.FromMail = server.EmailAddress;
                 EmailServices.SendEmail(server, mailEntity);
 
-                //  AdsEmailServices.SendEmail(EmailContent,sysuser.SysEmail);
-
                 msg.MessageStatus = "true";
                 msg.MessageInfo = EmailContent;
             }

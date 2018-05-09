@@ -159,3 +159,16 @@ D:\MyPro\2018\psycoder\psycoder\bin\PagedList.dll
 D:\MyPro\2018\psycoder\psycoder\bin\PagedList.Mvc.dll
 D:\MyPro\2018\psycoder\psycoder\bin\PagedList.xml
 D:\MyPro\2018\psycoder\psycoder\bin\PagedList.Mvc.xml
+E:\2018\psycoder\psycoder\bin\Common.dll
+E:\2018\psycoder\psycoder\bin\PagedList.dll
+E:\2018\psycoder\psycoder\bin\PagedList.Mvc.dll
+E:\2018\psycoder\psycoder\bin\psycoderDal.dll
+E:\2018\psycoder\psycoder\bin\psycoderEntity.dll
+E:\2018\psycoder\psycoder\bin\Microsoft.ApplicationBlocks.Data.dll
+E:\2018\psycoder\psycoder\bin\ChnCharInfo.dll
+E:\2018\psycoder\psycoder\bin\Common.pdb
+E:\2018\psycoder\psycoder\bin\psycoderDal.pdb
+E:\2018\psycoder\psycoder\bin\psycoderEntity.pdb
+E:\2018\psycoder\psycoder\bin\PagedList.xml
+E:\2018\psycoder\psycoder\bin\PagedList.Mvc.xml
+E:\2018\psycoder\psycoder\bin\Newtonsoft.Json.pdb

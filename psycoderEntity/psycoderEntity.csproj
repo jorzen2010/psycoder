@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting.cs" />
+    <Compile Include="XcxSucai.cs" />
     <Compile Include="SysUser.cs" />
   </ItemGroup>
   <ItemGroup>

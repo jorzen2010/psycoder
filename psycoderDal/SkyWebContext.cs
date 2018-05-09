@@ -25,6 +25,9 @@ namespace psycoderDal
         }
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<TuWenSucai> TuWenSucais { get; set; }
+        public DbSet<AudioCourse> AudioCourses { get; set; }
+        public DbSet<VideoCourse> VideoCourses { get; set; }
 
     }
 }
