@@ -26,6 +26,7 @@ namespace psycoderDal
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<XCXSucai> XCXSucais { get; set; }
+        public DbSet<JkSucai> JkSucais { get; set; }
 
 
     }

@@ -58,6 +58,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<JkSucai> JkSucaisRepository;
+
+         public GenericRepository<JkSucai> jkSucaiRepository
+         {
+             get
+             {
+
+                 if (this.JkSucaisRepository == null)
+                 {
+                     this.JkSucaisRepository = new GenericRepository<JkSucai>(context);
+                 }
+                 return JkSucaisRepository;
+             }
+         }
+
        
 
      

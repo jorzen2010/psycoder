@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psycoderDal", "psycoderDal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psycoderEntity", "psycoderEntity\psycoderEntity.csproj", "{F9250C6E-804F-430A-AA0A-EE96694DE17C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psycoderService", "psycoderService\psycoderService.csproj", "{F3A9F823-862C-43C2-B60E-7B1987032AE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F9250C6E-804F-430A-AA0A-EE96694DE17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9250C6E-804F-430A-AA0A-EE96694DE17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9250C6E-804F-430A-AA0A-EE96694DE17C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A9F823-862C-43C2-B60E-7B1987032AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A9F823-862C-43C2-B60E-7B1987032AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A9F823-862C-43C2-B60E-7B1987032AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A9F823-862C-43C2-B60E-7B1987032AE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

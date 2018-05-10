@@ -22,11 +22,11 @@ namespace psycoder.Controllers
             {
                 ViewBag.title = "图文素材";
             }
-            else if (type == "audio")
+            else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
             }
-            else if (type == "video")
+            else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
 
@@ -40,7 +40,43 @@ namespace psycoder.Controllers
             ViewBag.type = type;
             Pager pager = new Pager();
             pager.table = "XCXSucai";
-            pager.strwhere = "type='" + type+"' and IfDelete=0";
+            pager.strwhere = "type='"+type+"' and IfDelete=0";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<XCXSucai> dataList = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<XCXSucai>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
+        }
+
+        public ActionResult deleteList(int? page, string type = "tuwen")
+        {
+            if (type == "tuwen")
+            {
+                ViewBag.title = "图文素材";
+            }
+            else if (type == "yinpin")
+            {
+                ViewBag.title = "音频素材";
+            }
+            else if (type == "shipin")
+            {
+                ViewBag.title = "视频素材";
+
+            }
+            else
+            {
+                type = "tuwen";
+                ViewBag.title = "图文素材";
+            }
+
+            ViewBag.type = type;
+            Pager pager = new Pager();
+            pager.table = "XCXSucai";
+            pager.strwhere = "type='"+type+"' and IfDelete=1";
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
@@ -58,11 +94,11 @@ namespace psycoder.Controllers
             {
                 ViewBag.title = "图文素材";
             }
-            else if (type == "audio")
+            else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
             }
-            else if (type == "video")
+            else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
 
@@ -95,11 +131,11 @@ namespace psycoder.Controllers
             {
                 ViewBag.title = "图文素材";
             }
-            else if (type == "audio")
+            else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
             }
-            else if (type == "video")
+            else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
             }

@@ -1,6 +1,7 @@
 ﻿@model StaticPagedList<psycoderEntity.XCXSucai>
 @using PagedList;
 @using PagedList.Mvc;
+@using psycoderService;
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
@@ -15,7 +16,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            @ViewBag.title 
+            @ViewBag.title
         </h1>
     </section>
     <!-- Main content -->
@@ -27,7 +28,7 @@
                     <div class="box-header">
                         <h3 class="box-title">
                             <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "AdminXCXSucai", new { type=ViewBag.type})"><i class="fa fa-plus"></i> 新增 @ViewBag.title</a>
-                            <a class="btn btn-default btn-sm" href="@Url.Action("Index", "AdminXCXSucai", new { Ifdel=1})"><i class="fa fa-trash"></i> 回收站</a>
+                            <a class="btn btn-default btn-sm" href="@Url.Action("deleteList", "AdminXCXSucai", new { type=ViewBag.type})"><i class="fa fa-trash"></i> 回收站</a>
                         </h3>
                         
                     </div>
@@ -45,8 +46,11 @@
                                     <th class="col-sm-2">
                                         作者
                                     </th>
-                                    <th class="col-sm-3">
-                                        提供方
+                                    <th class="col-sm-1">
+                                        提供者
+                                    </th>
+                                    <th class="col-sm-2">
+                                        权限
                                     </th>
                                     <th class="col-sm-2">操作</th>
                                     <th class="col-sm-2">查看</th>
@@ -66,14 +70,16 @@
                                         @Html.DisplayFor(modelItem => item.Author)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Provider)
+                                        @PsyUserService.GetPsyUserNameById(item.Provider)
+                                    </td>
+                                    <td>
                                         <input type="checkbox" name="Qanxian" value="@item.Id" @(item.Qanxian ? "checked='checked'" : "") />
                                         @Html.AntiForgeryToken()
-                                       
+                                    </td> 
                                     <td>
                                         <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "AdminXCXSucai", new { id=item.Id,type=item.type})"><i class="fa fa-pencil"></i> 编辑</a>
-                                        <button class="btn btn-info btn-sm" type="button" onclick="DeleteItem('@item.Id','@(item.IfDelete ? "false'" : "true")')"><i class="fa fa-trash"></i> 删除</button>
-
+                                        <button class="btn btn-info btn-sm" type="button" onclick="DeleteItem('@item.Id','@(item.IfDelete ? "false" : "true")','/AdminXCXSucai/UpdateDelete','/AdminXCXSucai/deleteList?type=@ViewBag.type')"><i class="fa fa-trash"></i> 删除</button>
+                           
                                     </td>
                                     <td>
                                         <button class="btn btn-warning btn-sm" ><i class="fa fa-volume-up"></i></button>
@@ -123,31 +129,56 @@
 
     <script type="text/javascript">
 
-        function DeleteItem(id, ifdel) {
-            var token = $('[name=__RequestVerificationToken]').val();
-            $.ajax({
-                type: 'POST',
-                url: "/AdminXCXSucai/UpdateDelete",
-                data: {
-                    id: id,
-                    __RequestVerificationToken: token,
-                    status: ifdel,
+        function DeleteItem(id,status, url, tourl) {
+            bootbox.confirm({
+                buttons: {
+                    confirm: {
+                        label: '删除',
+                        className: 'btn-danger'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-default'
+                    }
                 },
-                dataType: "json",
-                success: function (data) {
-                    if (data.MessageStatus)
-                    {
-                        alertconfirmToUrl(data.MessageInfo, '/AdminXCXSucai/Index?type=@ViewBag.type');
-                      //  window.location.href = '/AdminXCXSucai/Index?type=@ViewBag.type'
+                message: '你确定要删除本条信息吗？',
+                callback: function (result) {
+                    if (result) {
+                        var token = $('[name=__RequestVerificationToken]').val();
+                        var headers = {};
+                        //防伪标记放入headers
+                        //也可以将防伪标记放入data
+                        headers["__RequestVerificationToken"] = token;
+                        $.ajax({
+                            url: url,
+                            headers: headers,
+                            type: 'post',
+                            timeout: 3000,
+                            data: {
+                                id: id,
+                                __RequestVerificationToken: token,
+                                status:status,
+                            },
+                            success: function (msg) {
+                                if (msg.MessageStatus == 'true') {
+                                    //window.location.reload();
+                                    window.location.href = tourl;
+                                }
+                                else {
+                                    alertconfirm('删除失败');
+                                }
+                            },
+                            error: function (e) {
+                                alertconfirm('出现意外错误，删除失败！');
+                            }
+                        });
                     }
-                    else
-                    {
-                        alertconfirm("删除失败！");
+                    else {
+                        // alertconfirm('您已经取消删除了');
                     }
-
-                }
+                },
+                title: "删除确认提示框",
             });
-
         }
 
 
@@ -156,8 +187,8 @@
 
             //开关按钮样式加载
             $('[name="Qanxian"]').bootstrapSwitch({
-                onText: "启用",
-                offText: "禁用",
+                onText: "公用",
+                offText: "私用",
                 onColor: "success",
                 offColor: "danger",
                 size: "small",

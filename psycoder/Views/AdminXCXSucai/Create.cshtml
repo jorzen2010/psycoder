@@ -71,10 +71,10 @@
                             <div class="form-group ">
                                 @Html.LabelFor(model => model.Cover, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-3">
-                                    <img src="/Resource/img/nophoto.png" style="width:100%" id="CoverPhoto" />
+                                    <img src="/Resource/img/nophoto.png" style="width:100%;border:1px solid #cccccc" id="CoverPhoto" />
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="hidden" name="Cover" id="Cover" value="###" />
+                                    <input type="hidden" name="Cover" id="Cover" value="/Resource/img/nophoto.png" />
                                     <button class="btn btn-default" id="coverImgBtn" type="button">
                                         选择文件
                                     </button>
@@ -149,10 +149,10 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="img-container" style="width:855px;height:350px;">
+                            <div class="img-container" style="width:870px;height:500px;">
 
                                 <img id="image" src="/Resource/img/nophoto.png" alt="Picture">
-                                <input id="imageaspectRatio" />
+                                <input id="imageaspectRatio"  type="hidden" />
                             </div>
 
                         </div>

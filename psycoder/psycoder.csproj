@@ -174,6 +174,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminJkSucaiController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminSettingController.cs" />
@@ -3057,11 +3058,15 @@
     <Content Include="Views\AdminXCXSucai\Create.cshtml" />
     <Content Include="Views\AdminXCXSucai\Index.cshtml" />
     <Content Include="Views\AdminXCXSucai\Edit.cshtml" />
+    <Content Include="Views\AdminXCXSucai\deleteList.cshtml" />
+    <Content Include="Views\AdminJkSucai\Create.cshtml" />
+    <Content Include="Views\AdminJkSucai\deleteList.cshtml" />
+    <Content Include="Views\AdminJkSucai\Edit.cshtml" />
+    <Content Include="Views\AdminJkSucai\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Resource\Covers\" />
-    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -3079,6 +3084,10 @@
     <ProjectReference Include="..\psycoderEntity\psycoderEntity.csproj">
       <Project>{f9250c6e-804f-430a-aa0a-ee96694de17c}</Project>
       <Name>psycoderEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\psycoderService\psycoderService.csproj">
+      <Project>{f3a9f823-862c-43c2-b60e-7b1987032ae9}</Project>
+      <Name>psycoderService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

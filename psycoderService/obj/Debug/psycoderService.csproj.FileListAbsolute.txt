@@ -1,0 +1,16 @@
+E:\2018\psycoder\psycoderService\bin\Debug\psycoderService.dll
+E:\2018\psycoder\psycoderService\bin\Debug\psycoderService.pdb
+E:\2018\psycoder\psycoderService\bin\Debug\Common.dll
+E:\2018\psycoder\psycoderService\bin\Debug\psycoderDal.dll
+E:\2018\psycoder\psycoderService\bin\Debug\psycoderEntity.dll
+E:\2018\psycoder\psycoderService\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+E:\2018\psycoder\psycoderService\bin\Debug\ChnCharInfo.dll
+E:\2018\psycoder\psycoderService\bin\Debug\EntityFramework.dll
+E:\2018\psycoder\psycoderService\bin\Debug\Common.pdb
+E:\2018\psycoder\psycoderService\bin\Debug\psycoderDal.pdb
+E:\2018\psycoder\psycoderService\bin\Debug\psycoderEntity.pdb
+E:\2018\psycoder\psycoderService\bin\Debug\EntityFramework.xml
+E:\2018\psycoder\psycoderService\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\2018\psycoder\psycoderService\obj\Debug\psycoderService.csprojResolveAssemblyReference.cache
+E:\2018\psycoder\psycoderService\obj\Debug\psycoderService.dll
+E:\2018\psycoder\psycoderService\obj\Debug\psycoderService.pdb

@@ -172,3 +172,5 @@ E:\2018\psycoder\psycoder\bin\psycoderEntity.pdb
 E:\2018\psycoder\psycoder\bin\PagedList.xml
 E:\2018\psycoder\psycoder\bin\PagedList.Mvc.xml
 E:\2018\psycoder\psycoder\bin\Newtonsoft.Json.pdb
+E:\2018\psycoder\psycoder\bin\psycoderService.dll
+E:\2018\psycoder\psycoder\bin\psycoderService.pdb

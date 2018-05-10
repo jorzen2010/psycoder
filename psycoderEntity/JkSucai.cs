@@ -33,35 +33,9 @@ namespace psycoderEntity
         public float Price { get; set; }
         [Display(Name = "提成")]
         public int Ticheng { get; set; }
-    }
-
-    public class SucaiAnli:JkSucai
-    {
-        
         [Display(Name = "内容")]
         public string Content { get; set; }
-
-    }
-
-    public class SucaiTupian : JkSucai
-    {
-
-        [Display(Name = "图片地址")]
-        public string ImageSrc { get; set; }
-
-    }
-
-    public class SucaiAudio : JkSucai
-    {
-
-        [Display(Name = "阿里云音频Id")]
-        public string AudioId { get; set; }
-
-    }
-    public class SucaiVideo : JkSucai
-    {
-
-        [Display(Name = "阿里云视频Id")]
-        public string VideoId { get; set; }
+        [Display(Name = "类型")]
+        public string type { get; set; }
     }
 }
