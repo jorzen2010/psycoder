@@ -139,4 +139,23 @@ function alertconfirm(message) {
     });
 }
 
+function alertconfirmToUrl(message,url) {
+
+    bootbox.alert({
+        buttons: {
+            ok: {
+                label: '确定',
+                className: 'btn-danger'
+            }
+        },
+        message: message,
+        callback: function (result) {
+            if (result) {
+                window.location(url);
+            }
+        },
+        title: "信息提示框",
+    });
+}
+
 

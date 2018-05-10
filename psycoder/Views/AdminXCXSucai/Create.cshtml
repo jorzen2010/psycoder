@@ -1,21 +1,21 @@
-﻿@{
+﻿@model psycoderEntity.XCXSucai
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.Tilte = "新增图文宣传展示素材";
 }
 @section Topcss {
 <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
 <link href="~/plugins/copper/css/cropper.css" rel="stylesheet">
 <link href="~/plugins/copper/css/avatar.css" rel="stylesheet">
 <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+<link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
 }
 
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            @ViewBag.Tilte
-
+        <h1>          
+            新增 @ViewBag.title
         </h1>
     </section>
     <!-- Main content -->
@@ -26,40 +26,56 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
-                            @ViewBag.Tilte
+                            新增 @ViewBag.title
                         </h3>
 
                     </div>
                     <!-- /.box-header -->
-                    @using (Html.BeginForm("Create", "Anli", FormMethod.Post, new { @class = "form-horizontal", @name = "CreateAnli", @id = "CreateAnli" }))
+                    @using (Html.BeginForm("Create", "AdminXCXSucai", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
                     {
+                        @Html.AntiForgeryToken()
+                         @Html.ValidationSummary(true)
                     <div class="box-body">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label col-sm-2">标题</label>
+                                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="标题最多允许64个字符，32个汉字" />
+                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "标题最多允许64个字符，32个汉字"})
                                 </div>
                             </div>
 
 
 
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">内容</label>
+                            @if (ViewBag.type == "tuwen")
+                            { <div class="form-group">
+                                @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-9">
-                                    <textarea id="Content" name="VideoInfo" style="height:500px;"></textarea>
+                                    <textarea id="Content" name="Content" style="height:500px;"></textarea>
                                 </div>
                             </div>
+                            }
+                            else 
+                            {
+                                <div class="form-group">
+                                @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Content, new { @class = "form-control", @placeholder = "此处填阿里云的ID" })
+                                </div>
+                            </div> 
+                            }
+                            
+
+
 
                             <div class="form-group ">
-                                <label class="control-label col-sm-2">封面</label>
+                                @Html.LabelFor(model => model.Cover, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-3">
-                                    <img src="/Resource/img/videodemo.png" style="width:100%" id="videoPhoto" />
+                                    <img src="/Resource/img/nophoto.png" style="width:100%" id="CoverPhoto" />
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="hidden" name="VideoPhoto" id="VideoPhoto" value="###" />
-                                    <button class="btn btn-default" id="videoImgBtn" type="button">
+                                    <input type="hidden" name="Cover" id="Cover" value="###" />
+                                    <button class="btn btn-default" id="coverImgBtn" type="button">
                                         选择文件
                                     </button>
 
@@ -68,19 +84,40 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2">摘要</label>
+                                @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-9">
-                                    <textarea name="zhaiyao" rows="5" class="form-control" placeholder="选填，默认抓取正文的前54个字"></textarea>
+                                    @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", @data_role = "tagsinput" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2">作者</label>
+                                @Html.LabelFor(model => model.Info, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="选填：默认来源于网络" />
+                                    @Html.TextAreaFor(model => model.Info, new { @class = "form-control", @rows = "5", @placeholder = "选填，默认抓取正文的前54个字" })
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Author, new { @class = "form-control",@Value="来源于网络", @placeholder = "选填：默认来源于网络" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Provider, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Provider, new { @class = "form-control",@Value="0" })
+
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.type, new { @Value = ViewBag.type })
+                            @Html.HiddenFor(model => model.CreateTime, new{ @Value=DateTime.Now})
+                            @Html.HiddenFor(model => model.IfDelete, new { @Value = false })
+                            @Html.HiddenFor(model => model.Qanxian, new { @Value = true })
+                            @Html.HiddenFor(model => model.Price, new { @Value = "0" })
+                            @Html.HiddenFor(model => model.Ticheng, new { @Value = "40" })
 
 
 
@@ -88,13 +125,14 @@
 
 
                     </div>
-                    }
+                    
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <button class="btn btn-default">取消</button>
-                        <button class="btn btn-primary pull-right">保存并发布</button>
+                        <button type="submit" class="btn btn-primary pull-right">保存并发布</button>
                     </div>
-                </div>
+               
+                    } </div>
                 <!-- /.box -->
             </div>
         </div>
@@ -102,6 +140,8 @@
     </section>
     <!-- /.content -->
 </div>
+
+
     <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -217,22 +257,24 @@
         <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
         <script type="text/javascript" src="~/plugins/copper/js/cropper.js"></script>
         <script type="text/javascript" src="~/plugins/copper/js/avatar.js"></script>
+<script type="text/javascript" src="~/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
         <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
         <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
         <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
 
 
         <script type="text/javascript">
-
-            var ue = UE.getEditor('Content');
+ 
+                var ue = UE.getEditor('Content');
+           
 
             $('#imageaspectRatio').val('1.33333');
-            $('#videoImgBtn').click(function () {
+            $('#coverImgBtn').click(function () {
                 $('#avatar-modal').modal('show');
                 //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
                 $(".img-container").removeAttr("style");
 
-                $('#getCroppedCanvasbtn').attr('data-skyac', "videoimg");
+                $('#getCroppedCanvasbtn').attr('data-skyac', "cover");
             });
 
         </script>

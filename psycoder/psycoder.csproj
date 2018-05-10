@@ -174,11 +174,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AdminTuwenController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminSettingController.cs" />
     <Compile Include="Controllers\AdminSysUserController.cs" />
+    <Compile Include="Controllers\AdminXCXSucaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3052,13 +3052,15 @@
     <Content Include="Views\Admin\ScAnliCreate.cshtml" />
     <Content Include="Views\Admin\ScTupianCreate.cshtml" />
     <Content Include="Views\Admin\TuwenCreate.cshtml" />
-    <Content Include="Views\AdminTuwen\Index.cshtml" />
-    <Content Include="Views\AdminTuwen\Create.cshtml" />
     <Content Include="Views\AdminSysUser\Index.cshtml" />
     <Content Include="Views\AdminSetting\Index.cshtml" />
+    <Content Include="Views\AdminXCXSucai\Create.cshtml" />
+    <Content Include="Views\AdminXCXSucai\Index.cshtml" />
+    <Content Include="Views\AdminXCXSucai\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resource\Covers\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>

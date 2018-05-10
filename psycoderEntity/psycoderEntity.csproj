@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hudong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting.cs" />
-    <Compile Include="XcxSucai.cs" />
+    <Compile Include="JkSucai.cs" />
+    <Compile Include="XCXSucai.cs" />
     <Compile Include="SysUser.cs" />
   </ItemGroup>
   <ItemGroup>

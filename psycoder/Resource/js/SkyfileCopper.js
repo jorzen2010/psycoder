@@ -140,6 +140,32 @@ function SkyfileCopper(ac,result) {
             });
             break;
 
+        case "cover":
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/File/UploadImgBase64",
+                data: {
+                    img: result.toDataURL('image/jpeg'),
+                    __RequestVerificationToken: token,
+                    rootpath: "/Resource/Covers",
+                    folder: "photo",
+                },
+                dataType: "json",
+                success: function (data) {
+                    alertconfirm('封面上传成功');
+                    $('#CoverPhoto').attr('src', data.MessageUrl);
+                    $('#getCroppedCanvasbtn').attr('data-skyac', "");
+                    $('[name="Cover"]').val(data.MessageUrl);
+                    $('#avatar-modal').modal('hide');
+
+                },
+                error: function () {
+                    alertconfirm("error：有错误发生了")
+                }
+            });
+            break;
+
     }
 
 }

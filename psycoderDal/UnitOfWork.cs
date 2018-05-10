@@ -43,6 +43,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<XCXSucai> XCXSucaisRepository;
+
+         public GenericRepository<XCXSucai> xcxSucaiRepository
+         {
+             get
+             {
+
+                 if (this.XCXSucaisRepository == null)
+                 {
+                     this.XCXSucaisRepository = new GenericRepository<XCXSucai>(context);
+                 }
+                 return XCXSucaisRepository;
+             }
+         }
+
        
 
      
