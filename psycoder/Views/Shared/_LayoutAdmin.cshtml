@@ -75,10 +75,14 @@
     <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
     @RenderSection("BottomScripts", required: false)
     <script type="text/javascript">
-        var url = GetUrl('pathname');
+        var url = GetUrl('pathname') + GetUrl('search');
+        url = getStrPre(url, "&");
+     
         $('.sidebar-menu li a').each(function () {
 
-            if (url == $(this).attr('href')) {
+            var hrefurl = $(this).attr('href');
+            
+            if (url  == hrefurl) {
                 $(this).parent().addClass('active');
                 // alert($(this).parent().parent().parent().text());
 

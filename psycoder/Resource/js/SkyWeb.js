@@ -47,6 +47,18 @@ function getUrlParam(key) {
     //返回参数值
     return result ? decodeURIComponent(result[2]) : null;
 }
+//截取字符串的前面的字符
+function getStrPre(prestring, str) {
+    var str_before = prestring.split(str)[0];
+    return str_before;
+}
+
+//截取字符串的后面的字符
+function getStrAfter(Afterstring, str) {
+
+    var str_after = Afterstring.split(str)[0];
+    return str_after;
+}
 
 //使用Js用Post或者get提交请求（未测试）http://www.w3school.com.cn/ajax/ajax_xmlhttprequest_send.asp
 function JsPostSubmit() {

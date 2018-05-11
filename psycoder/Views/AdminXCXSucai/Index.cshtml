@@ -96,7 +96,7 @@
                     <div class="box-footer clearfix">
 
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page ,type=Request.QueryString["type"]}),
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",

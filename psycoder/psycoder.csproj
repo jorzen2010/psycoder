@@ -174,7 +174,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminHudongController.cs" />
     <Compile Include="Controllers\AdminJkSucaiController.cs" />
+    <Compile Include="Controllers\AdminNewsController.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminSettingController.cs" />
@@ -3063,6 +3066,13 @@
     <Content Include="Views\AdminJkSucai\deleteList.cshtml" />
     <Content Include="Views\AdminJkSucai\Edit.cshtml" />
     <Content Include="Views\AdminJkSucai\Index.cshtml" />
+    <Content Include="Views\AdminHudong\Ziyoushuxie.cshtml" />
+    <Content Include="Views\AdminHudong\QuestionList.cshtml" />
+    <Content Include="Views\AdminHudong\ZixunList.cshtml" />
+    <Content Include="Views\AdminHudong\Guanggao.cshtml" />
+    <Content Include="Views\AdminUser\PsyUser.cshtml" />
+    <Content Include="Views\AdminUser\FensiUser.cshtml" />
+    <Content Include="Views\AdminNews\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
