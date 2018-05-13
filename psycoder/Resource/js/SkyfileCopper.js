@@ -1,6 +1,7 @@
 ﻿
 
 //copper插件的配合使用
+
 function SkyfileCopper(ac,result) {
 
     switch (ac)
@@ -20,6 +21,7 @@ function SkyfileCopper(ac,result) {
                 dataType: "json",
                 success: function (data) {
                     alert('Success：头像上传成功');
+                    $('#getCroppedCanvasbtn').attr('data-skyac', "");
                     $('#skyAvatar').attr('src', data.MessageUrl);
                     $('#CustomerAvatar').val(data.MessageUrl);
                     $('#avatar-modal').modal('hide');
@@ -144,12 +146,13 @@ function SkyfileCopper(ac,result) {
             var token = $('[name=__RequestVerificationToken]').val();
             $.ajax({
                 type: 'POST',
-                url: "/File/UploadImgBase64",
+                url: "/File/UploadImageBase64",
                 data: {
                     img: result.toDataURL('image/jpeg'),
                     __RequestVerificationToken: token,
-                    rootpath: "/Resource/Covers",
-                    folder: "photo",
+                    rootpath: "/FilesUpload",
+                    folder: "Covers",
+                    pre: "covers",
                 },
                 dataType: "json",
                 success: function (data) {
@@ -157,6 +160,33 @@ function SkyfileCopper(ac,result) {
                     $('#CoverPhoto').attr('src', data.MessageUrl);
                     $('#getCroppedCanvasbtn').attr('data-skyac', "");
                     $('[name="Cover"]').val(data.MessageUrl);
+                    $('#avatar-modal').modal('hide');
+
+                },
+                error: function () {
+                    alertconfirm("error：有错误发生了")
+                }
+            });
+            break;
+
+        case "imgAd":
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/File/UploadImageBase64",
+                data: {
+                    img: result.toDataURL('image/jpeg'),
+                    __RequestVerificationToken: token,
+                    rootpath: "/FilesUpload",
+                    folder: "Advert",
+                    pre:"ad",
+                },
+                dataType: "json",
+                success: function (data) {
+                    alertconfirm('图片广告上传成功');
+                    $('#GuanggaoImgSrcPhoto').attr('src', data.MessageUrl);
+                    $('#getCroppedCanvasbtn').attr('data-skyac', "");
+                    $('[name="GuanggaoImgSrc"]').val(data.MessageUrl);
                     $('#avatar-modal').modal('hide');
 
                 },

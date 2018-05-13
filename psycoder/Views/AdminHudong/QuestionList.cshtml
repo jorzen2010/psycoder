@@ -18,11 +18,11 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title"><a class="btn btn-primary btn-sm" href="@Url.Action("ScAnliCreate","Admin")">新增</a> </h3>
+                        <h3 class="box-title">@ViewBag.Tilte  </h3>
                         <div class="pull-right">
                          
                               
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> 默认设置</button>
+                            <a class="btn btn-default btn-sm" href="@Url.Action("HudongSet", "AdminHudong", new { type="QuestionList"})"><i class="fa fa-cog"></i> 默认设置</a> 
                             <button type="button" class="btn btn-info btn-sm"><i class="fa fa-list"></i> 问题列表</button>
                                
                           

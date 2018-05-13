@@ -26,7 +26,7 @@
     <![endif]-->
     @RenderSection("TopCss", required: false)
     @RenderSection("TopScripts", required: false)
-    <title>AdminLTE 2 | Blank Page</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
@@ -72,6 +72,12 @@
     <script src="~/dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/dist/js/demo.js"></script>
+ 
+    <script src="/Scripts/jquery.validate.js"></script>
+  
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
     <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
     @RenderSection("BottomScripts", required: false)
     <script type="text/javascript">
@@ -89,9 +95,7 @@
                 if ($(this).parent().parent().parent().hasClass('treeview')) {
                     $(this).parent().parent().parent().addClass('active');
                 }
-
             }
-
         }
             );
     </script>

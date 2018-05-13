@@ -27,6 +27,8 @@ namespace psycoderDal
         public DbSet<Setting> Settings { get; set; }
         public DbSet<XCXSucai> XCXSucais { get; set; }
         public DbSet<JkSucai> JkSucais { get; set; }
+        public DbSet<DefaultHudongSetting> DefaultHudongSettings { get; set; }
+        public DbSet<DefaultGuanggaoSetting> DefaultGuanggaoSettings { get; set; }
 
 
     }

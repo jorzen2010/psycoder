@@ -1,0 +1,209 @@
+﻿@model StaticPagedList<psycoderEntity.DefaultGuanggaoSetting>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Tilte = "广告列表";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Tilte 
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">@ViewBag.Tilte  </h3>
+                        <div class="pull-right">                          
+                            <a class="btn btn-default btn-sm" href="@Url.Action("GuanggaoSet", "AdminHudong", new { type="QuestionList"})"><i class="fa fa-cog"></i> 新增默认广告</a>                          
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th class="col-md-1">ID</th>
+                                <th class="col-md-2">广告名称</th>
+                                <th class="col-md-1">广告类型</th>
+                                <th class="col-md-5">广告内容</th>
+                                <th class="col-md-2">广告状态</th>
+                                <th class="col-md-1">操作</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GuanggaoTitle)
+                                    </td>
+                                    <td>
+                                       @Html.DisplayFor(modelItem => item.GuanggaoType)
+                                    </td>
+                                    @if (item.GuanggaoType == "文字广告")
+                                    { 
+                                        <td>
+                                        @Html.DisplayFor(modelItem => item.GuanggaoContent)
+                                    </td>
+                                    }
+                                    else if (item.GuanggaoType == "图片广告")
+                                    { 
+                                       <td>
+                                        @Html.DisplayFor(modelItem => item.GuanggaoImgSrc)
+                                    </td>
+                                    }
+                                    
+                                    
+                                    <td>
+                                        <input type="checkbox" name="GuanggaoStatus" value="@item.Id" @(item.GuanggaoStatus ? "checked='checked'" : "") />
+                                        @Html.AntiForgeryToken()
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.Id','/AdminHudong/DeleteConfirmed/','/AdminHudong/AdvertList')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
+
+                                    </td>
+                                  
+
+                                </tr>
+
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                       
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("AdvertList", new { page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+
+        function DeleteItem(id, status, url, tourl) {
+            bootbox.confirm({
+                buttons: {
+                    confirm: {
+                        label: '删除',
+                        className: 'btn-danger'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-default'
+                    }
+                },
+                message: '你确定要删除本条信息吗？',
+                callback: function (result) {
+                    if (result) {
+                        var token = $('[name=__RequestVerificationToken]').val();
+                        var headers = {};
+                        //防伪标记放入headers
+                        //也可以将防伪标记放入data
+                        headers["__RequestVerificationToken"] = token;
+                        $.ajax({
+                            url: url,
+                            headers: headers,
+                            type: 'post',
+                            timeout: 3000,
+                            data: {
+                                id: id,
+                                __RequestVerificationToken: token,
+                                status: status,
+                            },
+                            success: function (msg) {
+                                if (msg.MessageStatus == 'true') {
+                                    //window.location.reload();
+                                    window.location.href = tourl;
+                                }
+                                else {
+                                    alertconfirm('删除失败');
+                                }
+                            },
+                            error: function (e) {
+                                alertconfirm('出现意外错误，删除失败！');
+                            }
+                        });
+                    }
+                    else {
+                        // alertconfirm('您已经取消删除了');
+                    }
+                },
+                title: "删除确认提示框",
+            });
+        }
+
+
+        $(document).ready(function () {
+
+
+            //开关按钮样式加载
+            $('[name="GuanggaoStatus"]').bootstrapSwitch({
+                onText: "公用",
+                offText: "私用",
+                onColor: "success",
+                offColor: "danger",
+                size: "mini",
+                onSwitchChange: function (event, state) {
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/AdminHudong/UpdateStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                            __RequestVerificationToken: token,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
+
+
+
+
+        });
+
+    </script>
+}

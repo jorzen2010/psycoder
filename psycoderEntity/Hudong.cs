@@ -59,10 +59,10 @@ namespace psycoderEntity
         public string GuanggaoTitle { get; set; }
         [Display(Name = "广告内容")]
         public string GuanggaoContent { get; set; }
+        [Display(Name = "广告图片地址")]
+        public string GuanggaoImgSrc { get; set; }
         [Display(Name = "广告类型")]
         public string GuanggaoType { get; set; }
-        [Display(Name = "广告图片")]
-        public string GuanggaoImage { get; set; }
         [Display(Name = "广告状态")]
         public bool GuanggaoStatus { get; set; }
     }
@@ -71,13 +71,14 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "广告名称")]
+        [Required(ErrorMessage="请输入标题")]
         public string GuanggaoTitle { get; set; }
         [Display(Name = "广告内容")]
         public string GuanggaoContent { get; set; }
+        [Display(Name = "广告图片地址")]
+        public string GuanggaoImgSrc { get; set; }
         [Display(Name = "广告类型")]
         public string GuanggaoType { get; set; }
-        [Display(Name = "广告图片")]
-        public string GuanggaoImage { get; set; }
         [Display(Name = "广告状态")]
         public bool GuanggaoStatus { get; set; }
     }

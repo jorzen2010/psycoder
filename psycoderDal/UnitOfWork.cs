@@ -73,6 +73,36 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<DefaultHudongSetting> DefalutHudongSettingRepository;
+
+         public GenericRepository<DefaultHudongSetting> defalutHudongSettingRepository
+         {
+             get
+             {
+
+                 if (this.DefalutHudongSettingRepository == null)
+                 {
+                     this.DefalutHudongSettingRepository = new GenericRepository<DefaultHudongSetting>(context);
+                 }
+                 return DefalutHudongSettingRepository;
+             }
+         }
+
+         private GenericRepository<DefaultGuanggaoSetting> DefaultGuanggaoSettingRepository;
+
+         public GenericRepository<DefaultGuanggaoSetting> defaultGuanggaoSettingRepository
+         {
+             get
+             {
+
+                 if (this.DefaultGuanggaoSettingRepository == null)
+                 {
+                     this.DefaultGuanggaoSettingRepository = new GenericRepository<DefaultGuanggaoSetting>(context);
+                 }
+                 return DefaultGuanggaoSettingRepository;
+             }
+         }
+
        
 
      

@@ -46,13 +46,13 @@ namespace psycoderDal
 
             context.Settings.Add(new Setting
             {
-                SiteName = "自闭症家庭训练系统",
-                DomainName = "http://www.zzd123.com",
+                SiteName = "心理咨询师公众平台",
+                DomainName = "http://mp.psyweixin.zzd123.com",
                 Logo = "Upload/Site/logo.jpg",
                 Protocol = protocol.ToString(),
-                Title = "自闭症家庭训练系统",
-                Keywords = "自闭症家庭训练系统",
-                Description = "自闭症家庭训练系统",
+                Title = "心理咨询师公众平台",
+                Keywords = "心理咨询师公众平台",
+                Description = "心理咨询师公众平台",
                 Copyright = copyright.ToString(),
                 Statistics = string.Empty,
 

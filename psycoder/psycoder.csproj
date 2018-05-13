@@ -1637,6 +1637,12 @@
     <Content Include="plugins\bootstrap-fileinput\js\plugins\sortable.min.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
+    <Content Include="plugins\bootstrap-step\arrow.htm" />
+    <Content Include="plugins\bootstrap-step\css\bootstrap.css" />
+    <Content Include="plugins\bootstrap-step\css\style.css" />
+    <Content Include="plugins\bootstrap-step\index.htm" />
+    <Content Include="plugins\bootstrap-step\js\jquery.js" />
+    <Content Include="plugins\bootstrap-step\js\lib.js" />
     <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.css" />
     <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
     <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.js" />
@@ -2840,32 +2846,10 @@
     <Content Include="Resource\js\Category.js" />
     <Content Include="Resource\js\Customer.js" />
     <Content Include="Resource\js\SkyfileCopper.js" />
+    <Content Include="Resource\js\SkyFileInput.js" />
     <Content Include="Resource\js\SkyInit.js" />
     <Content Include="Resource\js\SkyWeb.js" />
-    <Content Include="Resource\Upload\Idcardfm\6362820253507724273590.jpg" />
-    <Content Include="Resource\Upload\IdcardHold\6362820252332422609989.jpg" />
-    <Content Include="Resource\Upload\Idcardzm\6362820252864623363714.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6362826837590744576296.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6362828703472357317402.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6363051160840416114048.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6363051163414063322867.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6363051171050700111073.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6363051180576844971981.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6363051201020414287662.jpg" />
-    <Content Include="Resource\Upload\zhaozheng\6363051201663451064310.jpg" />
-    <Content Include="Resource\Video\photo\6362853416759968203534.jpg" />
-    <Content Include="Resource\Video\photo\6362853418726780691662.jpg" />
-    <Content Include="Resource\Video\photo\6362853496874550496985.jpg" />
-    <Content Include="Resource\Video\photo\6362853528705192157589.jpg" />
-    <Content Include="Resource\Video\photo\6362853550838020202950.jpg" />
-    <Content Include="Resource\Video\photo\6362855098803131063487.jpg" />
-    <Content Include="Resource\Video\photo\6362859133474663945709.jpg" />
-    <Content Include="Resource\Video\photo\6362859199783556608810.jpg" />
-    <Content Include="Resource\Video\photo\6362861153204191492543.jpg" />
-    <Content Include="Resource\Video\photo\6363051131963964475419.jpg" />
-    <Content Include="Resource\Video\photo\6363051133336442974112.jpg" />
-    <Content Include="Resource\Video\photo\6363243592104323354412.jpg" />
-    <Content Include="Resource\Video\photo\6363464639882913383631.jpg" />
+    <Content Include="Src\css\Admin.css" />
     <Content Include="Src\css\web.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -3046,16 +3030,6 @@
     <Content Include="Views\Shared\_PartialAdminHeader.cshtml" />
     <Content Include="Views\Shared\_PartialAdminMenu.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\TuwenSucai.cshtml" />
-    <Content Include="Views\Admin\AudioList.cshtml" />
-    <Content Include="Views\Admin\VideoList.cshtml" />
-    <Content Include="Views\Admin\ScAudio.cshtml" />
-    <Content Include="Views\Admin\ScVideo.cshtml" />
-    <Content Include="Views\Admin\ScTupian.cshtml" />
-    <Content Include="Views\Admin\ScAnli.cshtml" />
-    <Content Include="Views\Admin\ScAnliCreate.cshtml" />
-    <Content Include="Views\Admin\ScTupianCreate.cshtml" />
-    <Content Include="Views\Admin\TuwenCreate.cshtml" />
     <Content Include="Views\AdminSysUser\Index.cshtml" />
     <Content Include="Views\AdminSetting\Index.cshtml" />
     <Content Include="Views\AdminXCXSucai\Create.cshtml" />
@@ -3073,10 +3047,15 @@
     <Content Include="Views\AdminUser\PsyUser.cshtml" />
     <Content Include="Views\AdminUser\FensiUser.cshtml" />
     <Content Include="Views\AdminNews\Index.cshtml" />
+    <Content Include="Views\AdminHudong\ZiyoushuxieSet.cshtml" />
+    <Content Include="Views\AdminHudong\ZixunSet.cshtml" />
+    <Content Include="Views\AdminHudong\QuestionSet.cshtml" />
+    <Content Include="Views\AdminHudong\HudongSet.cshtml" />
+    <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
+    <Content Include="Views\AdminHudong\AdvertList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resource\Covers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

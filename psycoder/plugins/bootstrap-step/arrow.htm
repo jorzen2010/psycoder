@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title></title>
+	</head>
+
+	<body>
+		<!--
+        	作者：lopo1983@foxmail.com
+        	网站：www.bsfans.com
+        	QQ：64832897
+        	基友群：15832082
+        	更新时间：2017-12-3
+        	描述：
+        	1.	更新之前做的一个bootstrap step 插件 
+        	2.	更新为less 书写的css 方便定制(已修改为静态css，需定制颜色样式的请查看css/less/comp/)
+        	3.	适用less模式 请在服务器环境运行该页面 谢谢
+        	4.	style.less为less 编译入口文件
+        -->
+		<!--在data-step 中输入你想展示的默认步骤 若不填写 则默认为1-->
+		<div class="container">
+
+			<h5>arrow模式</h5>
+			<ul class="nav nav-pills nav-justified step step-arrow">
+				<li class="active">
+					<a>step1</a>
+				</li>
+				<li>
+					<a>step2</a>
+				</li>
+				<li>
+					<a>step3</a>
+				</li>
+				<li>
+					<a>step4</a>
+				</li>
+				<li>
+					<a>step5</a>
+				</li>
+			</ul>
+
+            <ul id="step-content">
+                <li class="step-content-item">
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">步骤1</h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            内容
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+
+                           
+                            
+                            <button class="btn btn-success pull-right" onclick="goStep(2)">下一步</button>
+
+
+                        </div>
+                    </div>
+                
+                 </li>
+                <li class="step-content-item">
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">步骤2</h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            内容
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+
+                            <button class="btn btn-info" onclick="goStep(1)">上一步</button>
+
+                            <button class="btn btn-success pull-right" onclick="goStep(3)">下一步</button>
+
+
+                        </div>
+                    </div>
+
+                </li>
+                <li class="step-content-item">
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">步骤3</h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            内容
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+
+                            <button class="btn btn-info" onclick="goStep(2)">上一步</button>
+
+                            <button class="btn btn-success pull-right" onclick="goStep(4)">下一步</button>
+
+
+                        </div>
+                    </div>
+
+                </li>
+                <li class="step-content-item">
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">步骤4</h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            内容
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+
+                            <button class="btn btn-info" onclick="goStep(3)">上一步</button>
+
+                            <button class="btn btn-success pull-right" onclick="goStep(5)">下一步</button>
+
+
+                        </div>
+                    </div>
+
+                </li>
+                <li class="step-content-item">
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">步骤5</h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            内容
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+
+                            <button class="btn btn-info" onclick="goStep(4)">上一步</button>
+
+                            <button class="btn btn-success pull-right" onclick="">完成</button>
+
+
+                        </div>
+                    </div>
+
+                </li>
+                
+   </ul>
+
+		</div>
+        <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/lib.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                goStep(1);
+            });
+            function goStep(step) {
+                bsStep(step);
+                $(".step-content-item").hide();
+                $("#step-content").find("li").eq(step - 1).show();
+
+            }
+
+        </script>
+	
+
+</body></html>
