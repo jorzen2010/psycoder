@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AdminSettingController.cs" />
     <Compile Include="Controllers\AdminSysUserController.cs" />
     <Compile Include="Controllers\AdminXCXSucaiController.cs" />
+    <Compile Include="Controllers\PsyUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3053,9 +3054,11 @@
     <Content Include="Views\AdminHudong\HudongSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
     <Content Include="Views\AdminHudong\AdvertList.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PsyUser\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

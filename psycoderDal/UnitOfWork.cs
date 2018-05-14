@@ -103,6 +103,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<PsyUser> PsyUsersRepository;
+
+         public GenericRepository<PsyUser> psyUsersRepository
+         {
+             get
+             {
+
+                 if (this.PsyUsersRepository == null)
+                 {
+                     this.PsyUsersRepository = new GenericRepository<PsyUser>(context);
+                 }
+                 return PsyUsersRepository;
+             }
+         }
+
        
 
      

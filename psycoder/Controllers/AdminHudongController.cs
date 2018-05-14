@@ -32,6 +32,32 @@ namespace psycoder.Controllers
         {
             return View();
         }
+        
+        public ActionResult HudongSet(string type = "Ziyoushuxie")
+        {
+            if (type == "Ziyoushuxie")
+            {
+                ViewBag.Title = "自由书写";
+            }
+            else if (type == "QuestionList")
+            {
+                ViewBag.Title = "问题引导";
+            }
+            else if (type == "ZixunList")
+            {
+                ViewBag.Title = "留言咨询";
+            }
+
+            ViewBag.type = type;
+            int id = 1;
+            DefaultHudongSetting setting = unitOfWork.defalutHudongSettingRepository.GetByID(id);
+            if (setting == null)
+            {
+                return HttpNotFound();
+               
+            }
+            return View(setting);
+        }
 
         public ActionResult AdvertList(int? page)
         {
@@ -68,30 +94,7 @@ namespace psycoder.Controllers
             return View(setting);
         }
 
-        public ActionResult HudongSet(string type = "Ziyoushuxie")
-        {
-            if (type == "Ziyoushuxie")
-            {
-                ViewBag.Title = "自由书写";
-            }
-            else if (type == "QuestionList")
-            {
-                ViewBag.Title = "问题引导";
-            }
-            else if (type == "ZixunList")
-            {
-                ViewBag.Title = "留言咨询";
-            }
-
-            ViewBag.type = type;
-            int id = 1;
-            DefaultHudongSetting setting = unitOfWork.defalutHudongSettingRepository.GetByID(id);
-            if (setting == null)
-            {
-                return HttpNotFound();
-            }
-            return View(setting);
-        }
+       
 
         [HttpPost]
         [ValidateAntiForgeryToken]

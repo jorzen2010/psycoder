@@ -29,6 +29,7 @@ namespace psycoderDal
         public DbSet<JkSucai> JkSucais { get; set; }
         public DbSet<DefaultHudongSetting> DefaultHudongSettings { get; set; }
         public DbSet<DefaultGuanggaoSetting> DefaultGuanggaoSettings { get; set; }
+        public DbSet<PsyUser> PsyUsers { get; set; }
 
 
     }

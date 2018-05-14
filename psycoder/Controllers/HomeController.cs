@@ -22,6 +22,18 @@ namespace psycoder.Controllers
             return View();
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterAction()
+        {
+            return View();
+        }
+
+
         public ActionResult TuwenList()
         {
             return View();

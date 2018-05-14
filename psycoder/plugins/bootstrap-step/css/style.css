@@ -114,24 +114,24 @@
 }
 .step-arrow li.active a:before {
   background: #ffffff;
-  color: #007bff;
+  color: #08b016;
 }
 .step-arrow li.active a:after {
-  background-color: #007bff;
+  background-color: #08b016;
 }
 .step-arrow li.active a,
 .step-arrow li.active a:hover {
-  background-color: #007bff;
+  background-color: #08b016;
   color: #ffffff;
 }
 .step-arrow li.active a:before,
 .step-arrow li.active a:hover:before {
   background-color: #ffffff;
-  color: #007bff;
+  color: #08b016;
 }
 .step-arrow li.active a:after,
 .step-arrow li.active a:hover:after {
-  background-color: #007bff !important;
+  background-color: #08b016 !important;
 }
 .step-square {
   margin-top: 40px;
