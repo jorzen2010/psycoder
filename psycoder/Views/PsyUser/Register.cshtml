@@ -44,13 +44,16 @@
                 <a>自我介绍</a>
             </li>
             <li>
-                <a>完成</a>
+                <a>注册完成</a>
             </li>
         </ul>
 
         <ul id="step-content">
+           
             <li class="step-content-item">
-
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="PsyId" id="PsyId" value="0" />
+                <input type="hidden" name="PsyEmail" id="PsyEmail" value="0" />
                 <div class="box">
                     <div class="box-header">
                        <h3>基本信息</h3>
@@ -60,7 +63,6 @@
                     <div class="box-body">
                             <div class="row">
                                 <div class="col-md-offset-2 col-md-8">
-
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
                                     <div class="form-group">
@@ -95,13 +97,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-3 col-sm-10">
-                                            <div class="col-sm-8">
-                                                <label>
-                                                    <input type="checkbox" class="form-control" id="IfGree" name="IfGree"> 我同意并遵守<a href="###">《心理咨询师讲师公众平台服务协议》</a>
-                                                </label>
-                                            </div>
+                                      
+                                        <div class="col-md-offset-3 col-sm-8">
+                                            <label>
+                                                <input type="checkbox" id="IfGree" name="IfGree"> 我同意并遵守<a href="###">《心理咨询师讲师公众平台服务协议》</a>
+                                            </label>
                                         </div>
+                                       
                                     </div>
 
                     
@@ -111,12 +113,8 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix col-md-offset-2 col-md-8">
-
                         <a class="btn btn-default" href="##">已有账号，直接登录</a>
-
                         <button type="button" class="btn btn-success pull-right" onclick="NextStep(2)">下一步</button>
-
-
                     </div>
 
                     </form>
@@ -130,48 +128,50 @@
                         <h3>个人身份认证</h3>
 
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <div class="row">
-                            <div class="col-md-offset-2 col-md-8">
-                                <form class="form-horizontal">
+                    <form class="form-horizontal" name="shenfenrenzheng" id="shenfenrenzheng" action="#">
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8">
+
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label">真实姓名</label>
+                                        <label for="PsyRealName" class="col-sm-3 control-label">真实姓名</label>
                                         <div class="col-sm-8">
-                                            <input type="email" class="form-control" id="inputEmail3">
+                                            <input type="text" class="form-control" id="PsyRealName" name="PsyRealName">
                                             <p class="help-block">请填写你的身份证上的真实姓名</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-3 control-label">身份证号码</label>
+                                        <label for="PsyNumber" class="col-sm-3 control-label">身份证号码</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="inputPassword3">
-                                            <p class="help-block">请正确填写你的身份证号码</p>
+                                            <input type="text" class="form-control" id="PsyNumber" name="PsyNumber">
+                                            <p class="help-block">请正确填写你的身份证号码，为有效保护你的隐私，我们不提供身份证上传验证，而采用人工验证。</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label">心理咨询师资格证编号</label>
+                                        <label for="PsyZhengshuNumber" class="col-sm-3 control-label">心理咨询师资格证编号</label>
                                         <div class="col-sm-8">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                            <p class="help-block">请正确填写您的国家二级（三级）心理咨询师资格证编号</p>
+                                            <input type="text" class="form-control" id="PsyZhengshuNumber" name="PsyZhengshuNumber">
+                                            <p class="help-block">请正确填写您的国家二级（三级）心理咨询师资格证编号，为有效保护你的隐私，我们不提供身份证上传验证，而采用人工验证。</p>
                                         </div>
                                     </div>
 
-                                    
-                                </form>
+
+
+                                </div>
+
                             </div>
-                            
                         </div>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer clearfix col-md-offset-2 col-md-8">
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix col-md-offset-2 col-md-8">
 
-                        <button class="btn btn-info" onclick="goStep(1)">上一步</button>
+                            <button class="btn btn-info" onclick="goStep(1)">上一步</button>
 
-                        <button class="btn btn-success pull-right" onclick="goStep(3)" id="btn-test">下一步</button>
+                            <button class="btn btn-success pull-right" onclick="NextStep(3)">下一步</button>
 
 
-                    </div>
+                        </div>
+                    </form>
                 </div>
 
             </li>
@@ -318,93 +318,25 @@
         Copyright © 2012-2018 版权所有. All Rights Reserved.
     </div>
    
-    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-step/js/lib.js"></script>
+    <script type="text/javascript" src="~/Src/js/web.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
             //初始化一个
             goStep(1);
 
-         //   goStep(1);
-
-            //表单验证
-            $('#jibenxinxi').bootstrapValidator({
-                live: 'enabled',
-                submitButtons: '#btn-test',
-                message: 'This value is not valid',
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    PsyUserEmail: {
-                        validators: {
-                            notEmpty: {
-                                message: '用户名不能为空'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 20,
-                                message: '用户名长度必须在6到30之间'
-                            },
-                        }
-                    },
-                    PsyPassword: {
-                        validators: {
-                            notEmpty: {
-                                message: '密码不能为空'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 12,
-                                message: '密码长度在6到12位'
-                            },
-                        }
-                    },
-                    PsyPasswordConfirm: {
-                        validators: {
-                            notEmpty: {
-                                message: '重复密码也不能为空'
-                            },
-                            identical: {
-                                field: 'PsyPassword',
-                                message: '两次输入密码不一致'
-                            }
-                        }
-                    },
-                    EmailCode: {
-                        validators: {
-                            notEmpty: {
-                                message: '验证码不能为空'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 6,
-                                message: '验证码应为六位'
-                            },
-                        }
-                    },
-                    IfGree: {
-                        validators: {
-                            notEmpty: {
-                                message: '请认真阅读此协议，并点击同意'
-                            }
-                        }
-                    },
-
-                }
-            });
         });
+            
         function NextStep(step) {
             if (step == 2)
             {
                 $("#jibenxinxi").bootstrapValidator('validate');//提交验证  
                 if ($("#jibenxinxi").data('bootstrapValidator').isValid()) {//获取验证结果，如果成功，执行下面代码  
                    // alert("验证成功");//验证成功后的操作，如ajax  
-                   // goStep(2);
+                    // goStep(2);
                     var PsyUserEmail = $("[name='PsyUserEmail']").val();
                     var PsyPassword = $("[name='PsyPassword']").val();
                     var PsyPasswordCode = $("[name='PsyPasswordCode']").val();
@@ -415,6 +347,7 @@
                         type: 'POST',
                         url: "/PsyUser/RegisterJibenxinxi",
                         data: {
+                           
                             PsyUserEmail: PsyUserEmail,
                             PsyPassword: PsyPassword,
                             __RequestVerificationToken: token,
@@ -425,6 +358,7 @@
                             if (data.MessageStatus) {
 
                                 goStep(2);
+                                $("[name='PsyEmail']").attr("value", PsyUserEmail);
                                 alert(data.MessageInfo);
                             }
                             else {
@@ -437,16 +371,56 @@
                 }
                 else {
                     alert("验证失败");
-                }
-                
-                
-
-               
+                }      
             }
+           else if (step == 3) {
+                $("#shenfenrenzheng").bootstrapValidator('validate');//提交验证  
+                if ($("#shenfenrenzheng").data('bootstrapValidator').isValid()) {//获取验证结果，如果成功，执行下面代码  
+                    // alert("验证成功");//验证成功后的操作，如ajax  
+                    // goStep(2);
+                    var PsyEmail = $("[name='PsyEmail']").val();
+                    var PsyRealName = $("[name='PsyRealName']").val();
+                    var PsyNumber = $("[name='PsyNumber']").val();
+                    var PsyZhengshuNumber = $("[name='PsyZhengshuNumber']").val();
+                    var token = $('[name=__RequestVerificationToken]').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/PsyUser/RegisterShenfen",
+                        data: {
+                            PsyEmail: PsyEmail,
+                            PsyRealName: PsyRealName,
+                            PsyNumber: PsyNumber,
+                            PsyZhengshuNumber: PsyZhengshuNumber,
+                            __RequestVerificationToken: token,
+                            
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.MessageStatus) {
+
+                                goStep(3);
+                                alert(data.MessageInfo);
+                            }
+                            else {
+                                alert("操作失败，请检查输入是否正确！");
+                            }
+
+                        }
+                    });
+
+                }
+                else {
+                    // alert("验证失败");
+                }
+           }
+           else if (step == 4) {
+               alert("联系方式");
+           }
+           else if (step == 5) {
+               alert("自我介绍");
+           }
           
-            //bsStep(step);
-            //$(".step-content-item").hide();
-            //$("#step-content").find("li").eq(step - 1).show();
         }
 
 
@@ -457,37 +431,7 @@
             $("#step-content").find("li").eq(step-1).show();
         }
 
-        function SaveJibenxinxi()
-        {
-            var PsyUserEmail = $("[name='PsyUserEmail']").val();
-            var PsyPassword = $("[name='PsyPassword']").val();
-            var PsyPasswordCode = $("[name='PsyPasswordCode']").val();
-            var PsyPasswordConfirm = $("[name='PsyPasswordConfirm']").val();
-            var token = $('[name=__RequestVerificationToken]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: "/AdminSysUser/ResetPassword",
-                data: {
-                    id: id,
-                    __RequestVerificationToken: token,
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.MessageStatus)
-                    {
-                       
-
-                        alertconfirm(data.MessageInfo);
-                    }
-                    else
-                    {
-                        alertconfirm("操作失败，请检查输入是否正确！");
-                    }
-
-                }
-            });
-        }
+       
     </script>
 
 </body>

@@ -3054,11 +3054,10 @@
     <Content Include="Views\AdminHudong\HudongSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
     <Content Include="Views\AdminHudong\AdvertList.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\PsyUser\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PsyUser\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

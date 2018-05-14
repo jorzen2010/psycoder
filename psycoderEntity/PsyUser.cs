@@ -19,6 +19,8 @@ namespace psycoderEntity
         public string PsyRealName { get; set; }
         [Display(Name = "身份证号")]
         public string PsyNumber { get; set; }
+        [Display(Name = "证书编号")]
+        public string PsyZhengshuNumber { get; set; }
         [Display(Name = "手机号码")]
         public string PsyTelephone { get; set; }
         [Display(Name = "QQ号码")]
