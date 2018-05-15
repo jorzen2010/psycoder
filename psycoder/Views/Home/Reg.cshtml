@@ -1,5 +1,7 @@
-﻿@{
+﻿@using psycoderEntity;
+@{
     Layout = null;
+    var notice = ViewData["IndexNotice"] as Notice;
 }
 
 <!DOCTYPE html>
@@ -15,7 +17,7 @@
 <body>
     <div class="container">
         <div class="logo pull-left">心理咨询师公众宣传平台</div>
-        <div class="regbtn pull-right"><a href="###"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 立即注册</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="###"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 简体中文</a></div>
+        <div class="regbtn pull-right"><a href="@Url.Action("Register","PsyUser")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 立即注册</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="###"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 简体中文</a></div>
     </div>
     <div class="reg_jumbotron">
         <div class="loginform pull-right">
@@ -38,8 +40,7 @@
     </div>
     <div class="reg_content container">
         <div class="gonggao">
-            <span>系统公告 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="###">如何申请心理咨询师专用公众宣传平台？</a>  &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="###">你想得到什么的啊啊的</a></span>
-            <span class="pull-right"><a href="###">查看更多 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></span>
+            <span>系统公告 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="@Url.Action("NoticeView", "Notice", new { id=notice.Id})" target="_blank">@notice.Title</a> </span> <span class="pull-right"><a href="@Url.Action("Index","Notice")" target="_blank" class="a2color">查看更多 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></span>
         </div>
         <div class="shouyi">
             <h3>你能得到什么</h3>
@@ -78,9 +79,15 @@
         </div>
     </div>
     <div class="reg_footer container">
-        关于我们 | 服务协议 | 联系客服
-        <hr style="margin:5px 0;padding:0;">
-        Copyright © 2012-2018 版权所有. All Rights Reserved.
-    </div>
+        <a href="@Url.Action("NoticeView", "Notice", new { id=1})" target="_blank" class="a2color">
+            关于我们
+        </a> | <a href="@Url.Action("NoticeView", "Notice", new { id=2})" target="_blank" class="a2color">
+    服务协议
+</a> | <a href="@Url.Action("NoticeView", "Notice", new { id=3})" target="_blank" class="a2color">
+    联系客服
+</a>
+    <hr style="margin:5px 0;padding:0;">
+    Copyright © 2012-2018 版权所有. All Rights Reserved.
+</div>
 </body>
 </html>

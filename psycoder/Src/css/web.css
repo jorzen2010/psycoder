@@ -225,20 +225,50 @@ color:#cccccc;
 
 .gonggaoPage {
     background-color:#ffffff;
-    margin-top:20px;
-    padding:20px 20px;
+    margin-top:50px;
+    padding:20px 100px 100px 100px;
     min-height:500px;
 }
-    .gonggaoPage ul {
+    
+
+
+
+.gonggaoPage h4 {
+    line-height:100px;
+}
+.gonggaoPage .box-footer {
+    padding-top:60px;
+}
+
+.gonggaoListPage {
+    background-color:#ffffff;
+    margin-top:25px;
+    padding:20px;
+    min-height:500px;
+}
+
+.gonggaoListul {
+     border-left:1px solid #cccccc;
+     border-right:1px solid #cccccc;
+     border-top:1px solid #cccccc;
+    padding:0px;
         list-style:none;
-        padding:0px 20px;
+        margin:0px 20px;
     }
-        .gonggaoPage ul li {
-            line-height:25px;
+ .gonggaoitem {
+            line-height:45px;
+            border-bottom:1px solid #cccccc;
+            padding:0px 20px;
+
         }
+    .gonggaoitem a {
+        display:block;
+    }
 .gonggaoList {
+    height:auto;
     min-height:550px;
 }
-.bg-white {
-    background-color:#ffffff;
+
+.a2color {
+    color:#808080;
 }

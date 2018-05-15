@@ -21,7 +21,7 @@ namespace psycoder.Controllers
             Pager pager = new Pager();
             pager.table = "Notice";
             pager.strwhere = "1=1";
-            pager.PageSize = 2;
+            pager.PageSize = 20;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
             pager.FiledOrder = "Id desc";

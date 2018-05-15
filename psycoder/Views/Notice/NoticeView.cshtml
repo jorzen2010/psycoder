@@ -23,15 +23,17 @@
       
         <div class="box gonggaoPage">
             <div class="box-header text-center">
-               <h3>@Model.Title</h3> 
+                <h4>@Model.Title</h4>
             </div>
             <div class="box-body">
                 @Html.Raw(Model.Content)
             </div>
-            <div class="box-footer pull-right">
-                @Model.Author
-                <br />
-                @Model.CreateTime
+            <div class="box-footer clearfix">
+                <div class="pull-right">
+                    @Model.Author
+                    <br />
+                    @Model.CreateTime.ToString("yyyy-MM-dd")
+                </div>
             </div>
         </div>
     </div>

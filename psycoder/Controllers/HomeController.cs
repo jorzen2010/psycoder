@@ -17,7 +17,7 @@ namespace psycoder.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
         public ActionResult Index()
         {
-            var  notices = unitOfWork.noticesRepository.Get();
+            var  notices = unitOfWork.noticesRepository.Get(orderBy: q =>q.OrderByDescending(u=>u.Id));
             Notice notice = new Notice();
             if (notices.Count() > 0)
             {
@@ -35,6 +35,18 @@ namespace psycoder.Controllers
 
         public ActionResult Reg()
         {
+            var notices = unitOfWork.noticesRepository.Get(orderBy: q => q.OrderByDescending(u => u.Id));
+            Notice notice = new Notice();
+            if (notices.Count() > 0)
+            {
+                notice = notices.First();
+            }
+            else
+            {
+                notice.Title = "暂无公告";
+            }
+
+            ViewData["IndexNotice"] = notice;
             return View();
         }
 

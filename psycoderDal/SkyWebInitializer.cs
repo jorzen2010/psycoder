@@ -101,9 +101,20 @@ namespace psycoderDal
             context.SaveChanges();
 
             #endregion 初始化配置
+            #region 默认互动设置
+            context.DefaultHudongSettings.Add(
+                new DefaultHudongSetting { 
+                    ZiyoushuxiePre="每一次的自由书写都是对生命的又一次的重新认识，它会让你更有力量。",
+                    ZiyoushuxiePost="你的故事很精彩，如果你希望我回复你，请添加我的微信号：*****，我会和你一起分享爱的力量",
+                    QuestionPre="当你回答了这个问题的时候，你就是对这个问题的探索",
+                    QuestionSelected="1",
+                    QuestionPost = "你的故事很精彩，如果你希望我回复你，请添加我的微信号：*****，我会和你一起分享爱的力量",
+                    ZixunPre="你也可以直接留言咨询我，或者添加我的微信号",
+                    ZixunPost="感谢你的信任，请添加我的微信号，我会第一时间联系你",
 
-
-
+                });
+            context.SaveChanges();
+            #endregion 默认互动配置
         }
     }
 }

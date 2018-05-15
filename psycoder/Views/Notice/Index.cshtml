@@ -24,22 +24,25 @@
     
     <div class="container">
         <h3>系统通知</h3>
-        <div class="box gonggaoPage" >
+        <div class="box gonggaoListPage" >
             <div class="box-body gonggaoList">
-                <ul>
+                <ul class="gonggaoListul">
                     @foreach (var item in Model)
                     {
-                        <li>
+                        <li class="gonggaoitem">
                             <a target="_blank" href="@Url.Action("NoticeView", "Notice", new { id=item.Id})">
-                                @item.Title
+                                @item.Title <span class="pull-right text-gray">@item.CreateTime.ToString("yyyy-MM-dd")</span>
                             </a>
-                            <span class="pull-right">@item.CreateTime</span>
+                           
                         </li>
                     }
                 </ul>
             </div>
-            <div class="box-footer pull-right bg-white">
-                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+            <div class="box-footer clearfix">
+                <div class="pull-right">
+
+
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
@@ -53,6 +56,7 @@
                                 LinkToLastPageFormat = "最后一页",
                                 PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
                             })
+                </div>
             </div>
         </div>
         
