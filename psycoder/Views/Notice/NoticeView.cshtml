@@ -1,0 +1,44 @@
+﻿@model psycoderEntity.Notice
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Src/css/web.css" />
+    <title>心理咨询师公众平台</title>
+</head>
+<body style="background-color: #f7f8fa">
+    <div id="header">
+        <div class="logo pull-left">心理咨询师专用公众平台</div>
+    </div>
+    
+    <div class="container">
+       
+      
+        <div class="box gonggaoPage">
+            <div class="box-header text-center">
+               <h3>@Model.Title</h3> 
+            </div>
+            <div class="box-body">
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="box-footer pull-right">
+                @Model.Author
+                <br />
+                @Model.CreateTime
+            </div>
+        </div>
+    </div>
+    <div class="reg_footer container">
+        关于我们 | 服务协议 | 联系客服
+        <hr style="margin:5px 0;padding:0;">
+        Copyright © 2012-2018 版权所有. All Rights Reserved.
+    </div>
+</body>
+</html>

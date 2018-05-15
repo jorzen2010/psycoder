@@ -177,12 +177,14 @@
     <Compile Include="Controllers\AdminHudongController.cs" />
     <Compile Include="Controllers\AdminJkSucaiController.cs" />
     <Compile Include="Controllers\AdminNewsController.cs" />
+    <Compile Include="Controllers\AdminNoticeController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminSettingController.cs" />
     <Compile Include="Controllers\AdminSysUserController.cs" />
     <Compile Include="Controllers\AdminXCXSucaiController.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2985,6 +2987,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Src\images\bg_banner.png" />
+    <Content Include="Src\js\Reg.js" />
     <Content Include="Src\js\web.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -3054,7 +3057,14 @@
     <Content Include="Views\AdminHudong\HudongSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
     <Content Include="Views\AdminHudong\AdvertList.cshtml" />
+    <Content Include="Views\PsyUser\Register00.cshtml" />
     <Content Include="Views\PsyUser\Register.cshtml" />
+    <Content Include="Src\js\reg.min.js" />
+    <Content Include="Views\AdminNotice\Create.cshtml" />
+    <Content Include="Views\AdminNotice\Edit.cshtml" />
+    <Content Include="Views\AdminNotice\Index.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <Content Include="Views\Notice\NoticeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

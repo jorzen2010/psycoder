@@ -13,6 +13,8 @@ namespace psycoderEntity
         public int Id { get; set; }
         [Display(Name = "邮箱")]
         public string PsyUserEmail { get; set; }
+        [Display(Name = "头像")]
+        public string PsyAvatar { get; set; }
         [Display(Name = "密码")]
         public string PsyPassword { get; set; }
         [Display(Name = "真实姓名")]
@@ -39,5 +41,7 @@ namespace psycoderEntity
         public string PsyShanchang { get; set; }
         [Display(Name = "是否启用")]
         public bool PsyStatus { get; set; }
+        [Display(Name = "注册时间")]
+        public DateTime CreateTime { get; set; }
     }
 }

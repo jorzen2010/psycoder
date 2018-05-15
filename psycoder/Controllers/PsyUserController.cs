@@ -22,16 +22,17 @@ namespace psycoder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult RegisterJibenxinxi( string PsyUserEmail, string PsyPassword, bool PsyStatus)
+        public JsonResult RegisterJibenxinxi( string PsyUserEmail, string PsyPassword, string PsyAvatar, bool PsyStatus)
         {
             Message msg = new Message();
             PsyUser psyUser = new PsyUser();
             var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == PsyUserEmail);
-           // PsyUser psyUser =  unitOfWork.psyUsersRepository.GetByID(PsyId);
             if (psyUsers.Count()>0)
             {
                 psyUser = psyUsers.First();
                 psyUser.PsyPassword = PsyPassword;
+                psyUser.CreateTime = DateTime.Now;
+                psyUser.PsyAvatar = PsyAvatar;
                 try
                 {
                     unitOfWork.psyUsersRepository.Update(psyUser);
@@ -50,11 +51,10 @@ namespace psycoder.Controllers
             }
             else
             {
-               // psyUser = new PsyUser();
                 psyUser.PsyUserEmail = PsyUserEmail;
                 psyUser.PsyPassword = PsyPassword;
                 psyUser.PsyStatus = PsyStatus;
-
+                psyUser.CreateTime = DateTime.Now;
 
                 try
                 {
@@ -62,7 +62,6 @@ namespace psycoder.Controllers
                     unitOfWork.Save();
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "插入成功";
-                   // msg.MessageUrl = psyUser.Id.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -76,12 +75,11 @@ namespace psycoder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult RegisterShenfen(string PsyEmail, string PsyRealName, string PsyNumber, string PsyZhengshuNumber)
+        public JsonResult RegisterShenfen(string UserEmail, string PsyRealName, string PsyNumber, string PsyZhengshuNumber)
         {
             Message msg = new Message();
             PsyUser psyUser = new PsyUser();
-            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == PsyEmail);
-           // psyUser = unitOfWork.psyUsersRepository.GetByID(PsyId);
+            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
             if (psyUsers.Count()>0)
             {
                
@@ -110,6 +108,88 @@ namespace psycoder.Controllers
                 
                     msg.MessageStatus = "false";
                     msg.MessageInfo = "身份认证失败：记录没找到";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult RegisterLianxi(string UserEmail, string Email, string QQ, string Wechat, string Telephone)
+        {
+            Message msg = new Message();
+            PsyUser psyUser = new PsyUser();
+            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
+            if (psyUsers.Count() > 0)
+            {
+
+                psyUser = psyUsers.First();
+                psyUser.PsyEmail = Email;
+                psyUser.PsyQQ = QQ;
+                psyUser.PsyTelephone = Telephone;
+                psyUser.PsyWechat = Wechat;
+                try
+                {
+                    unitOfWork.psyUsersRepository.Update(psyUser);
+                    unitOfWork.Save();
+                    msg.MessageStatus = "true";
+                    msg.MessageInfo = "联系方式修改成功";
+                }
+
+                catch (Exception ex)
+                {
+                    msg.MessageStatus = "false";
+                    msg.MessageInfo = "联系方式修改失败" + ex.Message;
+                }
+
+
+            }
+            else
+            {
+
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "联系方式失败：记录没找到";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult RegisterPinpai(string UserEmail, string PsyTitle, string PsyInfo, string PsyContent, string PsyShanchang)
+        {
+            Message msg = new Message();
+            PsyUser psyUser = new PsyUser();
+            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
+            if (psyUsers.Count() > 0)
+            {
+
+                psyUser = psyUsers.First();
+                psyUser.PsyTitle = PsyTitle;
+                psyUser.PsyInfo = PsyInfo;
+                psyUser.PsyContent = PsyContent;
+                psyUser.PsyShanchang = PsyShanchang;
+                try
+                {
+                    unitOfWork.psyUsersRepository.Update(psyUser);
+                    unitOfWork.Save();
+                    msg.MessageStatus = "true";
+                    msg.MessageInfo = "个人品牌修改成功";
+                }
+
+                catch (Exception ex)
+                {
+                    msg.MessageStatus = "false";
+                    msg.MessageInfo = "个人品牌修改失败" + ex.Message;
+                }
+
+
+            }
+            else
+            {
+
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "个人品牌失败：记录没找到";
             }
 
             return Json(msg, JsonRequestBehavior.AllowGet);

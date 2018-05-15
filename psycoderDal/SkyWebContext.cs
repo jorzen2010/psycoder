@@ -30,6 +30,7 @@ namespace psycoderDal
         public DbSet<DefaultHudongSetting> DefaultHudongSettings { get; set; }
         public DbSet<DefaultGuanggaoSetting> DefaultGuanggaoSettings { get; set; }
         public DbSet<PsyUser> PsyUsers { get; set; }
+        public DbSet<Notice> Notices { get; set; }
 
 
     }

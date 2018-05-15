@@ -1,8 +1,13 @@
-﻿<div class="content">
+﻿@using psycoderEntity;
+@{
+  var notice=  ViewData["IndexNotice"] as Notice;
+}
+
+<div class="content">
     <div class="content_main">
-        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> <a href="">第十二界中国心理学家大会正在报名~</a>
+        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> <a href="@Url.Action("Notice", "Home", new { id=notice.Id})">@notice.Title</a>
         <span class="text-gray pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="###">更多</a></span>
-        <span class="text-gray pull-right">2018-7-8</span>
+        <span class="text-gray pull-right">@notice.CreateTime</span>
     </div>
     <div class="content_main zhqingkuang">
         <h4>账号收益</h4>

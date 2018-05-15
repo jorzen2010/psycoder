@@ -1,9 +1,10 @@
-﻿@model StaticPagedList<psycoderEntity.XCXSucai>
+﻿@model StaticPagedList<psycoderEntity.Notice>
 @using PagedList;
 @using PagedList.Mvc;
 @using psycoderService;
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.title = "通知公告";
 }
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -27,8 +28,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "AdminXCXSucai", new { type=ViewBag.type})"><i class="fa fa-plus"></i> 新增 @ViewBag.title</a>
-                            <a class="btn btn-default btn-sm" href="@Url.Action("deleteList", "AdminXCXSucai", new { type=ViewBag.type})"><i class="fa fa-trash"></i> 回收站</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "AdminNotice")"><i class="fa fa-plus"></i> 新增 @ViewBag.title</a>
+                
                         </h3>
                         
                     </div>
@@ -46,14 +47,10 @@
                                     <th class="col-sm-2">
                                         作者
                                     </th>
-                                    <th class="col-sm-1">
-                                        提供者
-                                    </th>
-                                    <th class="col-sm-2">
-                                        权限
-                                    </th>
+                                    
+                                   
                                     <th class="col-sm-2">操作</th>
-                                    <th class="col-sm-2">查看</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,21 +66,14 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Author)
                                     </td>
+                                   
+                                    
                                     <td>
-                                        @PsyUserService.GetPsyUserNameById(item.Provider)
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="Qanxian" value="@item.Id" @(item.Qanxian ? "checked='checked'" : "") />
+                                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "AdminNotice", new { id=item.Id})"><i class="fa fa-pencil"></i> 编辑</a>
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="delconfirm('@item.Id','/AdminNotice/DeleteConfirmed/','/AdminNotice/Index')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
                                         @Html.AntiForgeryToken()
-                                    </td> 
-                                    <td>
-                                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "AdminXCXSucai", new { id=item.Id,type=item.type})"><i class="fa fa-pencil"></i> 编辑</a>
-                                        <button class="btn btn-info btn-sm" type="button" onclick="DeleteItem('@item.Id','@(item.IfDelete ? "false" : "true")','/AdminXCXSucai/UpdateDelete','/AdminXCXSucai/deleteList?type=@ViewBag.type')"><i class="fa fa-trash"></i> 删除</button>
-                           
                                     </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" ><i class="fa fa-volume-up"></i></button>
-                                    </td>
+                                   
 
                                 </tr>
 
@@ -94,22 +84,21 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-
                         <ul class="pagination pagination-sm no-margin pull-right">
                             @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
-    new PagedListRenderOptions
-    {
-        LinkToPreviousPageFormat = "上一页",
-        LinkToNextPageFormat = "下一页",
-        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-        DisplayLinkToLastPage = PagedListDisplayMode.Always,
-        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-        DisplayLinkToNextPage = PagedListDisplayMode.Always,
-        MaximumPageNumbersToDisplay = 5,
-        LinkToFirstPageFormat = "首页",
-        LinkToLastPageFormat = "最后一页",
-        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
-    })
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
                         </ul>
                     </div>
                 </div>
@@ -182,41 +171,6 @@
         }
 
 
-        $(document).ready(function () {
-
-
-            //开关按钮样式加载
-            $('[name="Qanxian"]').bootstrapSwitch({
-                onText: "公用",
-                offText: "私用",
-                onColor: "success",
-                offColor: "danger",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    var token = $('[name=__RequestVerificationToken]').val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "/AdminXCXSucai/UpdateStatus",
-                        data: {
-                            id: $(this).val(),
-                            status: state,
-                            __RequestVerificationToken: token,
-                        },
-                        dataType: "json",
-                        success: function (data) {
-                            alert("正式启用");
-                        },
-                        error:function(){
-                            alert("调试失败");
-                        }
-                    });
-                }
-            });
-
-  
-
-
-        });
-
+      
     </script>
 }

@@ -118,6 +118,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<Notice> NoticesRepository;
+
+         public GenericRepository<Notice> noticesRepository
+         {
+             get
+             {
+
+                 if (this.NoticesRepository == null)
+                 {
+                     this.NoticesRepository = new GenericRepository<Notice>(context);
+                 }
+                 return NoticesRepository;
+             }
+         }
+
        
 
      
