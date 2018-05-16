@@ -3075,6 +3075,7 @@
     <Content Include="Views\AdminQuestion\Index.cshtml" />
     <Content Include="Views\AdminQuestion\Edit.cshtml" />
     <Content Include="Views\AdminJkSucai\View.cshtml" />
+    <Content Include="Views\AdminJkSucai\AudioView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

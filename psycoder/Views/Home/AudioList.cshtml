@@ -161,9 +161,14 @@
 
   
         
+    <div style="width:500px;height:100px;background-color:#ff0000">
 
-        <div class="col-xs-12 prism-player" id="J_prismPlayer" style="display:none;">
+    </div>
+        <div class="col-xs-12 prism-player" id="J_prismPlayer">
         </div>
+    <div style="width:500px;height:100px;background-color:#b6ff00">
+
+    </div>
    
 </div>
 
@@ -197,22 +202,57 @@
 
         
         if (z == 0) {
-           // alert(z);
+            // alert(z);
+
+
+
+        //    player = new Aliplayer({
+        //        id: "J_prismPlayer",
+        //        autoplay: true,
+        //        mediaType: 'audio',
+        //        width: "50px",
+        //        height: "50px",
+        //        vid: x,
+        //        playauth: y,
+        //        controlBarVisibility: "always",
+        //        cover: "",
+        ////        skinLayout: [{ "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "playButton", "align": "tl", "x": 10, "y": 8 }] }]
+        //    }), function (player) {
+
+        //        console.log("播放器创建了。");
+        //    };
+
+
+
             player = new Aliplayer({
                 id: "J_prismPlayer",
                 autoplay: true,
                 mediaType: 'audio',
-                width: "50px",
+                width: "100%",
                 height: "50px",
                 vid: x,
                 playauth: y,
                 controlBarVisibility: "always",
                 cover: "",
-                skinLayout: [{ "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "playButton", "align": "tl", "x": 10, "y": 8 }] }]
+                //skinLayout: [{
+                //    "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "progress", "align": "blabs", "x": 0, "y": 44 },
+                //     { "name": "timeDisplay", "align": "tl", "x": 230, "y": 7 }]
+                //}],
+                skinLayout: [{
+                    "name": "controlBar", "align": "blabs", "x": 0, "y": 0,
+                    "children": [
+                   { "name": "progress", "align": "blabs", "x": 0, "y": 44 },
+                   { "name": "playButton", "align": "cc", "x": 15, "y": 12 },
+                   { "name": "speedButton", "align": "tr", "x": 0, "y": 10 },
+                   { "name": "timeDisplay", "align": "tl", "x": 10, "y": 7 },
+                   { "name": "volume", "align": "tr", "x": 10, "y": 10 }]
+                   }]
             }), function (player) {
 
                 console.log("播放器创建了。");
             };
+
+
 
             player.on('ready', function (e) {
                 //要想让阿里播放器初始化完成之后直接播放，需要做的是把初始化的过程中的autoplay设置成true；

@@ -1,3 +1,20 @@
 ﻿.field-validation-error span {
     color:#ff6a00;
 }
+
+
+.Audioplayer {
+    width: 540px; 
+    height: 405px; 
+    background:url('/FilesUpload/Covers/covers6366207370192954388457.jpg'); 
+    background-size:540px 405px;
+    background-repeat:no-repeat;
+    border-radius:15px;
+}
+.playerTop {
+    height:150px;
+}
+.playerBottom{
+    height:150px;
+    padding-top:50px;
+}

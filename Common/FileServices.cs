@@ -16,7 +16,8 @@ namespace Common
             //提供平台特定的替换字符，该替换字符用于在反映分层文件系统组织的路径字符串中分隔目录级别
             var sep = Path.AltDirectorySeparatorChar.ToString();
             //指定为根目录
-            var root = "~" + sep + rootpath + sep;
+          //  var root = "~" + sep + rootpath + sep; 这方式有可能使上传的图片无法显示
+            var root =   sep + rootpath + sep;
             //拼接成路径
             var path = root + folder + sep;
             //找到这个路径

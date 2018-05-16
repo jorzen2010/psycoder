@@ -6,9 +6,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @section Topcss {
-
-
-
+   <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
 }
 
 <div class="content-wrapper">
@@ -37,7 +35,32 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <h3 class="text-center">@Model.Title</h3>
+                        @if(ViewBag.type=="anli")
+                        {
+                            <div>
+                                @Html.Raw(Model.Content)
+                            </div>
+                             
+                        }
+                        else if (ViewBag.type == "tupian")
+                        {
+                            <div class="text-center">
+                            <img src="@Model.Content" />
+                            </div>
+                        }
+                        else if (ViewBag.type == "shipin")
+                        {
+                            <div class="text-center no-padding no-margin">
+                                <div class="col-xs-12 prism-player" style="height: 550px;" id="J_prismPlayer">
+                                </div>
+                            </div>
+                            
+                        }
+                        else 
+                        {
                         @Html.Raw(Model.Content)
+                        }
+                        
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
@@ -56,7 +79,22 @@
 </div>
 
 
-
 @section BottomScripts {
+
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+    <script type="text/javascript">
+   
+    //初始化编辑器
+    var player = new Aliplayer({
+        id: "J_prismPlayer",
+        autoplay: false,
+        width: "100%", height: "300px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+    });
+
+  
+
+    </script>
 
 }

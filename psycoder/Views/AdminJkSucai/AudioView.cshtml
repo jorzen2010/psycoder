@@ -1,0 +1,162 @@
+﻿@model psycoderEntity.JkSucai
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Topcss {
+   <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
+<link rel="stylesheet" href="~/Src/css/Admin.css" />
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                         @ViewBag.title
+                         </h3>
+                        <div class="pull-right">
+                            <a class="btn btn-info btn-sm" href="@Url.Action("Edit", "AdminJkSucai", new { id = Model.Id,type= ViewBag.type})"><i class="fa fa-pencil"></i> 编辑修改</a>
+                            <a class="btn btn-success btn-sm" href="@Url.Action("Index", "AdminJkSucai", new { id = Model.Id,type= ViewBag.type})"><i class="fa fa-list"></i> @ViewBag.Tilte 列表</a>
+
+                          </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <h3 class="text-center">@Model.Title</h3>
+                      
+                            <div class="text-center">
+                                <div class="Audioplayer">
+                                    <div class="playerTop">
+                                        <img src="@Model.Cover" />
+                                    </div>
+
+                                    <div class="prism-player" style="height:0px;" id="AudioAliyunPlayer">
+
+                                    </div>
+                                    <div class="playerBottom">
+                                        <button class="btn btn-success" id="bofangBtn" data-z="0">播放</button>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                      
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <p>
+                           作者： @Model.Author <br/>
+                           来源： @Model.Provider
+                        </p>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+@section BottomScripts {
+
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+    <script type="text/javascript">
+        var AudioPlayer = null;
+      AudioPlayer = new Aliplayer({
+        id: "AudioAliyunPlayer",
+        autoplay: true,
+        mediaType: 'audio',
+        width: "100%",
+        height: "10px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+        controlBarVisibility: "always",
+        skinLayout: [{
+            "name": "controlBar", "align": "blabs", "x": 0, "y": 0,
+            "children": [
+           { "name": "progress", "align": "blabs", "x": 0, "y": 44 },
+          // { "name": "playButton", "align": "cc", "x": 15, "y": 22 },
+           { "name": "speedButton", "align": "tr", "x": 0, "y": 10 },
+           { "name": "timeDisplay", "align": "tl", "x": 10, "y": 2 },
+           { "name": "volume", "align": "tr", "x": 10, "y": 10 }]
+        }]
+    });
+
+        $("#bofangBtn").on("click", function () {
+            z = $(this).attr("data-z");
+            Bofang(z, "bofangBtn")
+        })
+    
+        function Bofang(caozuo, btnid) {
+            
+            if (caozuo == 0)
+            {
+               @*AudioPlayer = new Aliplayer({
+                    id: "AudioAliyunPlayer",
+                    autoplay: true,
+                    mediaType: 'audio',
+                    width: "100%",
+                    height: "10px",
+                    vid: "@ViewBag.VideoId",
+                    playauth: "@ViewBag.PlayAuth",
+                    controlBarVisibility: "always",
+                    cover: "",
+                    //skinLayout: [{
+                    //    "name": "controlBar", "align": "blabs", "x": 0, "y": 0, "children": [{ "name": "progress", "align": "blabs", "x": 0, "y": 44 },
+                    //     { "name": "timeDisplay", "align": "tl", "x": 230, "y": 7 }]
+                    //}],
+                    skinLayout: [{
+                        "name": "controlBar", "align": "blabs", "x": 0, "y": 0,
+                        "children": [
+                       { "name": "progress", "align": "blabs", "x": 0, "y": 44 },
+                     //{ "name": "playButton", "align": "cc", "x": 15, "y": 22 },
+                       { "name": "speedButton", "align": "tr", "x": 0, "y": 10 },
+                       { "name": "timeDisplay", "align": "tl", "x": 10, "y": 2 },
+                       { "name": "volume", "align": "tr", "x": 10, "y": 10 }]
+                    }]
+                });*@
+
+                AudioPlayer.on('ready', function (e) {
+                    //要想让阿里播放器初始化完成之后直接播放，需要做的是把初始化的过程中的autoplay设置成true；
+                    AudioPlayer.play();
+                 
+                });
+                $("#" + btnid).attr("data-z", "1");
+                $("#" + btnid).html("暂停");
+                $("#" + btnid).removeClass("btn-success");
+                $("#" + btnid).addClass("btn-danger");
+            }
+            else
+            {
+                
+                AudioPlayer.pause();
+                $("#" + btnid).attr("data-z", "0");
+                $("#" + btnid).html("播放");
+                $("#" + btnid).removeClass("btn-danger");
+                $("#" + btnid).addClass("btn-success");
+               // alert(caozuo);
+            }
+            
+           
+        }
+        
+
+
+
+    </script>
+
+}
