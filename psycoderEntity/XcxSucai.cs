@@ -12,6 +12,7 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "标题")]
+        [Required(ErrorMessage = "请输入标题")]
         public string Title { get; set; }
         [Display(Name = "封面")]
         public string Cover { get; set; }

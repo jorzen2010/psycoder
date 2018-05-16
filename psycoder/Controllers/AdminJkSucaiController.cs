@@ -188,6 +188,41 @@ namespace psycoder.Controllers
             return View(jkSucai);
         }
 
+        public ActionResult View(int id, string type)
+        {
+            if (type == "anli")
+            {
+                ViewBag.title = "案例素材";
+            }
+            else if (type == "yinpin")
+            {
+                ViewBag.title = "音频素材";
+            }
+            else if (type == "shipin")
+            {
+                ViewBag.title = "视频素材";
+
+            }
+            else if (type == "tupian")
+            {
+                ViewBag.title = "图片素材";
+
+            }
+            else
+            {
+                type = "anli";
+                ViewBag.title = "案例素材";
+            }
+            ViewBag.type = type;
+            JkSucai sucai = unitOfWork.jkSucaiRepository.GetByID(id);
+
+            if (sucai == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sucai);
+        }
+
         //权限更改
 
         [HttpPost]

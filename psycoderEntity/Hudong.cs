@@ -7,12 +7,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace psycoderEntity
 {
-    public class HudongSetting
+    public class DefaultHudongSetting
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "用户")]
-        public int PsyUserId { get; set; }
         [Display(Name = "自由书写前设置")]
         public string ZiyoushuxiePre { get; set; }
         [Display(Name = "自由书写后设置")]
@@ -29,10 +27,28 @@ namespace psycoderEntity
         public string ZixunPost { get; set; }
 
     }
-    public class DefaultHudongSetting
+    public class DefaultGuanggaoSetting
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "广告名称")]
+        [Required(ErrorMessage = "请输入标题")]
+        public string GuanggaoTitle { get; set; }
+        [Display(Name = "广告内容")]
+        public string GuanggaoContent { get; set; }
+        [Display(Name = "广告图片地址")]
+        public string GuanggaoImgSrc { get; set; }
+        [Display(Name = "广告类型")]
+        public string GuanggaoType { get; set; }
+        [Display(Name = "广告状态")]
+        public bool GuanggaoStatus { get; set; }
+    }
+    public class HudongSetting
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "用户")]
+        public int PsyUserId { get; set; }
         [Display(Name = "自由书写前设置")]
         public string ZiyoushuxiePre { get; set; }
         [Display(Name = "自由书写后设置")]
@@ -66,22 +82,7 @@ namespace psycoderEntity
         [Display(Name = "广告状态")]
         public bool GuanggaoStatus { get; set; }
     }
-    public class DefaultGuanggaoSetting
-    {
-        [Key]
-        public int Id { get; set; }
-        [Display(Name = "广告名称")]
-        [Required(ErrorMessage="请输入标题")]
-        public string GuanggaoTitle { get; set; }
-        [Display(Name = "广告内容")]
-        public string GuanggaoContent { get; set; }
-        [Display(Name = "广告图片地址")]
-        public string GuanggaoImgSrc { get; set; }
-        [Display(Name = "广告类型")]
-        public string GuanggaoType { get; set; }
-        [Display(Name = "广告状态")]
-        public bool GuanggaoStatus { get; set; }
-    }
+   
 
     public class ZiyoushuxieReply
     {
@@ -93,6 +94,8 @@ namespace psycoderEntity
         public int UserId { get; set; }
         [Display(Name = "书写内容")]
         public string ReplyContent { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
  
     }
     public class QuestionReply
@@ -107,18 +110,26 @@ namespace psycoderEntity
         public int QuestionId { get; set; }
         [Display(Name = "书写内容")]
         public string ReplyContent { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
 
     }
 
-    public class Question
+    public class ZixunReply
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "问题内容")]
-        public string QuestionTitle { get; set; }
-        [Display(Name = "问题标签")]
-        public string QuestionTags { get; set; }
+        [Display(Name = "咨询师用户")]
+        public int PsyUserId { get; set; }
+        [Display(Name = "来访者用户")]
+        public int UserId { get; set; }
+        [Display(Name = "书写内容")]
+        public string ReplyContent { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
 
     }
+
+    
     
 }

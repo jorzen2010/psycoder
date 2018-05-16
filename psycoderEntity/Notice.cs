@@ -13,6 +13,7 @@ namespace psycoderEntity
         public int Id { get; set; }
 
         [Display(Name = "标题")]
+        [Required(ErrorMessage="请输入标题")]
         public string Title { get; set; }
 
         [Display(Name = "标签")]
@@ -23,7 +24,7 @@ namespace psycoderEntity
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
-
+        [Required(ErrorMessage = "请输入内容")]
         [Display(Name = "内容")]
         public string Content { get; set; }
 

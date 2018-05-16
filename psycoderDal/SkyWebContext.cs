@@ -27,10 +27,23 @@ namespace psycoderDal
         public DbSet<Setting> Settings { get; set; }
         public DbSet<XCXSucai> XCXSucais { get; set; }
         public DbSet<JkSucai> JkSucais { get; set; }
+       
+        public DbSet<PsyUser> PsyUsers { get; set; }
+        public DbSet<FensiUser> FensiUsers { get; set; }
+        public DbSet<Notice> Notices { get; set; }
+
         public DbSet<DefaultHudongSetting> DefaultHudongSettings { get; set; }
         public DbSet<DefaultGuanggaoSetting> DefaultGuanggaoSettings { get; set; }
-        public DbSet<PsyUser> PsyUsers { get; set; }
-        public DbSet<Notice> Notices { get; set; }
+        public DbSet<HudongSetting> HudongSettings { get; set; }
+        public DbSet<GuanggaoSetting> GuanggaoSettings { get; set; }
+
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionReply> QuestionReplys { get; set; }
+        public DbSet<ZiyoushuxieReply> ZiyoushuxieReplys { get; set; }
+        public DbSet<ZixunReply> ZixunReplys { get; set; }
+
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<PsyOrders> PsyOrders { get; set; }
 
 
     }

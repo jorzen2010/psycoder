@@ -118,6 +118,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<FensiUser> FensiUsersRepository;
+
+         public GenericRepository<FensiUser> fensiUsersRepository
+         {
+             get
+             {
+
+                 if (this.FensiUsersRepository == null)
+                 {
+                     this.FensiUsersRepository = new GenericRepository<FensiUser>(context);
+                 }
+                 return FensiUsersRepository;
+             }
+         }
+
          private GenericRepository<Notice> NoticesRepository;
 
          public GenericRepository<Notice> noticesRepository
@@ -132,6 +147,128 @@ namespace psycoderDal
                  return NoticesRepository;
              }
          }
+
+         private GenericRepository<HudongSetting> HudongSettingRepository;
+
+         public GenericRepository<HudongSetting> hudongSettingRepository
+         {
+             get
+             {
+
+                 if (this.HudongSettingRepository == null)
+                 {
+                     this.HudongSettingRepository = new GenericRepository<HudongSetting>(context);
+                 }
+                 return HudongSettingRepository;
+             }
+         }
+
+         private GenericRepository<GuanggaoSetting> GuanggaoSettingRepository;
+
+         public GenericRepository<GuanggaoSetting> guanggaoSettingRepository
+         {
+             get
+             {
+
+                 if (this.GuanggaoSettingRepository == null)
+                 {
+                     this.GuanggaoSettingRepository = new GenericRepository<GuanggaoSetting>(context);
+                 }
+                 return GuanggaoSettingRepository;
+             }
+         }
+
+         private GenericRepository<ZiyoushuxieReply> ZiyoushuxieReplyRepository;
+
+         public GenericRepository<ZiyoushuxieReply> ziyoushuxieReplyRepository
+         {
+             get
+             {
+
+                 if (this.ZiyoushuxieReplyRepository == null)
+                 {
+                     this.ZiyoushuxieReplyRepository = new GenericRepository<ZiyoushuxieReply>(context);
+                 }
+                 return ZiyoushuxieReplyRepository;
+             }
+         }
+
+         private GenericRepository<QuestionReply> QuestionReplyRepository;
+
+         public GenericRepository<QuestionReply> questionReplyRepository
+         {
+             get
+             {
+
+                 if (this.QuestionReplyRepository == null)
+                 {
+                     this.QuestionReplyRepository = new GenericRepository<QuestionReply>(context);
+                 }
+                 return QuestionReplyRepository;
+             }
+         }
+
+         private GenericRepository<ZixunReply> ZixunReplyRepository;
+
+         public GenericRepository<ZixunReply> zixunReplyRepository
+         {
+             get
+             {
+
+                 if (this.ZixunReplyRepository == null)
+                 {
+                     this.ZixunReplyRepository = new GenericRepository<ZixunReply>(context);
+                 }
+                 return ZixunReplyRepository;
+             }
+         }
+
+         private GenericRepository<Question> QuestionRepository;
+
+         public GenericRepository<Question> questionRepository
+         {
+             get
+             {
+
+                 if (this.QuestionRepository == null)
+                 {
+                     this.QuestionRepository = new GenericRepository<Question>(context);
+                 }
+                 return QuestionRepository;
+             }
+         }
+
+         private GenericRepository<Orders> OrdersRepository;
+
+         public GenericRepository<Orders> ordersRepository
+         {
+             get
+             {
+
+                 if (this.OrdersRepository == null)
+                 {
+                     this.OrdersRepository = new GenericRepository<Orders>(context);
+                 }
+                 return OrdersRepository;
+             }
+         }
+
+         private GenericRepository<PsyOrders> PsyOrdersRepository;
+
+         public GenericRepository<PsyOrders> psyOrdersRepository
+         {
+             get
+             {
+
+                 if (this.PsyOrdersRepository == null)
+                 {
+                     this.PsyOrdersRepository = new GenericRepository<PsyOrders>(context);
+                 }
+                 return PsyOrdersRepository;
+             }
+         }
+
+
 
        
 

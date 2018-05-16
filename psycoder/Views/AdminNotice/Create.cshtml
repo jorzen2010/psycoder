@@ -40,6 +40,7 @@
                                     @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
                                     <div class="col-sm-9">
                                         @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "标题最多允许64个字符，32个汉字" })
+                                    @Html.ValidationMessageFor(model => model.Title)
                                     </div>
                                 </div>
 
@@ -50,6 +51,7 @@
                                     @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
                                     <div class="col-sm-9">
                                         <textarea id="Content" name="Content" style="height:500px;"></textarea>
+                                        @Html.ValidationMessageFor(model => model.Content)
                                     </div>
                                 </div>
                              

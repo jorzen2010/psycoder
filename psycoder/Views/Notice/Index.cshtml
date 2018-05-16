@@ -32,16 +32,13 @@
                         <li class="gonggaoitem">
                             <a target="_blank" href="@Url.Action("NoticeView", "Notice", new { id=item.Id})">
                                 @item.Title <span class="pull-right text-gray">@item.CreateTime.ToString("yyyy-MM-dd")</span>
-                            </a>
-                           
+                            </a>  
                         </li>
                     }
                 </ul>
             </div>
             <div class="box-footer clearfix">
                 <div class="pull-right">
-
-
                     @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
                             new PagedListRenderOptions
                             {

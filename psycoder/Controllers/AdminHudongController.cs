@@ -16,34 +16,70 @@ namespace psycoder.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
         //
         // GET: /AdminHudong/
-        public ActionResult Index()
+        public ActionResult ZiyoushuxieReplyList(int? page)
         {
-            return View();
+
+            Pager pager = new Pager();
+            pager.table = "ZiyoushuxieReply";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<ZiyoushuxieReply> dataList = DataConvertHelper<ZiyoushuxieReply>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<ZiyoushuxieReply>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
-        public ActionResult Ziyoushuxie()
+        public ActionResult QuestionReplyList(int? page)
         {
-            return View();
+
+            Pager pager = new Pager();
+            pager.table = "QuestionReply";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<QuestionReply> dataList = DataConvertHelper<QuestionReply>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<QuestionReply>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
-        public ActionResult QuestionList()
+
+        public ActionResult ZixunReplyList(int? page)
         {
-            return View();
+
+            Pager pager = new Pager();
+            pager.table = "ZixunReply";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<ZixunReply> dataList = DataConvertHelper<ZixunReply>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<ZixunReply>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
-        public ActionResult ZixunList()
-        {
-            return View();
-        }
+        
         
         public ActionResult HudongSet(string type = "Ziyoushuxie")
         {
-            if (type == "Ziyoushuxie")
+            var questionList = unitOfWork.questionRepository.Get();
+            if (type == "ZiyoushuxieReplyList")
             {
                 ViewBag.Title = "自由书写";
             }
-            else if (type == "QuestionList")
+            else if (type == "QuestionReplyList")
             {
                 ViewBag.Title = "问题引导";
+                ViewData["question"] = questionList;
             }
-            else if (type == "ZixunList")
+            else if (type == "ZixunReplyList")
             {
                 ViewBag.Title = "留言咨询";
             }
@@ -157,5 +193,8 @@ namespace psycoder.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
-	}
+
+       
+    
+    }
 }

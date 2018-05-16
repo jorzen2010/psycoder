@@ -176,8 +176,8 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminHudongController.cs" />
     <Compile Include="Controllers\AdminJkSucaiController.cs" />
-    <Compile Include="Controllers\AdminNewsController.cs" />
     <Compile Include="Controllers\AdminNoticeController.cs" />
+    <Compile Include="Controllers\AdminQuestionController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +185,7 @@
     <Compile Include="Controllers\AdminSysUserController.cs" />
     <Compile Include="Controllers\AdminXCXSucaiController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\AdminOrderController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1638,6 +1639,8 @@
     <Content Include="plugins\bootstrap-fileinput\js\plugins\purify.min.js" />
     <Content Include="plugins\bootstrap-fileinput\js\plugins\sortable.js" />
     <Content Include="plugins\bootstrap-fileinput\js\plugins\sortable.min.js" />
+    <Content Include="plugins\bootstrap-multiselect\css\bootstrap-multiselect.css" />
+    <Content Include="plugins\bootstrap-multiselect\js\bootstrap-multiselect.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
     <Content Include="plugins\bootstrap-step\arrow.htm" />
@@ -2974,6 +2977,7 @@
     <Content Include="fonts\ionicons-2.0.1\scss\_ionicons-font.scss" />
     <Content Include="fonts\ionicons-2.0.1\scss\_ionicons-icons.scss" />
     <Content Include="fonts\ionicons-2.0.1\scss\_ionicons-variables.scss" />
+    <Content Include="plugins\bootstrap-multiselect\less\bootstrap-multiselect.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3044,13 +3048,11 @@
     <Content Include="Views\AdminJkSucai\deleteList.cshtml" />
     <Content Include="Views\AdminJkSucai\Edit.cshtml" />
     <Content Include="Views\AdminJkSucai\Index.cshtml" />
-    <Content Include="Views\AdminHudong\Ziyoushuxie.cshtml" />
-    <Content Include="Views\AdminHudong\QuestionList.cshtml" />
-    <Content Include="Views\AdminHudong\ZixunList.cshtml" />
+    <Content Include="Views\AdminHudong\ZiyoushuxieReplyList.cshtml" />
+    <Content Include="Views\AdminHudong\ZixunReplyList.cshtml" />
     <Content Include="Views\AdminHudong\Guanggao.cshtml" />
     <Content Include="Views\AdminUser\PsyUser.cshtml" />
     <Content Include="Views\AdminUser\FensiUser.cshtml" />
-    <Content Include="Views\AdminNews\Index.cshtml" />
     <Content Include="Views\AdminHudong\ZiyoushuxieSet.cshtml" />
     <Content Include="Views\AdminHudong\ZixunSet.cshtml" />
     <Content Include="Views\AdminHudong\QuestionSet.cshtml" />
@@ -3065,6 +3067,14 @@
     <Content Include="Views\AdminNotice\Index.cshtml" />
     <Content Include="Views\Notice\Index.cshtml" />
     <Content Include="Views\Notice\NoticeView.cshtml" />
+    <Content Include="Views\Shared\_PartialBeiyong.cshtml" />
+    <Content Include="Views\AdminOrder\OrderList.cshtml" />
+    <Content Include="Views\AdminOrder\PsyOrderList.cshtml" />
+    <Content Include="Views\AdminHudong\QuestionReplyList.cshtml" />
+    <Content Include="Views\AdminQuestion\Create.cshtml" />
+    <Content Include="Views\AdminQuestion\Index.cshtml" />
+    <Content Include="Views\AdminQuestion\Edit.cshtml" />
+    <Content Include="Views\AdminJkSucai\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

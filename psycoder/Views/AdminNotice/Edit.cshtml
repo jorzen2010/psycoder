@@ -13,7 +13,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>          
-            新增 @ViewBag.title
+            修改 @ViewBag.title
         </h1>
     </section>
     <!-- Main content -->
@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
-                            新增 @ViewBag.title
+                            修改 @ViewBag.title
                         </h3>
 
                     </div>
@@ -33,6 +33,7 @@
                     {
                         @Html.AntiForgeryToken()
                          @Html.ValidationSummary(true)
+                          @Html.HiddenFor(model=>model.Id)
                     <div class="box-body">
                         <div class="col-md-12">
                             <div class="form-group">

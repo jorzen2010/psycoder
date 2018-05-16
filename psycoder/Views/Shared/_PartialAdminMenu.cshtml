@@ -56,9 +56,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="@Url.Action("Ziyoushuxie", "AdminHudong")"><i class="fa fa-circle-o"></i> 自由书写</a></li>
-                    <li><a href="@Url.Action("QuestionList", "AdminHudong")"><i class="fa fa-circle-o"></i> 问题引导</a></li>
-                    <li><a href="@Url.Action("ZixunList", "AdminHudong")"><i class="fa fa-circle-o"></i> 用户咨询</a></li>
+                    <li><a href="@Url.Action("ZiyoushuxieReplyList", "AdminHudong")"><i class="fa fa-circle-o"></i> 自由书写</a></li>
+                    <li><a href="@Url.Action("QuestionReplyList", "AdminHudong")"><i class="fa fa-circle-o"></i> 问题引导</a></li>
+                    <li><a href="@Url.Action("ZixunReplyList", "AdminHudong")"><i class="fa fa-circle-o"></i> 用户咨询</a></li>
                     <li><a href="@Url.Action("AdvertList", "AdminHudong")"><i class="fa fa-circle-o"></i> 广告内容设置</a></li>
                 </ul>
             </li>
@@ -96,7 +96,34 @@
                 </ul>
             </li>
 
-            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>平台插件</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "AdminQuestion")"><i class="fa fa-circle-o"></i> 问题平台</a></li>
+                    <li><a href="@Url.Action("Index", "AdminScale")"><i class="fa fa-circle-o"></i> 量表平台</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>订单管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("OrderList", "AdminOrder")"><i class="fa fa-circle-o"></i> 官方订单</a></li>
+                    <li><a href="@Url.Action("PsyOrderList", "AdminOrder")"><i class="fa fa-circle-o"></i> 咨询师用户订单</a></li>
+                </ul>
+            </li>
+
 
             <li class="treeview">
                 <a href="#">
