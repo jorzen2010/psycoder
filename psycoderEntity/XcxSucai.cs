@@ -40,4 +40,25 @@ namespace psycoderEntity
         public string type { get; set; }
     }
 
+    public class XCXSucaiSelected
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "咨询师Id")]
+        public int PsyId { get; set; }
+        [Display(Name = "素材Id")]
+        public int SucaiId { get; set; }
+        [Display(Name = "顺序Id")]
+        public int PaixuId { get; set; }
+        [Display(Name = "状态")]
+        public bool Status { get; set; }
+        [Display(Name = "素材类型")]
+        public string SucaiType { get; set; }
+        [Display(Name = "首次选择时间")]
+        public DateTime CreateTime { get; set; }
+        [Display(Name = "最后更新时间")]
+        public DateTime UpdateTime { get; set; }
+ 
+    }
+
 }

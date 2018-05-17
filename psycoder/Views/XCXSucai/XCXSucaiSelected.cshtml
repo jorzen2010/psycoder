@@ -1,0 +1,184 @@
+﻿@model StaticPagedList<psycoderEntity.XCXSucaiSelected>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+<div class="content">
+
+    @if (ViewBag.type == "tuwen")
+    {  <h3>我的图文素材 <small>让好文章插上你的广告，为你打工</small></h3>
+    }
+    else if (ViewBag.type == "shipin")
+    {  <h3>我的视频课程 <small>没实力打造高端心理课程，借力借势免费使用权威高端课程</small></h3>
+    }
+    else if (ViewBag.type == "yinpin")
+    { <h3>我的音频课程 <small>用专家的音频课程，打造自己的影响力</small></h3>
+    }
+
+
+    <div class="row tablist">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                  @ViewBag.Title
+                       </h3>
+                    <div class="box-tools">
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("XCXSucaiAll", "XCXSucai", new { type=ViewBag.type,psyId=1})"><i class="fa fa-list"></i> 查看全部 @ViewBag.Title</a>
+
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="type" id="type" value="@ViewBag.type" />
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1">
+                                    序号
+                                </th>
+                                <th class="col-sm-2">
+                                    标题
+                                </th>
+                                <th class="col-sm-2">
+                                    作者
+                                </th>
+                               
+
+                                <th class="col-sm-2">查看</th>
+                                <th class="col-sm-2">选择</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PsyId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SucaiId)
+                                    </td>
+                                   
+                                  
+                                    <td>
+                                        @if (item.SucaiType == "yinpin")
+                                        {
+                                            <a class="btn btn-info btn-sm" href="@Url.Action("AudioView", "AdminXCXSucai", new { id = item.Id })"> 预览查看</a>
+
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-info btn-sm" href="@Url.Action("View", "AdminXCXSucai", new { id = item.Id, type = item.SucaiType })"> 预览查看</a>
+
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (PsyUserService.GetIfSelectSucai(1, item.SucaiId))
+                                        { 
+                                            <button class="btn btn-danger btn-sm ScSelect" type="button" data-psyId="1" data-sucaiId="@item.SucaiId" data-selected="false">取消选择</button> 
+                                        }
+                                        else
+                                        { 
+                                            <button class="btn btn-success btn-sm ScSelect" type="button" data-psyId="1" data-sucaiId="@item.SucaiId" data-selected="true">选择</button> 
+                                        }
+                                        
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript">
+
+        $(".ScSelect").on("click", function () {
+            var selected = $(this).attr('data-selected');
+            var psyId = $(this).attr('data-psyId');
+            var sucaiId = $(this).attr('data-sucaiId');
+            if (selected == "true") {
+                Selected(psyId, sucaiId, selected);
+                $(this).attr("data-selected", "false");
+                $(this).html("取消选择");
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-danger");
+            }
+            else if (selected == "false") {
+                Selected(psyId, sucaiId, selected);
+                $(this).attr("data-selected", "true");
+                $(this).html("选择");
+                $(this).removeClass("btn-danger");
+                $(this).addClass("btn-success");
+            }
+
+
+          //  alert(selected + psyId + sucaiId);
+        });
+
+        function Selected(psyId, sucaiId,status) {
+            var token = $('[name=__RequestVerificationToken]').val();
+            var type = $('[name=type]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/XCXSucai/UpdateSelect",
+                data: {
+                    psyId: psyId,
+                    sucaiId: sucaiId,
+                    status: status,
+                    type: type,
+                    __RequestVerificationToken: token,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus)
+                    {
+                        location.reload()
+                      // alertconfirm(data.MessageInfo);
+                    }
+                    else
+                    { alertconfirm("选择失败！"); }
+
+                }
+            });
+
+            
+        }
+       
+    </script>
+
+}

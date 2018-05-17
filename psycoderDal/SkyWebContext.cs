@@ -45,6 +45,8 @@ namespace psycoderDal
         public DbSet<Orders> Orders { get; set; }
         public DbSet<PsyOrders> PsyOrders { get; set; }
 
+        public DbSet<XCXSucaiSelected> XCXSucaiSelecteds { get; set; }
+
 
     }
 }

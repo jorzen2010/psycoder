@@ -82,7 +82,16 @@
                            
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning btn-sm" ><i class="fa fa-volume-up"></i></button>
+                                        @if (item.type == "yinpin")
+                                        {
+                                            <a class="btn btn-warning btn-sm" href="@Url.Action("AudioView", "AdminXCXSucai", new { id = item.Id })"><i class="fa fa-volume-up"></i> 预览查看</a>
+
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-warning btn-sm" href="@Url.Action("View", "AdminXCXSucai", new { id = item.Id, type = item.type })"><i class="fa fa-volume-up"></i> 预览查看</a>
+
+                                        }
                                     </td>
 
                                 </tr>

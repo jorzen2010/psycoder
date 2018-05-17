@@ -4,9 +4,9 @@
     <hr>
     <h4><span class="glyphicon glyphicon-th" aria-hidden="true"></span> 小程序素材</h4>
     <ul>
-        <li><a href="@Url.Action("TuwenList","Home")">图文素材</a></li>
-        <li><a href="@Url.Action("AudioList", "Home")">音频课程</a></li>
-        <li><a href="@Url.Action("VideoList", "Home")">视频课程</a></li>
+        <li><a href="@Url.Action("XCXSucaiSelected", "XCXSucai", new { type = "tuwen" })">图文素材</a></li>
+        <li><a href="@Url.Action("XCXSucaiSelected", "XCXSucai", new { type = "yinpin" })">音频课程</a></li>
+        <li><a href="@Url.Action("XCXSucaiSelected", "XCXSucai", new { type = "shipin" })">视频课程</a></li>
     </ul>
     <hr>
     <h4><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 互动管理</h4>
@@ -41,10 +41,10 @@
 
     <h4><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 共享讲课素材</h4>
     <ul>
-        <li><a href="@Url.Action("ScAnli", "Home")"> 案例素材</a></li>
-        <li><a href="@Url.Action("ScTupian", "Home")"> 图片素材</a></li>
-        <li><a href="@Url.Action("ScAudio", "Home")"> 音频素材</a></li>
-        <li><a href="@Url.Action("ScVideo", "Home")"> 视频素材</a></li>
+        <li><a href="@Url.Action("JkSucai", "Home", new { type = "anli"})"> 案例素材</a></li>
+        <li><a href="@Url.Action("JkSucai", "Home", new { type = "tupian" })"> 图片素材</a></li>
+        <li><a href="@Url.Action("JkSucai", "Home", new { type = "yinpin" })"> 音频素材</a></li>
+        <li><a href="@Url.Action("JkSucai", "Home", new { type = "shipin" })"> 视频素材</a></li>
         <!--
             <li><a href=""> PPT素材</a></li>
         -->

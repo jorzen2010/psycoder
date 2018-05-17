@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
+using PagedList;
+using PagedList.Mvc;
 using Common;
 using psycoderDal;
 using psycoderEntity;
@@ -98,6 +100,8 @@ namespace psycoder.Controllers
             ViewBag.PlayAuth = AliyunVideoServices.GetVideoInfo(ApiUrl, VideoId, Timestamp, Action, SignatureNonce).PlayAuth;
             return View();
         }
+       
+        
         public ActionResult ZiyouList()
         {
             return View();
@@ -115,25 +119,84 @@ namespace psycoder.Controllers
             return View();
         }
 
-        public ActionResult ScAnli()
+        public ActionResult XCXSucai(int? page, string type = "tuwen")
         {
-            return View();
+            if (type == "tuwen")
+            {
+                ViewBag.title = "图文素材";
+            }
+            else if (type == "yinpin")
+            {
+                ViewBag.title = "音频素材";
+            }
+            else if (type == "shipin")
+            {
+                ViewBag.title = "视频素材";
+
+            }
+            else
+            {
+                type = "tuwen";
+                ViewBag.title = "图文素材";
+            }
+
+            ViewBag.type = type;
+            Pager pager = new Pager();
+            pager.table = "XCXSucai";
+            pager.strwhere = "type='" + type + "' and IfDelete=0 and Qanxian=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<XCXSucai> dataList = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<XCXSucai>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
 
-        public ActionResult ScTupian()
+        public ActionResult JkSucai(int? page, string type = "anli")
         {
-            return View();
+            if (type == "anli")
+            {
+                ViewBag.title = "案例素材";
+            }
+            else if (type == "yinpin")
+            {
+                ViewBag.title = "音频素材";
+            }
+            else if (type == "shipin")
+            {
+                ViewBag.title = "视频素材";
+
+            }
+            else if (type == "tupian")
+            {
+                ViewBag.title = "图片素材";
+
+            }
+            else
+            {
+                type = "anli";
+                ViewBag.title = "案例素材";
+            }
+
+            ViewBag.type = type;
+            Pager pager = new Pager();
+            pager.table = "JkSucai";
+            pager.strwhere = "type='" + type + "' and IfDelete=0";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<JkSucai> dataList = DataConvertHelper<JkSucai>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<JkSucai>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
         }
 
-        public ActionResult ScAudio()
-        {
-            return View();
-        }
-
-        public ActionResult ScVideo()
-        {
-            return View();
-        }
+       
 
          public ActionResult Setting()
         {

@@ -1,4 +1,4 @@
-﻿@model psycoderEntity.JkSucai
+﻿@model psycoderEntity.XCXSucai
 @using PagedList;
 @using PagedList.Mvc;
 @using psycoderService;
@@ -36,7 +36,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <h3 class="text-center">@Model.Title</h3>
-
+                      
                         <div class="col-md-offset-4 col-md-7">
                             <div class="Audioplayer" style="background:url('@Model.Cover');background-size:540px 405px;background-repeat:no-repeat;border-radius:15px; ">
                                 <div class="playerTop text-center">
@@ -47,7 +47,7 @@
                                         else
                                         { @Model.Title
                                         }
-
+                                   
                                     </h3>
                                     <span>
                                         作者：@Model.Author<br />
@@ -59,36 +59,32 @@
                                 </div>
 
                                 <div class="playerBottom">
-
-                                    <p>
-                                        @if (string.IsNullOrEmpty(Model.Info))
-                                        {
-                                            @Html.Raw("暂无介绍")
-                                        }
-                                        else
-                                        {
-                                            if (Model.Info.Length > 16)
-                                            { @Model.Info.Substring(0, 54)
+                                  
+                                        <p>@if (string.IsNullOrEmpty(Model.Info))
+                                           {
+                                               @Html.Raw("暂无介绍") 
+                                           }
+                                           else
+                                           { 
+                                               if (Model.Info.Length > 16)
+                                            { @Model.Info.Substring(0,54)
                                             }
                                             else
                                             {  @Model.Info
                                             }
-                                        }
-
-
-                                </p>
-                                <small class="pull-right">
-                                    @Model.Author <br />
-                                    创作于 @Model.CreateTime.ToString("yyyy-MM-dd")
-                                </small>
-
+                                           }
+                                           
+                                         
+                                        </p>
+                                        <small class="pull-right"> @Model.Author <br/>
+                                     创作于 @Model.CreateTime.ToString("yyyy-MM-dd")</small>
+                                
+</div>
                             </div>
+
                         </div>
-
+                      
                     </div>
-
-                </div>
-
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <p>

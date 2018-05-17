@@ -268,6 +268,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<XCXSucaiSelected> XCXSucaiSelectedsRepository;
+
+         public GenericRepository<XCXSucaiSelected> xcxSucaiSelectedsRepository
+         {
+             get
+             {
+
+                 if (this.XCXSucaiSelectedsRepository == null)
+                 {
+                     this.XCXSucaiSelectedsRepository = new GenericRepository<XCXSucaiSelected>(context);
+                 }
+                 return XCXSucaiSelectedsRepository;
+             }
+         }
+
 
 
        

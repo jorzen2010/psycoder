@@ -187,6 +187,7 @@
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\AdminOrderController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
+    <Compile Include="Controllers\XCXSucaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1623,6 +1624,8 @@
     <Content Include="fonts\ionicons-2.0.1\src\woman.svg" />
     <Content Include="fonts\ionicons-2.0.1\src\wrench.svg" />
     <Content Include="fonts\ionicons-2.0.1\src\xbox.svg" />
+    <Content Include="plugins\aliplayer\aliplayer-min.css" />
+    <Content Include="plugins\aliplayer\aliplayer-min.js" />
     <Content Include="plugins\bootbox.min.js" />
     <Content Include="plugins\bootstrap-fileinput\css\fileinput-rtl.css" />
     <Content Include="plugins\bootstrap-fileinput\css\fileinput-rtl.min.css" />
@@ -3027,10 +3030,6 @@
     <Content Include="Views\Home\HudongSet.cshtml" />
     <Content Include="Views\Home\WentiList.cshtml" />
     <Content Include="Views\Home\ZixunList.cshtml" />
-    <Content Include="Views\Home\ScAnli.cshtml" />
-    <Content Include="Views\Home\ScTupian.cshtml" />
-    <Content Include="Views\Home\ScAudio.cshtml" />
-    <Content Include="Views\Home\ScVideo.cshtml" />
     <Content Include="Views\Home\SafeCenter.cshtml" />
     <Content Include="Views\Home\ZhuceInfo.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
@@ -3076,6 +3075,12 @@
     <Content Include="Views\AdminQuestion\Edit.cshtml" />
     <Content Include="Views\AdminJkSucai\View.cshtml" />
     <Content Include="Views\AdminJkSucai\AudioView.cshtml" />
+    <Content Include="Views\AdminXCXSucai\View.cshtml" />
+    <Content Include="Views\AdminXCXSucai\AudioView.cshtml" />
+    <Content Include="Views\Home\JkSucai.cshtml" />
+    <Content Include="Views\Home\XCXSucai.cshtml" />
+    <Content Include="Views\XCXSucai\XCXSucaiSelected.cshtml" />
+    <Content Include="Views\XCXSucai\XCXSucaiAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

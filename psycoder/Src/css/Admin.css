@@ -4,17 +4,31 @@
 
 
 .Audioplayer {
-    width: 540px; 
-    height: 405px; 
-    background:url('/FilesUpload/Covers/covers6366207370192954388457.jpg'); 
+    width: 450px; 
+    height: 305px; 
+    /*background:url('/FilesUpload/Covers/covers6366207370192954388457.jpg');*/ 
     background-size:540px 405px;
     background-repeat:no-repeat;
     border-radius:15px;
 }
 .playerTop {
-    height:150px;
+    padding-top:10px;
+    height:180px;
+    background-color:rgba(224,163,17,0.7);
+    border-radius:15px 15px 0px 0px;
+    color:#ffffff;
 }
 .playerBottom{
-    height:150px;
-    padding-top:50px;
+    height:125px;
+    padding:10px;
+    background-color:rgba(34,90,53,0.7);
+    border-radius:0px 0px 15px 15px;
+    color:#dddddd;
 }
+    .playerBottom p {
+        line-height:25px;
+    }
+     .playerBottom small {
+         color:#cccccc;
+        line-height:25px;
+    }
