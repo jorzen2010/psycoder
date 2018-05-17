@@ -3081,6 +3081,8 @@
     <Content Include="Views\Home\XCXSucai.cshtml" />
     <Content Include="Views\XCXSucai\XCXSucaiSelected.cshtml" />
     <Content Include="Views\XCXSucai\XCXSucaiAll.cshtml" />
+    <Content Include="Views\XCXSucai\View.cshtml" />
+    <Content Include="Views\XCXSucai\AudioView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

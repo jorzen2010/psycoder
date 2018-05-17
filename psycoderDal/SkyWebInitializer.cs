@@ -115,6 +115,76 @@ namespace psycoderDal
                 });
             context.SaveChanges();
             #endregion 默认互动配置
+
+            #region 默认互动设置
+
+            var JkSucaiList = new List<JkSucai>
+            {
+                new JkSucai{
+                    Title="案例素材",
+                    type="anli",
+                    Cover="/Resource/img/nophoto.png",
+                    Content="案例素材",
+                    Info="案例素材",
+                    Tags="案例素材",
+                    Author="赵征",
+                    Provider=0,
+                    Price=0,
+                    Qanxian=true,
+                    IfDelete=false,
+                    Ticheng=40,
+                    CreateTime=DateTime.Now,
+                },
+                new JkSucai{
+                    Title="图片素材",
+                    type="tupian",
+                    Cover="/Resource/img/nophoto.png",
+                    Content="/Resource/img/nophoto.png",
+                    Info="图片素材",
+                    Tags="图片素材",
+                    Author="赵征",
+                    Provider=0,
+                    Price=0,
+                    Qanxian=true,
+                    IfDelete=false,
+                    Ticheng=40,
+                    CreateTime=DateTime.Now,
+                },
+                new JkSucai{
+                    Title="音频素材",
+                    type="yinpin",
+                    Cover="/Resource/img/nophoto.png",
+                    Content="c80b87bcb00d44c6883950605d798070",
+                    Info="音频素材",
+                    Tags="音频素材",
+                    Author="赵征",
+                    Provider=0,
+                    Price=0,
+                    Qanxian=true,
+                    IfDelete=false,
+                    Ticheng=40,
+                    CreateTime=DateTime.Now,
+                },
+                new JkSucai{
+                    Title="视频素材",
+                    type="shipin",
+                    Cover="/Resource/img/nophoto.png",
+                    Content="6ccf973fe06741e49ab849d4cec017e0",
+                    Info="视频素材",
+                    Tags="视频素材",
+                    Author="赵征",
+                    Provider=0,
+                    Price=0,
+                    Qanxian=true,
+                    IfDelete=false,
+                    Ticheng=40,
+                    CreateTime=DateTime.Now,
+                }
+            };
+
+            JkSucaiList.ForEach(j => context.JkSucais.Add(j));
+            context.SaveChanges();
+            #endregion 默认互动配置
         }
     }
 }

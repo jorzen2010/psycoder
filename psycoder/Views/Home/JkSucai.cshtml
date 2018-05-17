@@ -7,21 +7,21 @@
 }
 <div class="content">
     @if (ViewBag.type == "anli")
-{ <h3>案例素材 <small>讲课中最怕的是没素材，没案例，这些素材能让你的内容更加生动。</small></h3>
+    { <h3 class="pageTitle">案例素材 <small>讲课中最怕的是没素材，没案例，这些素材能让你的内容更加生动。</small></h3>
     }
-else if (ViewBag.type == "tupian")
-{  <h3>图片素材 <small>图片能让听众更好的理解你说的内容。</small></h3>
-}
-else if (ViewBag.type == "shipin")
-{ <h3>视频素材 <small>视频引用是例证你内容最好的方式。</small></h3>
-}
-else if (ViewBag.type == "yinpin")
-{ <h3>音频素材 <small>恰到好处的音乐能传递你需要的情绪。</small></h3>
-}
+    else if (ViewBag.type == "tupian")
+    {  <h3 class="pageTitle">图片素材 <small>图片能让听众更好的理解你说的内容。</small></h3>
+    }
+    else if (ViewBag.type == "shipin")
+    { <h3 class="pageTitle">视频素材 <small>视频引用是例证你内容最好的方式。</small></h3>
+    }
+    else if (ViewBag.type == "yinpin")
+    { <h3 class="pageTitle">音频素材 <small>恰到好处的音乐能传递你需要的情绪。</small></h3>
+    }
 
 
 
-    <div class="row tablist">
+    <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
@@ -37,24 +37,24 @@ else if (ViewBag.type == "yinpin")
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-bordered table-hover">
-                        <thead>
+                    <table class="table table-hover">
+                        <thead class="text-center">
                             <tr>
                                 <th class="col-sm-1">
                                     序号
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-6">
                                     标题
                                 </th>
+
                                 <th class="col-sm-2">
                                     作者
                                 </th>
-                                <th class="col-sm-1">
+                                <th class="col-sm-2">
                                     提供者
                                 </th>
-                              
-                               
-                                <th class="col-sm-2">查看</th>
+
+                                <th class="col-sm-1">查看</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,17 +73,17 @@ else if (ViewBag.type == "yinpin")
                                     <td>
                                         @PsyUserService.GetPsyUserNameById(item.Provider)
                                     </td>
-                                   
-                                  
+
+
                                     <td>
                                         @if (item.type == "yinpin")
                                         {
-                                            <a class="btn btn-warning btn-sm" href="@Url.Action("AudioView", "AdminJkSucai", new { id = item.Id })"><i class="fa fa-volume-up"></i> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "AdminJkSucai", new { id = item.Id })">查看预览</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-warning btn-sm" href="@Url.Action("View", "AdminJkSucai", new { id = item.Id, type = item.type })"><i class="fa fa-volume-up"></i> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "AdminJkSucai", new { id = item.Id, type = item.type })">查看预览</a>
 
                                         }
                                     </td>
@@ -99,7 +99,7 @@ else if (ViewBag.type == "yinpin")
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("JkSucai","Home", new { type = Request.QueryString["type"], page = page }),
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("JkSucai", "Home", new { type = Request.QueryString["type"], page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
@@ -120,5 +120,3 @@ else if (ViewBag.type == "yinpin")
         </div>
     </div>
 </div>
-
-

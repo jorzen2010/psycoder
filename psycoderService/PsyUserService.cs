@@ -16,9 +16,26 @@ namespace psycoderService
             string username = string.Empty;
             if (id == 0)
             {
-                username = "官方";
+                username = "官方提供";
             }
             return username;
+
+        }
+
+        public static string GetXCXSucaiTitleById(int id)
+        {
+            string title = string.Empty;
+            UnitOfWork unitOfWork = new UnitOfWork();
+            XCXSucai sucai = unitOfWork.xcxSucaiRepository.GetByID(id);
+            if (sucai == null)
+            {
+                title = "Id有误，素材可能被删除了";
+            }
+            else
+            {
+                title = sucai.Title;
+            }
+            return title;
 
         }
 

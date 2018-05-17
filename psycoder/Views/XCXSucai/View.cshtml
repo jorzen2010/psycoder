@@ -1,0 +1,126 @@
+﻿@model psycoderEntity.XCXSucai
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+
+@section Topcss {
+   <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
+}
+
+<div class="content">
+    @if (ViewBag.type == "tuwen")
+    {
+        <h3 class="pageTitle">图文素材预览 <small>让好文章插上你的广告，为你打工</small></h3>
+    }
+    else if (ViewBag.type == "shipin")
+    {
+        <h3 class="pageTitle">视频课程预览 <small>没实力打造高端心理课程，借力借势免费使用权威高端课程</small></h3>
+    }
+    else if (ViewBag.type == "yinpin")
+    {
+        <h3 class="pageTitle">音频课程预览 <small>用专家的音频课程，打造自己的影响力</small></h3>
+    }
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">
+                @ViewBag.title 预览
+            </h3>
+            <div class="pull-right">
+
+                <a class="btn btn-info btn-sm" href="@Url.Action("XCXSucaiAll", "XCXSucai", new {type= ViewBag.type})"><i class="fa fa-list"></i> @ViewBag.title 列表</a>
+                <a class="btn btn-info btn-sm" href="@Url.Action("XCXSucaiSelected", "XCXSucai", new {type= ViewBag.type})"><i class="fa fa-list"></i> 已选择 @ViewBag.title 列表</a>
+
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <h3 class="text-center">@Model.Title</h3>
+            @if (ViewBag.type == "anli")
+            {
+                <div>
+                    @Html.Raw(Model.Content)
+                </div>
+
+            }
+            else if (ViewBag.type == "tupian")
+            {
+                <div class="text-center">
+                    <img src="@Model.Content" />
+                </div>
+            }
+            else if (ViewBag.type == "shipin")
+            {
+                <div class="text-center">
+                    <div class="prism-player" style="height: 500px;" id="J_prismPlayer">
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                @Html.Raw(Model.Content)
+            }
+            <p>
+             标签：   @Model.Tags
+            </p>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <div class="row">
+                <div class="pull-left" style="padding:10px;">
+                    <img src="@Model.Cover" />
+                </div>
+                <div class="pull-left" style="color:#cccccc">
+                    <h4>@Model.Title</h4>
+                    <p style="width:400px;">
+                        @if (string.IsNullOrEmpty(Model.Info))
+                        {
+                            @Html.Raw("暂无简介")
+                        }
+                        else
+                        { if (Model.Info.Length > 40)
+                        {
+                             @Model.Info.Substring(0, 40)
+                        }
+                        else
+                        { 
+                             @Model.Info
+                        }}
+
+                      
+                       <br />
+                    
+                        作者： @Model.Author <br />
+                        来源： @PsyUserService.GetPsyUserNameById(Model.Provider)
+                        <br />
+                        创作日期：@Model.CreateTime.ToString("yyyy-MM-dd")
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+
+@section BottomScripts {
+
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+    <script type="text/javascript">
+   
+    //初始化编辑器
+    var player = new Aliplayer({
+        id: "J_prismPlayer",
+        autoplay: false,
+        width: "850px",
+      //  height: "550px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+    });
+
+  
+
+    </script>
+
+}

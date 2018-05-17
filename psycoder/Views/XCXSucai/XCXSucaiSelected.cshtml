@@ -8,25 +8,24 @@
 <div class="content">
 
     @if (ViewBag.type == "tuwen")
-    {  <h3>我的图文素材 <small>让好文章插上你的广告，为你打工</small></h3>
+    {  <h3 class="pageTitle">我的图文素材 <small>让好文章插上你的广告，为你打工</small></h3>
     }
     else if (ViewBag.type == "shipin")
-    {  <h3>我的视频课程 <small>没实力打造高端心理课程，借力借势免费使用权威高端课程</small></h3>
+    {  <h3 class="pageTitle">我的视频课程 <small>没实力打造高端心理课程，借力借势免费使用权威高端课程</small></h3>
     }
     else if (ViewBag.type == "yinpin")
-    { <h3>我的音频课程 <small>用专家的音频课程，打造自己的影响力</small></h3>
+    { <h3 class="pageTitle">我的音频课程 <small>用专家的音频课程，打造自己的影响力</small></h3>
     }
 
 
-    <div class="row tablist">
-        <div class="col-xs-12">
+
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
                   @ViewBag.Title
                        </h3>
                     <div class="box-tools">
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("XCXSucaiAll", "XCXSucai", new { type=ViewBag.type,psyId=1})"><i class="fa fa-list"></i> 查看全部 @ViewBag.Title</a>
+                        <a class="btn btn-info btn-sm" href="@Url.Action("XCXSucaiAll", "XCXSucai", new { type=ViewBag.type,psyId=1})"><i class="fa fa-list"></i> 查看全部 @ViewBag.Title</a>
 
                     </div>
                 </div>
@@ -34,22 +33,16 @@
                 <div class="box-body table-responsive no-padding">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="type" id="type" value="@ViewBag.type" />
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="col-sm-1">
                                     序号
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-9">
                                     标题
                                 </th>
-                                <th class="col-sm-2">
-                                    作者
-                                </th>
-                               
-
-                                <th class="col-sm-2">查看</th>
-                                <th class="col-sm-2">选择</th>
+                                <th class="col-sm-2">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,35 +53,34 @@
                                         @Html.DisplayFor(modelItem => item.Id)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.PsyId)
+                                        @PsyUserService.GetXCXSucaiTitleById(item.SucaiId)
+                                      
+                                      
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SucaiId)
-                                    </td>
-                                   
                                   
+
+
                                     <td>
                                         @if (item.SucaiType == "yinpin")
                                         {
-                                            <a class="btn btn-info btn-sm" href="@Url.Action("AudioView", "AdminXCXSucai", new { id = item.Id })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "XCXSucai", new { id = item.Id })"> 预览查看</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-info btn-sm" href="@Url.Action("View", "AdminXCXSucai", new { id = item.Id, type = item.SucaiType })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "XCXSucai", new { id = item.Id, type = item.SucaiType })"> 预览查看</a>
 
                                         }
-                                    </td>
-                                    <td>
+                                   
                                         @if (PsyUserService.GetIfSelectSucai(1, item.SucaiId))
-                                        { 
-                                            <button class="btn btn-danger btn-sm ScSelect" type="button" data-psyId="1" data-sucaiId="@item.SucaiId" data-selected="false">取消选择</button> 
+                                        {
+                                            <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.SucaiId" data-selected="false">取消选择</button>
                                         }
                                         else
-                                        { 
-                                            <button class="btn btn-success btn-sm ScSelect" type="button" data-psyId="1" data-sucaiId="@item.SucaiId" data-selected="true">选择</button> 
+                                        {
+                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.SucaiId" data-selected="true">选择</button>
                                         }
-                                        
+
                                     </td>
 
                                 </tr>
@@ -120,8 +112,7 @@
                 </div>
             </div>
             <!-- /.box -->
-        </div>
-    </div>
+
 </div>
 
 @section BottomScripts {

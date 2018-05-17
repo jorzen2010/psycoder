@@ -8,22 +8,19 @@
 <div class="content">
 
     @if (ViewBag.type == "tuwen")
-    {  
-        <h3>图文素材库 <small>让好文章插上你的广告，为你打工</small></h3>
-    }
+{
+    <h3 class="pageTitle">图文素材库 <small>让好文章插上你的广告，为你打工</small></h3>
+}
     else if (ViewBag.type == "shipin")
-    { 
-        <h3>视频课程库 <small>没实力打造高端心理课程，借力借势免费使用权威高端课程</small></h3>
+    {
+        <h3 class="pageTitle">视频课程库 <small>没实力打造高端心理课程，借力借势免费使用权威高端课程</small></h3>
     }
     else if (ViewBag.type == "yinpin")
-    { 
-       <h3>音频课程库 <small>用专家的音频课程，打造自己的影响力</small></h3>
+    {
+        <h3 class="pageTitle">音频课程库 <small>用专家的音频课程，打造自己的影响力</small></h3>
     }
 
-
-    <div class="row tablist">
-        <div class="col-xs-12">
-            <div class="box">
+ <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
                         @ViewBag.Title 库
@@ -33,7 +30,7 @@
                             <input type="text" name="table_search" class="form-control pull-right" placeholder="输入关键字搜索">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> 搜索</button>
-                                <a class="btn btn-success" href="@Url.Action("XCXSucaiSelected", "XCXSucai", new { type=ViewBag.type})"><i class="fa fa-list"></i> 已选择素材</a>
+                                <a class="btn btn-info" href="@Url.Action("XCXSucaiSelected", "XCXSucai", new { type=ViewBag.type})"><i class="fa fa-list"></i> 已选择素材</a>
                             </div>
 
                            
@@ -44,24 +41,24 @@
                 <div class="box-body table-responsive no-padding">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="type" id="type" value="@ViewBag.type" />
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="col-sm-1">
                                     序号
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-7">
                                     标题
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-1">
                                     作者
                                 </th>
                                 <th class="col-sm-1">
                                     提供者
                                 </th>
 
-                                <th class="col-sm-2">查看</th>
-                                <th class="col-sm-2">选择</th>
+                                
+                                <th class="col-sm-2">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,23 +81,22 @@
                                     <td>
                                         @if (item.type == "yinpin")
                                         {
-                                            <a class="btn btn-info btn-sm" href="@Url.Action("AudioView", "AdminXCXSucai", new { id = item.Id })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "XCXSucai", new { id = item.Id })"> 预览查看</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-info btn-sm" href="@Url.Action("View", "AdminXCXSucai", new { id = item.Id, type = item.type })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "XCXSucai", new { id = item.Id, type = item.type })">预览查看</a>
 
                                         }
-                                    </td>
-                                    <td>
+                                   
                                         @if (PsyUserService.GetIfSelectSucai(1, item.Id))
                                         { 
-                                            <button class="btn btn-danger btn-sm ScSelect" type="button" data-psyId="1" data-sucaiId="@item.Id" data-selected="false">取消选择</button> 
+                                            <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyId="1" data-sucaiId="@item.Id" data-selected="false">取消选择</button> 
                                         }
                                         else
                                         { 
-                                            <button class="btn btn-success btn-sm ScSelect" type="button" data-psyId="1" data-sucaiId="@item.Id" data-selected="true">选择</button> 
+                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyId="1" data-sucaiId="@item.Id" data-selected="true">选择</button> 
                                         }
                                         
                                     </td>
@@ -134,8 +130,7 @@
                 </div>
             </div>
             <!-- /.box -->
-        </div>
-    </div>
+ 
 </div>
 
 @section BottomScripts {
