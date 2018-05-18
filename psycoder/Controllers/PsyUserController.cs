@@ -25,8 +25,8 @@ namespace psycoder.Controllers
         public JsonResult RegisterJibenxinxi( string PsyUserEmail, string PsyPassword, string PsyAvatar, bool PsyStatus)
         {
             Message msg = new Message();
-            PsyUser psyUser = new PsyUser();
-            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == PsyUserEmail);
+            ZixunshiUser psyUser = new ZixunshiUser();
+            var psyUsers = unitOfWork.zixunshiUsersRepository.Get(filter: u => u.PsyUserEmail == PsyUserEmail);
             if (psyUsers.Count()>0)
             {
                 psyUser = psyUsers.First();
@@ -35,7 +35,7 @@ namespace psycoder.Controllers
                 psyUser.PsyAvatar = PsyAvatar;
                 try
                 {
-                    unitOfWork.psyUsersRepository.Update(psyUser);
+                    unitOfWork.zixunshiUsersRepository.Update(psyUser);
                     unitOfWork.Save();
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "更新密码成功";
@@ -58,7 +58,7 @@ namespace psycoder.Controllers
 
                 try
                 {
-                    unitOfWork.psyUsersRepository.Insert(psyUser);
+                    unitOfWork.zixunshiUsersRepository.Insert(psyUser);
                     unitOfWork.Save();
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "插入成功";
@@ -78,8 +78,8 @@ namespace psycoder.Controllers
         public JsonResult RegisterShenfen(string UserEmail, string PsyRealName, string PsyNumber, string PsyZhengshuNumber)
         {
             Message msg = new Message();
-            PsyUser psyUser = new PsyUser();
-            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
+            ZixunshiUser psyUser = new ZixunshiUser();
+            var psyUsers = unitOfWork.zixunshiUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
             if (psyUsers.Count()>0)
             {
                
@@ -89,7 +89,7 @@ namespace psycoder.Controllers
                 psyUser.PsyZhengshuNumber = PsyZhengshuNumber;
                 try
                 {
-                    unitOfWork.psyUsersRepository.Update(psyUser);
+                    unitOfWork.zixunshiUsersRepository.Update(psyUser);
                     unitOfWork.Save();
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "身份认证成功";
@@ -118,8 +118,8 @@ namespace psycoder.Controllers
         public JsonResult RegisterLianxi(string UserEmail, string Email, string QQ, string Wechat, string Telephone)
         {
             Message msg = new Message();
-            PsyUser psyUser = new PsyUser();
-            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
+            ZixunshiUser psyUser = new ZixunshiUser();
+            var psyUsers = unitOfWork.zixunshiUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
             if (psyUsers.Count() > 0)
             {
 
@@ -130,7 +130,7 @@ namespace psycoder.Controllers
                 psyUser.PsyWechat = Wechat;
                 try
                 {
-                    unitOfWork.psyUsersRepository.Update(psyUser);
+                    unitOfWork.zixunshiUsersRepository.Update(psyUser);
                     unitOfWork.Save();
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "联系方式修改成功";
@@ -159,8 +159,8 @@ namespace psycoder.Controllers
         public JsonResult RegisterPinpai(string UserEmail, string PsyTitle, string PsyInfo, string PsyContent, string PsyShanchang)
         {
             Message msg = new Message();
-            PsyUser psyUser = new PsyUser();
-            var psyUsers = unitOfWork.psyUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
+            ZixunshiUser psyUser = new ZixunshiUser();
+            var psyUsers = unitOfWork.zixunshiUsersRepository.Get(filter: u => u.PsyUserEmail == UserEmail);
             if (psyUsers.Count() > 0)
             {
 
@@ -171,7 +171,7 @@ namespace psycoder.Controllers
                 psyUser.PsyShanchang = PsyShanchang;
                 try
                 {
-                    unitOfWork.psyUsersRepository.Update(psyUser);
+                    unitOfWork.zixunshiUsersRepository.Update(psyUser);
                     unitOfWork.Save();
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "个人品牌修改成功";

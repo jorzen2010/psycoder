@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace psycoderEntity
 {
-    public class PsyUser
+    public class ZixunshiUser
     {
         [Key]
         public int Id { get; set; }

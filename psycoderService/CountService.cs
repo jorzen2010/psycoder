@@ -14,7 +14,7 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             int PsyUserCount = 0;
-            var PsyUsers = unitOfWork.psyUsersRepository.Get();
+            var PsyUsers = unitOfWork.zixunReplyRepository.Get();
             PsyUserCount = PsyUsers.Count();
             return PsyUserCount;
         }

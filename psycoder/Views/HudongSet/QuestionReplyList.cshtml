@@ -1,0 +1,85 @@
+﻿@model StaticPagedList<psycoderEntity.QuestionReply>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    ViewBag.Tilte = "问题引导回复列表";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="content">
+    <h3 class="pageTitle">@ViewBag.Tilte <small>问题引导是自由书写的一种延伸，是将用户的问题引导到一个确定的方向，用自由书写的方式来表达。</small></h3>
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.Tilte  </h3>
+            <div class="pull-right">
+                <a class="btn btn-default btn-sm" href="@Url.Action("HudongSet", "HudongSet", new { type = "QuestionReplyList" })"><i class="fa fa-cog"></i> 设置引导语</a>
+                <a class="btn btn-success btn-sm" href="@Url.Action("QuestionList", "HudongSet")"><i class="fa fa-list"></i> 问题列表</a>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>粉丝Id</th>
+                    <th>咨询师Id</th>
+                    <th>问题内容</th>
+                    <th>回复内容</th>
+                    <th>回复时间</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PsyUser)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuestionId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReplyContent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateTime)
+                        </td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+
+            <ul class="pagination pagination-sm no-margin pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("QuestionReplyList", "AdminHudong", new { page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+}

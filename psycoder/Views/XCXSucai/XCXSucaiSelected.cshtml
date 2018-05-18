@@ -63,12 +63,12 @@
                                     <td>
                                         @if (item.SucaiType == "yinpin")
                                         {
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "XCXSucai", new { id = item.Id })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "XCXSucai", new { id = item.SucaiId })"> 预览查看</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "XCXSucai", new { id = item.Id, type = item.SucaiType })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "XCXSucai", new { id = item.SucaiId, type = item.SucaiType })"> 预览查看</a>
 
                                         }
                                    

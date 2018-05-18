@@ -48,7 +48,7 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "用户")]
-        public int PsyUserId { get; set; }
+        public int PsyUser { get; set; }
         [Display(Name = "自由书写前设置")]
         public string ZiyoushuxiePre { get; set; }
         [Display(Name = "自由书写后设置")]
@@ -63,6 +63,8 @@ namespace psycoderEntity
         public string ZixunPre { get; set; }
         [Display(Name = "用户咨询后设置")]
         public string ZixunPost { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
 
     }
     public class GuanggaoSetting
@@ -70,7 +72,7 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "用户")]
-        public int PsyUserId { get; set; }
+        public int PsyUser { get; set; }
         [Display(Name = "广告名称")]
         public string GuanggaoTitle { get; set; }
         [Display(Name = "广告内容")]
@@ -81,6 +83,8 @@ namespace psycoderEntity
         public string GuanggaoType { get; set; }
         [Display(Name = "广告状态")]
         public bool GuanggaoStatus { get; set; }
+        [Display(Name = "创建时间")]
+        public DateTime CreateTime { get; set; }
     }
    
 
@@ -89,7 +93,7 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "咨询师用户")]
-        public int PsyUserId { get; set; }
+        public int PsyUser { get; set; }
         [Display(Name = "来访者用户")]
         public int UserId { get; set; }
         [Display(Name = "书写内容")]
@@ -103,7 +107,7 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "咨询师用户")]
-        public int PsyUserId { get; set; }
+        public int PsyUser { get; set; }
         [Display(Name = "来访者用户")]
         public int UserId { get; set; }
         [Display(Name = "问题Id")]
@@ -120,7 +124,7 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "咨询师用户")]
-        public int PsyUserId { get; set; }
+        public int PsyUser { get; set; }
         [Display(Name = "来访者用户")]
         public int UserId { get; set; }
         [Display(Name = "书写内容")]

@@ -75,7 +75,7 @@
                                         @Html.AntiForgeryToken()
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.Id','/AdminHudong/DeleteConfirmed/','/AdminHudong/AdvertList')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
+                                        <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.Id','/AdminHudong/DeleteConfirmed/','/AdminHudong/GuanggaoList')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
 
                                     </td>
                                   
@@ -89,7 +89,7 @@
                     <div class="box-footer clearfix">
                        
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("AdvertList", new { page = page }),
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("GuanggaoList", new { page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
@@ -178,8 +178,8 @@
 
             //开关按钮样式加载
             $('[name="GuanggaoStatus"]').bootstrapSwitch({
-                onText: "公用",
-                offText: "私用",
+                onText: "启用",
+                offText: "禁用",
                 onColor: "success",
                 offColor: "danger",
                 size: "mini",

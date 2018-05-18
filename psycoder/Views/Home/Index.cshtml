@@ -6,8 +6,8 @@
 <div class="content">
     <div class="content_main">
         <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("NoticeView", "Notice", new { id=notice.Id})" target="_blank">@notice.Title</a>
-        <span class="text-gray pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("Index", "Notice")" target="_blank" class="text-gray">更多</a></span>
-        <span class="text-gray pull-right">@notice.CreateTime.ToString("yyyy-MM-dd")</span>
+        <span class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("Index", "Notice")" target="_blank" class="a2color">更多</a></span>
+        <span class="pull-right a2color">@notice.CreateTime.ToString("yyyy-MM-dd")</span>
     </div>
     <div class="content_main zhqingkuang">
         <h4>账号收益</h4>

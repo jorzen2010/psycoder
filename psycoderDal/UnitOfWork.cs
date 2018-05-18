@@ -103,18 +103,18 @@ namespace psycoderDal
              }
          }
 
-         private GenericRepository<PsyUser> PsyUsersRepository;
+         private GenericRepository<ZixunshiUser> ZixunshiUsersRepository;
 
-         public GenericRepository<PsyUser> psyUsersRepository
+         public GenericRepository<ZixunshiUser> zixunshiUsersRepository
          {
              get
              {
 
-                 if (this.PsyUsersRepository == null)
+                 if (this.ZixunshiUsersRepository == null)
                  {
-                     this.PsyUsersRepository = new GenericRepository<PsyUser>(context);
+                     this.ZixunshiUsersRepository = new GenericRepository<ZixunshiUser>(context);
                  }
-                 return PsyUsersRepository;
+                 return ZixunshiUsersRepository;
              }
          }
 

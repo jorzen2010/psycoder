@@ -95,7 +95,7 @@ namespace psycoder.Controllers
             return View(setting);
         }
 
-        public ActionResult AdvertList(int? page)
+        public ActionResult GuanggaoList(int? page)
         {
             Pager pager = new Pager();
             pager.table = "DefaultGuanggaoSetting";

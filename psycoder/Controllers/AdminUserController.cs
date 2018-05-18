@@ -30,8 +30,8 @@ namespace psycoder.Controllers
             pager.FiledOrder = "Id desc";
 
             pager = CommonDal.GetPager(pager);
-            IList<PsyUser> dataList = DataConvertHelper<PsyUser>.ConvertToModel(pager.EntityDataTable);
-            var PageList = new StaticPagedList<PsyUser>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            IList<ZixunshiUser> dataList = DataConvertHelper<ZixunshiUser>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<ZixunshiUser>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
         }
 
@@ -63,12 +63,12 @@ namespace psycoder.Controllers
                 msg.MessageStatus = "false";
                 msg.MessageInfo = "找不到ID";
             }
-            PsyUser psyUser = unitOfWork.psyUsersRepository.GetByID(id);
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
             psyUser.PsyStatus = status;
             if (ModelState.IsValid)
             {
 
-                unitOfWork.psyUsersRepository.Update(psyUser);
+                unitOfWork.zixunshiUsersRepository.Update(psyUser);
                 unitOfWork.Save();
                 msg.MessageStatus = "true";
                 msg.MessageInfo = "已经更改为" + psyUser.PsyStatus.ToString();

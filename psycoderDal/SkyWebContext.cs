@@ -28,7 +28,7 @@ namespace psycoderDal
         public DbSet<XCXSucai> XCXSucais { get; set; }
         public DbSet<JkSucai> JkSucais { get; set; }
        
-        public DbSet<PsyUser> PsyUsers { get; set; }
+        public DbSet<ZixunshiUser> ZixunshiUsers { get; set; }
         public DbSet<FensiUser> FensiUsers { get; set; }
         public DbSet<Notice> Notices { get; set; }
 

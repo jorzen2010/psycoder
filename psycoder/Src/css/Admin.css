@@ -3,6 +3,10 @@
 }
 
 
+.Aliyunplayer_container {
+    width: 430px; 
+    display: inline-block;
+}
 .Audioplayer {
     width: 450px; 
     height: 305px; 
@@ -27,8 +31,14 @@
 }
     .playerBottom p {
         line-height:25px;
+        text-align:left;
     }
      .playerBottom small {
          color:#cccccc;
         line-height:25px;
     }
+
+     .AliyunVideoplayer_container {
+    width: 850px; 
+    display: inline-block;
+}

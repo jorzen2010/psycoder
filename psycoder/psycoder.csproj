@@ -184,6 +184,8 @@
     <Compile Include="Controllers\AdminSettingController.cs" />
     <Compile Include="Controllers\AdminSysUserController.cs" />
     <Compile Include="Controllers\AdminXCXSucaiController.cs" />
+    <Compile Include="Controllers\HudongSetController.cs" />
+    <Compile Include="Controllers\JkSucaiController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\AdminOrderController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
@@ -3023,13 +3025,6 @@
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PartialHeader.cshtml" />
-    <Content Include="Views\Home\ZiyouList.cshtml" />
-    <Content Include="Views\Home\TuwenList.cshtml" />
-    <Content Include="Views\Home\VideoList.cshtml" />
-    <Content Include="Views\Home\AudioList.cshtml" />
-    <Content Include="Views\Home\HudongSet.cshtml" />
-    <Content Include="Views\Home\WentiList.cshtml" />
-    <Content Include="Views\Home\ZixunList.cshtml" />
     <Content Include="Views\Home\SafeCenter.cshtml" />
     <Content Include="Views\Home\ZhuceInfo.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
@@ -3049,7 +3044,6 @@
     <Content Include="Views\AdminJkSucai\Index.cshtml" />
     <Content Include="Views\AdminHudong\ZiyoushuxieReplyList.cshtml" />
     <Content Include="Views\AdminHudong\ZixunReplyList.cshtml" />
-    <Content Include="Views\AdminHudong\Guanggao.cshtml" />
     <Content Include="Views\AdminUser\PsyUser.cshtml" />
     <Content Include="Views\AdminUser\FensiUser.cshtml" />
     <Content Include="Views\AdminHudong\ZiyoushuxieSet.cshtml" />
@@ -3057,7 +3051,7 @@
     <Content Include="Views\AdminHudong\QuestionSet.cshtml" />
     <Content Include="Views\AdminHudong\HudongSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
-    <Content Include="Views\AdminHudong\AdvertList.cshtml" />
+    <Content Include="Views\AdminHudong\GuanggaoList.cshtml" />
     <Content Include="Views\PsyUser\Register00.cshtml" />
     <Content Include="Views\PsyUser\Register.cshtml" />
     <Content Include="Src\js\reg.min.js" />
@@ -3077,12 +3071,22 @@
     <Content Include="Views\AdminJkSucai\AudioView.cshtml" />
     <Content Include="Views\AdminXCXSucai\View.cshtml" />
     <Content Include="Views\AdminXCXSucai\AudioView.cshtml" />
-    <Content Include="Views\Home\JkSucai.cshtml" />
-    <Content Include="Views\Home\XCXSucai.cshtml" />
     <Content Include="Views\XCXSucai\XCXSucaiSelected.cshtml" />
     <Content Include="Views\XCXSucai\XCXSucaiAll.cshtml" />
     <Content Include="Views\XCXSucai\View.cshtml" />
     <Content Include="Views\XCXSucai\AudioView.cshtml" />
+    <Content Include="Views\JkSucai\View.cshtml" />
+    <Content Include="Views\JkSucai\AudioView.cshtml" />
+    <Content Include="Views\JkSucai\Index.cshtml" />
+    <Content Include="Views\HudongSet\GuanggaoList.cshtml" />
+    <Content Include="Views\HudongSet\Guanggao.cshtml" />
+    <Content Include="Views\HudongSet\GuanggaoSet.cshtml" />
+    <Content Include="Views\HudongSet\HudongSet.cshtml" />
+    <Content Include="Views\HudongSet\QuestionReplyList.cshtml" />
+    <Content Include="Views\HudongSet\ZixunReplyList.cshtml" />
+    <Content Include="Views\HudongSet\ZiyoushuxieReplyList.cshtml" />
+    <Content Include="Views\HudongSet\QuestionList.cshtml" />
+    <Content Include="Views\HudongSet\CreateZiyoushuxieReply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

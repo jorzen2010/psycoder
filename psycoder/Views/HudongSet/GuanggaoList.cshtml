@@ -1,0 +1,142 @@
+﻿@model StaticPagedList<psycoderEntity.GuanggaoSetting>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    ViewBag.Tilte = "广告列表";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
+<div class="content">
+   <h3 class="pageTitle">
+@ViewBag.Tilte <small> 你可以设置多个广告，但是只有最新的一条且只有一条广告才会在小程序中展示。</small>
+   </h3>
+            
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.Tilte  </h3>
+            <div class="pull-right">
+                <a class="btn btn-default btn-sm" href="@Url.Action("GuanggaoSet", "HudongSet")"><i class="fa fa-cog"></i> 新增默认广告</a>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding" style="min-height:800px;">
+            <table class="table table-hover">
+                <tr>
+                   
+                    <th class="col-md-2">广告名称</th>
+                    <th class="col-md-1">广告类型</th>
+                    <th class="col-md-5">广告内容</th>
+                   
+                    <th class="col-md-1">操作</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GuanggaoTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GuanggaoType)
+                        </td>
+                        @if (item.GuanggaoType == "文字广告")
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GuanggaoContent)
+                            </td>
+                        }
+                        else if (item.GuanggaoType == "图片广告")
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GuanggaoImgSrc)
+                            </td>
+                        }
+
+
+                        <td>
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.Id','/HudongSet/DeleteConfirmed/','/HudongSet/GuanggaoList')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
+
+                        </td>
+
+
+                    </tr>
+
+                }
+            </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+
+            <ul class="pagination pagination-sm no-margin pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("GuanggaoList", new { page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+
+     
+        $(document).ready(function () {
+
+
+            //开关按钮样式加载
+            $('[name="GuanggaoStatus"]').bootstrapSwitch({
+                onText: "启用",
+                offText: "禁用",
+                onColor: "success",
+                offColor: "danger",
+                size: "mini",
+                onSwitchChange: function (event, state) {
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/HudongSet/UpdateStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                            __RequestVerificationToken: token,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
+
+
+
+
+        });
+
+    </script>
+}
