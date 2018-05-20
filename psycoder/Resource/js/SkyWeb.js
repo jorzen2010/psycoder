@@ -59,6 +59,20 @@ function getStrAfter(Afterstring, str) {
     var str_after = Afterstring.split(str)[0];
     return str_after;
 }
+//设置焦点在文本框的最后//很简单的办法就是把文本里的值在重新赋值给他就行了
+function setSelectionRange(input, selectionStart, selectionEnd) {
+    if (input.setSelectionRange) {
+        input.focus();
+        input.setSelectionRange(selectionStart, selectionEnd);
+    }
+    else if (input.createTextRange) {
+        var range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', selectionEnd);
+        range.moveStart('character', selectionStart);
+        range.select();
+    }
+}
 
 //使用Js用Post或者get提交请求（未测试）http://www.w3school.com.cn/ajax/ajax_xmlhttprequest_send.asp
 function JsPostSubmit() {

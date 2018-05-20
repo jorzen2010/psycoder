@@ -6,25 +6,27 @@ function SkyfileCopper(ac,result) {
 
     switch (ac)
     {
-        case "skyavatar":
+        case "avatar":
             var token = $('[name=__RequestVerificationToken]').val();
             $.ajax({
                 type: 'POST',
-                url: "/File/UploadImgBase64",
+                url: "/File/UploadImageBase64",
                 data: {
                     id: $('#CustomerId').val(),
                     img: result.toDataURL('image/jpeg'),
                     __RequestVerificationToken: token,
-                    rootpath: "/Resource/Upload",
-                    folder: "zhaozheng",
+                    rootpath: "/FilesUpload",
+                    folder: "Avatars",
+                    pre: "avatar",
                 },
                 dataType: "json",
                 success: function (data) {
-                    alert('Success：头像上传成功');
+                    alert('头像修改上传成功！');
                     $('#getCroppedCanvasbtn').attr('data-skyac', "");
-                    $('#skyAvatar').attr('src', data.MessageUrl);
-                    $('#CustomerAvatar').val(data.MessageUrl);
+                    $('#PsyAvatarSrc').attr('src', data.MessageUrl);
+                    $('#PsyAvatar').val(data.MessageUrl);
                     $('#avatar-modal').modal('hide');
+                    $('#avatarImgBtn').parent().html("<button class='btn btn-xs btn-danger' onclick='editOk(this)' data-z='PsyAvatar'>确认修改</button>");
                 },
                 error: function () {
                     alert("error：有错误发生了")

@@ -1,4 +1,4 @@
-﻿@model psycoderEntity.ZiyoushuxieReply
+﻿@model psycoderEntity.ZixunReply
 @{
     ViewBag.Title = "自由书写演示";
 }
@@ -19,10 +19,10 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">@ViewBag.Title</h3>
-          
+         
         </div>
         <!-- /.box-header -->
-        @using (Html.BeginForm("CreateZiyoushuxieReply", "HudongSet", FormMethod.Post, new { @class = "form-horizontal", @name = "GuanggaoSet", @id = "GuanggaoSet" }))
+        @using (Html.BeginForm("CreateZixunReply", "HudongSet", FormMethod.Post, new { @class = "form-horizontal", @name = "GuanggaoSet", @id = "GuanggaoSet" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
@@ -51,7 +51,7 @@
             </div>
                         <!-- /.box-body -->
             <div class="box-footer clearfix" id="guanggaobtn">
-                <a class="btn btn-default" href="@Url.Action("ZiyoushuxieReplyList", "HudongSet")">返回</a>
+                <a class="btn btn-default" href="@Url.Action("ZixunReplyList", "HudongSet")">返回</a>
                 <div class="pull-right">
                     <button type="submit" class="btn btn-primary">保存并发布</button>
                 </div>

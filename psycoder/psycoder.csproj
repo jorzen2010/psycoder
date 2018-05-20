@@ -3027,7 +3027,6 @@
     <Content Include="Views\Shared\_PartialHeader.cshtml" />
     <Content Include="Views\Home\SafeCenter.cshtml" />
     <Content Include="Views\Home\ZhuceInfo.cshtml" />
-    <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_PartialAdminHeader.cshtml" />
     <Content Include="Views\Shared\_PartialAdminMenu.cshtml" />
@@ -3046,9 +3045,6 @@
     <Content Include="Views\AdminHudong\ZixunReplyList.cshtml" />
     <Content Include="Views\AdminUser\PsyUser.cshtml" />
     <Content Include="Views\AdminUser\FensiUser.cshtml" />
-    <Content Include="Views\AdminHudong\ZiyoushuxieSet.cshtml" />
-    <Content Include="Views\AdminHudong\ZixunSet.cshtml" />
-    <Content Include="Views\AdminHudong\QuestionSet.cshtml" />
     <Content Include="Views\AdminHudong\HudongSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoList.cshtml" />
@@ -3087,6 +3083,12 @@
     <Content Include="Views\HudongSet\ZiyoushuxieReplyList.cshtml" />
     <Content Include="Views\HudongSet\QuestionList.cshtml" />
     <Content Include="Views\HudongSet\CreateZiyoushuxieReply.cshtml" />
+    <Content Include="Views\HudongSet\CreateZixunReply.cshtml" />
+    <Content Include="Views\HudongSet\CreateQuestionReply.cshtml" />
+    <Content Include="Views\PsyUser\Setting.cshtml" />
+    <Content Include="Views\PsyUser\XCXSetting.cshtml" />
+    <Content Include="Views\PsyUser\ZhuceInfo.cshtml" />
+    <Content Include="Views\PsyUser\RenzhengInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

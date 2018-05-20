@@ -15,6 +15,8 @@
         <div class="box-header">
             <h3 class="box-title">@ViewBag.Tilte  </h3>
             <div class="pull-right">
+                <a class="btn btn-info btn-sm" href="@Url.Action("CreateQuestionReply", "Hudongset")"><i class="fa fa-plus-circle"></i> 体验问题自由书写</a>
+
                 <a class="btn btn-default btn-sm" href="@Url.Action("HudongSet", "HudongSet", new { type = "QuestionReplyList" })"><i class="fa fa-cog"></i> 设置引导语</a>
                 <a class="btn btn-success btn-sm" href="@Url.Action("QuestionList", "HudongSet")"><i class="fa fa-list"></i> 问题列表</a>
             </div>
@@ -25,7 +27,7 @@
                 <tr>
                     <th>ID</th>
                     <th>粉丝Id</th>
-                    <th>咨询师Id</th>
+                  
                     <th>问题内容</th>
                     <th>回复内容</th>
                     <th>回复时间</th>
@@ -39,9 +41,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.UserId)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PsyUser)
-                        </td>
+                     
                         <td>
                             @Html.DisplayFor(modelItem => item.QuestionId)
                         </td>
@@ -60,7 +60,7 @@
         <div class="box-footer clearfix">
 
             <ul class="pagination pagination-sm no-margin pull-right">
-                @Html.PagedListPager((IPagedList)Model, page => Url.Action("QuestionReplyList", "AdminHudong", new { page = page }),
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("QuestionReplyList", "HudongSet", new { page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",

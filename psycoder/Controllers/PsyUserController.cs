@@ -195,5 +195,47 @@ namespace psycoder.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult XCXSetting()
+        {
+            int id = 2;
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
+            return View(psyUser);
+        }
+
+        public ActionResult RenzhengInfo()
+        {
+            int id = 2;
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
+            return View(psyUser);
+        }
+
+        public ActionResult Setting()
+        {
+            int id = 2;
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
+            return View(psyUser);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateOpt(int Id, string optName, string optVal)
+        {
+            Message msg = new Message();
+            string sql = "update ZixunshiUser set " + optName + "='" + optVal + "' where Id=" + Id;
+            try
+            {
+                unitOfWork.zixunshiUsersRepository.UpdateWithRawSql(sql);
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "更新成功";
+            }
+            catch (Exception ex)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "更新失败" + ex.ToString();
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
 	}
 }

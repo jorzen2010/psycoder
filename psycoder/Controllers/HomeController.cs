@@ -52,6 +52,8 @@ namespace psycoder.Controllers
             return View();
         }
 
+       
+
         public ActionResult Register()
         {
             return View();
@@ -63,10 +65,7 @@ namespace psycoder.Controllers
             return View();
         }
 
-         public ActionResult Setting()
-        {
-            return View();
-        }
+        
 
          public ActionResult SafeCenter()
          {

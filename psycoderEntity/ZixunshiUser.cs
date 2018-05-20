@@ -11,7 +11,7 @@ namespace psycoderEntity
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "邮箱")]
+        [Display(Name = "用户名")]
         public string PsyUserEmail { get; set; }
         [Display(Name = "头像")]
         public string PsyAvatar { get; set; }
@@ -29,9 +29,11 @@ namespace psycoderEntity
         public string PsyQQ { get; set; }
         [Display(Name = "微信号码")]
         public string PsyWechat { get; set; }
-        [Display(Name = "邮箱号码")]
+        [Display(Name = "联系邮箱")]
         public string PsyEmail { get; set; }
-        [Display(Name = "个人品牌名称")]
+        [Display(Name = "昵称")]
+        public string PsyNickName { get; set; }
+        [Display(Name = "小程序名称")]
         public string PsyTitle { get; set; }
         [Display(Name = "一句话介绍")]
         public string PsyInfo { get; set; }

@@ -15,6 +15,8 @@
         <div class="box-header">
             <h3 class="box-title">@ViewBag.Tilte  </h3>
             <div class="pull-right">
+                <a class="btn btn-info btn-sm" href="@Url.Action("CreateZiyoushuxieReply", "Hudongset")"><i class="fa fa-plus-circle"></i> 体验自由书写</a>
+
                 <a class="btn btn-default btn-sm" href="@Url.Action("HudongSet", "Hudongset", new { type="ZiyoushuxieReplyList"})"><i class="fa fa-cog"></i> 设置引导语</a>
             </div>
         </div>
@@ -22,11 +24,11 @@
         <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
                 <tr>
-                    <th>ID</th>
-                    <th>粉丝Id</th>
-                    <th>咨询师Id</th>
-                    <th>回复内容</th>
-                    <th>回复时间</th>
+                    <th class="col-sm-1">ID</th>
+                    <th class="col-sm-2">粉丝Id</th>
+                    
+                    <th class="col-sm-7">回复内容</th>
+                    <th class="col-sm-2">回复时间</th>
                 </tr>
                 @foreach (var item in Model)
                 {
@@ -37,14 +39,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.UserId)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PsyUser)
-                        </td>
+                      
                         <td>
                             @Html.DisplayFor(modelItem => item.ReplyContent)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CreateTime)
+                            @item.CreateTime.ToString("yyyy-MM-dd HH:mm")
+                          
                         </td>
                     </tr>
 
@@ -55,7 +56,7 @@
         <div class="box-footer clearfix">
 
             <ul class="pagination pagination-sm no-margin pull-right">
-                @Html.PagedListPager((IPagedList)Model, page => Url.Action("ZiyoushuxieReplyList", "AdminHudong", new { page = page }),
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("ZiyoushuxieReplyList", "HudongSet", new { page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",

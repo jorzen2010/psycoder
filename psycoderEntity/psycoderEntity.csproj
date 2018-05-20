@@ -54,7 +54,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="JkSucai.cs" />
-    <Compile Include="PsyUser.cs" />
+    <Compile Include="ZixunshiUser.cs" />
     <Compile Include="XCXSucai.cs" />
     <Compile Include="SysUser.cs" />
   </ItemGroup>
