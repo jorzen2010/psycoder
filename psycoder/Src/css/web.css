@@ -188,6 +188,8 @@ color:#cccccc;
     list-style:none;
     margin:0px;
     padding:0px;
+        height:40px;
+    line-height:40px;
 
 }
 .scxtitle {
@@ -288,10 +290,11 @@ color:#cccccc;
 
 }
 
-.SettingTextArea {
-    border:0px;
+.textareacontent {
     background-color:#ffffff;
+    border:0px;
     border-bottom:1px solid #eeeeee;
+    margin-bottom:10px;
 
 }
 .Settinglable {

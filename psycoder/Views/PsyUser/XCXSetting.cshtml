@@ -74,12 +74,10 @@
                                         @Html.LabelFor(model => model.PsyContent, new { @class = "col-sm-2 Settinglable  no-margin" })
 
                                         <div class="col-sm-9">
-                                            <textarea name="PsyContent" id="PsyContent" class="form-control SettingTextArea" readonly="readonly">@Model.PsyContent</textarea>
+                                          
+                                            <textarea name="PsyContent" id="PsyContent" class="form-control textareacontent" readonly="readonly">@Model.PsyContent</textarea>
                                         </div>
-                                            <div class="col-sm-1 editBtn"  data-z="">修改</div>
-                                            @*@Html.TextAreaFor(model => model.PsyContent, new { @class = "SettingTextArea col-sm-10 ", @readOnly = "true", @rows = "4" })*@
-                                        
-                                        
+                                            <div class="col-sm-1 editBtn"  data-z="">修改</div>                                                                       
                                     </div>
                                 </li>
 
@@ -90,21 +88,11 @@
                                         @Html.LabelFor(model => model.PsyShanchang, new { @class = "col-sm-2 Settinglable  no-margin" })
 
                                         <div class="col-sm-9">
-                                            <textarea name="PsyShanchang" id="PsyShanchang" class="form-control  SettingTextArea" readonly="readonly">@Model.PsyShanchang</textarea>
-
+                                            <textarea name="PsyShanchang" id="PsyShanchang" class="form-control textareacontent" readonly="readonly">@Model.PsyShanchang</textarea>
                                         </div>
                                         <div class="col-sm-1 editBtn" data-z="">修改</div>
                                     </div>
                                 </li>
-
-
-
-
-
-
-
-
-
                             </ul>
 
 

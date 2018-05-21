@@ -463,12 +463,9 @@
             if ($("#setting").data('bootstrapValidator').isValid()) {
 
                // alert("验证成功");
-                var psyId = 2;
+                var psyId = $("[name='Id']").val();
                 var opt_name = $(opt).attr("data-z");
-
-
                 var opt_val = $("[name=" + opt_name + "]").val();
-
                 var token = $('[name=__RequestVerificationToken]').val();
                 $.ajax({
                     type: 'POST',

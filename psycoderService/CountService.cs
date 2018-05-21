@@ -14,7 +14,7 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             int PsyUserCount = 0;
-            var PsyUsers = unitOfWork.zixunReplyRepository.Get();
+            var PsyUsers = unitOfWork.zixunshiUsersRepository.Get();
             PsyUserCount = PsyUsers.Count();
             return PsyUserCount;
         }
@@ -67,7 +67,7 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             int SucaiCount = 0;
-            if (type == "tuwen" || type == "audio" || type == "video")
+            if (type == "tuwen" || type == "shipin" || type == "yinpin")
             {
                 var Sucais = unitOfWork.xcxSucaiRepository.Get(filter: u => u.type == type);
                 SucaiCount = Sucais.Count();

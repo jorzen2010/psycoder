@@ -48,5 +48,40 @@ namespace psycoder.Controllers
             var PageList = new StaticPagedList<PsyOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
         }
+
+        public ActionResult CreatePsyOrder(int pid) {
+            Orders order = new Orders();
+
+            order.ProductId=0;
+            order.SellerId=0;
+            order.CustomerId=pid;
+            order.CreateTime=DateTime.Now;
+            order.ExpiryTime=DateTime.Now.AddYears(1).AddMonths(1);
+            order.Status="未付款";
+            order.Beizhu = "后台人工创建";
+            unitOfWork.ordersRepository.Insert(order);
+            unitOfWork.Save();
+            return RedirectToAction("OrderList","AdminOrder");
+
+
+        }
+
+        public ActionResult CreateFensiOrder(int pid)
+        {
+            PsyOrders order = new PsyOrders();
+
+            order.ProductId = 0;
+            order.SellerId = 0;
+            order.CustomerId = pid;
+            order.CreateTime = DateTime.Now;
+            order.ExpiryTime = DateTime.Now.AddYears(1).AddMonths(1);
+            order.Status = "未付款";
+            order.Beizhu = "粉丝申请创建";
+            unitOfWork.psyOrdersRepository.Insert(order);
+            unitOfWork.Save();
+            return RedirectToAction("OrderList", "AdminOrder");
+
+
+        }
 	}
 }

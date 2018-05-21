@@ -64,19 +64,20 @@
                                 <div class="col-md-offset-2 col-md-8">
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
-                                    <input type="hidden" name="PsyAvatar" id="PsyAvatar" value="~/Resourse/img/avatar.jpg" />
+                                    <input type="hidden" name="PsyAvatar" id="PsyAvatar" value="/Resourse/img/avatar.jpg" />
                                     <div class="form-group">
                                         <label for="PsyUserEmail" class="col-sm-3 control-label">邮箱</label>
                                         <div class="col-sm-8">
                                             <input type="email" class="form-control" id="PsyUserEmail" name="PsyUserEmail">
                                             <br />
-                                            <button class="btn btn-default">获取验证码</button>
+                                            <button class="btn btn-default" type="button" onclick="CodeAjax()">获取验证码</button>
                                             <p class="help-block">作为平台唯一登录帐号，请填写未被心理咨询师公众平台注册的邮箱</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="EmailCode" class="col-sm-3 control-label">邮箱验证码</label>
                                         <div class="col-sm-8">
+                                            <input type="hidden" class="form-control" id="EmailSendCode" name="EmailSendCode">
                                             <input type="text" class="form-control" id="EmailCode" name="EmailCode">
                                             <p class="help-block">激活邮箱后将收到验证邮件，请回填邮件中的6位验证码</p>
                                         </div>
@@ -294,22 +295,26 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
-                        <div class="col-md-offset-2 col-md-8">
-                            <p>
-                                恭喜你， 你已经成功注册心理咨询师讲师公众平台。
-                            </p>
-                            <p>
-                                请付款并完成注册。
-                            </p>
+                        <div class="col-md-offset-2 col-md-10">
+                            <h4>
+                                恭喜你， 你已经成功注册心理咨询师讲师公众平台。<br /><br />
+                                请扫描下方二维码付款￥999 完成小程序开发申请。
+
+                            </h4>
+                            <h4>
+                                <img src="~/Src/images/WechatPayQR.jpg" style="width:200px;" />
+                                <img src="~/Src/images/WechatQR.jpg" style="width:200px;" />
+                                
+                            </h4>
                             
                         </div>
                         </div>
                     <!-- /.box-body -->
-                    <div class="box-footer">
+                    <div class="box-footer  col-md-offset-2 col-md-8 ">
 
-                        <button class="btn btn-info" onclick="goStep(4)">上一步</button>
+                      
 
-                        <button class="btn btn-success pull-right" onclick="">完成</button>
+                        <button class="btn btn-success" onclick="">完成注册并登录</button>
 
 
                     </div>
@@ -323,14 +328,55 @@
     
    
      <div class="reg_footer container">
-        关于我们 | 服务协议 | 联系客服
+        关于我们 | 服务协议 | <a href="###">联系客服</a>
         <hr style="margin:5px 0;padding:0;">
         Copyright © 2012-2018 版权所有. All Rights Reserved.
     </div>
    
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-step/js/lib.js"></script>
     <script type="text/javascript" src="~/Src/js/Reg.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+    <script type="text/javascript">
+        function CodeAjax() {
+            var reg = /^\w+((-\w+)|(\.\w+))*\@@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+            var token = $('[name=__RequestVerificationToken]').val();
+            var Tomail = $('[name=PsyUserEmail]').val();
+            if (Tomail.length == 0 || Tomail == "" || Tomail == null ||!reg.test(Tomail))
+            {
+                alertconfirm("用户邮箱不能为空！！<br/>请先输入正确的邮箱地址");
+            }
+            else
+
+            {
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/PsyUser/SendEmail",
+                    data: {
+                        Tomail: Tomail,
+                        __RequestVerificationToken: token,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.MessageStatus) {
+                            $('[name=EmailSendCode]').val(data.MessageInfo);
+                            //  alert(data.MessageInfo);
+                            alertconfirm("发送成功,请登录邮箱查看验证码");
+                        }
+                        else { alertconfirm("发送验证码失败！"); }
+
+                    },
+                    error: function () {
+                        alertconfirm("远程发送验证码失败");
+                    }
+                }); 
+            }
+            
+        }
+    </script>
 </body>
 </html>

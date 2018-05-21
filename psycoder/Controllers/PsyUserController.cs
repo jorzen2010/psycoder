@@ -14,6 +14,7 @@ namespace psycoder.Controllers
     public class PsyUserController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+        private int psyId = 1;
 
         public ActionResult Register()
         {
@@ -85,6 +86,7 @@ namespace psycoder.Controllers
                
                 psyUser = psyUsers.First();
                 psyUser.PsyRealName = PsyRealName;
+                psyUser.PsyNickName = PsyRealName;
                 psyUser.PsyNumber = PsyNumber;
                 psyUser.PsyZhengshuNumber = PsyZhengshuNumber;
                 try
@@ -197,22 +199,21 @@ namespace psycoder.Controllers
 
         public ActionResult XCXSetting()
         {
-            int id = 2;
-            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(psyId);
             return View(psyUser);
         }
 
         public ActionResult RenzhengInfo()
         {
-            int id = 2;
-            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
+          
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(psyId);
             return View(psyUser);
         }
 
         public ActionResult Setting()
         {
-            int id = 2;
-            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(id);
+           
+            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(psyId);
             return View(psyUser);
         }
 
@@ -227,6 +228,40 @@ namespace psycoder.Controllers
                 unitOfWork.zixunshiUsersRepository.UpdateWithRawSql(sql);
                 msg.MessageStatus = "true";
                 msg.MessageInfo = "更新成功";
+            }
+            catch (Exception ex)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "更新失败" + ex.ToString();
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SendEmail(string Tomail)
+        {
+            string EmailSendCode = "123456";
+            Message msg = new Message();
+            EmailServer emailServer=new EmailServer();
+            emailServer.SMTPClient=EmailConfig.SMTPClient;
+            emailServer.EmailAddress=EmailConfig.EmailAddress;
+            emailServer.EmailPassword=EmailConfig.EmailPassword;
+            EmailEntity entity = new EmailEntity();
+            entity.ToMail = Tomail;
+            entity.FromMail = emailServer.EmailAddress;
+            entity.DisplayName = "心理咨询师讲师公众平台官方团队";
+            entity.MailTitle = "验证码";
+            entity.MailContent = "你的验证码为" + EmailSendCode;
+           
+            try
+            {
+
+                EmailServices.SendEmail(emailServer,entity);
+                
+                msg.MessageStatus = "true";
+                msg.MessageInfo = EmailSendCode;
             }
             catch (Exception ex)
             {

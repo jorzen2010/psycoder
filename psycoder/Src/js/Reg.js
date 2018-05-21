@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //初始化一个
-    goStep(1);
+    goStep(5);
 
     //register的表单验证
 
@@ -54,6 +54,18 @@
                     }
                 }
             },
+            EmailSendCode: {
+                validators: {
+                    notEmpty: {
+                        message: '发送的验证码不能为空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 6,
+                        message: '发送的验证码应为六位'
+                    },
+                }
+            },
             EmailCode: {
                 validators: {
                     notEmpty: {
@@ -63,6 +75,10 @@
                         min: 6,
                         max: 6,
                         message: '验证码应为六位'
+                    },
+                    identical: {
+                        field: 'EmailSendCode',
+                        message: '邮箱验证码不正确'
                     },
                 }
             },

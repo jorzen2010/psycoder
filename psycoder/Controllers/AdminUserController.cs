@@ -22,7 +22,7 @@ namespace psycoder.Controllers
         {
            
             Pager pager = new Pager();
-            pager.table = "PsyUser";
+            pager.table = "ZixunshiUser";
             pager.strwhere = "1=1";
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;

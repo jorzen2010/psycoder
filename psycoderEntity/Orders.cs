@@ -62,4 +62,13 @@ namespace psycoderEntity
         public string Status { get; set; }
 
     }
+
+    public enum OrderStatus
+    {
+        未付款,
+        已付款,
+        已过期,
+        已禁用,
+    
+    }
 }

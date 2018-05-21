@@ -65,7 +65,9 @@ namespace Common
         public const string ServerPort = "25";
         public const string EmailAddress = "psycoder@126.com";
         public const string EmailUser = "psycoder";
-        public const string EmailPassword = "jorzen2008";
+        //新的邮箱系统里面有一个授权码，客户端需要使用授权码发送邮件，而不是使用邮箱密码发送。这就保证了邮箱的安全。
+      //public const string EmailPassword = "jorzen2008";
+        public const string EmailPassword = "zhaozheng04408";
 
 
     }
