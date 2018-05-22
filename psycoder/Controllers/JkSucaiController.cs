@@ -13,7 +13,7 @@ using AliyunVideo;
 
 namespace psycoder.Controllers
 {
-    public class JkSucaiController : Controller
+    public class JkSucaiController : PsyBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         //

@@ -174,6 +174,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminAccountController.cs" />
+    <Compile Include="Controllers\AdminBaseController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminHudongController.cs" />
     <Compile Include="Controllers\AdminJkSucaiController.cs" />
@@ -189,7 +190,9 @@
     <Compile Include="Controllers\JkSucaiController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\AdminOrderController.cs" />
+    <Compile Include="Controllers\PsyBaseController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\XCXSucaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +209,7 @@
     <Compile Include="plugins\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Controllers\PsyAccountController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
@@ -3023,13 +3027,10 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Reg.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PartialHeader.cshtml" />
-    <Content Include="Views\Home\SafeCenter.cshtml" />
-    <Content Include="Views\Home\ZhuceInfo.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_PartialAdminHeader.cshtml" />
     <Content Include="Views\Shared\_PartialAdminMenu.cshtml" />
@@ -3093,9 +3094,13 @@
     <Content Include="Views\PsyUser\ZhuceInfo.cshtml" />
     <Content Include="Views\PsyUser\RenzhengInfo.cshtml" />
     <Content Include="Views\AdminAccount\Login.cshtml" />
+    <Content Include="Views\PsyAccount\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AdminBase\" />
+    <Folder Include="Views\PsyBase\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

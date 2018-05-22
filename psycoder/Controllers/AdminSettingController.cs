@@ -11,7 +11,7 @@ using psycoderDal;
 
 namespace psycoder.Controllers
 {
-    public class AdminSettingController : Controller
+    public class AdminSettingController : AdminBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 

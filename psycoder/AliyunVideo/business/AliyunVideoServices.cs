@@ -119,7 +119,7 @@ namespace AliyunVideo
 
  
         }
-
+        //第一种方式通过playauth方式播放
         public static VideoInfo GetVideoInfo(string ApiUrl,string VideoId, string Timestamp, string Action, string SignatureNonce)
         {
             // 第一步构造规范化请求字符串。
@@ -147,6 +147,9 @@ namespace AliyunVideo
         }
 
 
+        
+
+
 
 
         public static String getParamSrc(Dictionary<string, string> paramsMap)
@@ -162,6 +165,41 @@ namespace AliyunVideo
 
             String result = str.ToString().Substring(0, str.ToString().Length - 1);
             return result;
+        }
+
+
+        //通过这种方式获取视频播放地址，用于播放地址方式的播放
+        public static VideoUrlInfo VideoUrlInfo(string ApiUrl, string VideoId, string Timestamp, string Action, string SignatureNonce)
+        {
+            // 第一步构造规范化请求字符串。
+            string CanonicalizedQueryString = AliyunVideoServices.GetCanonicalizedQueryString(VideoId, Timestamp, Action, SignatureNonce);
+            //第二步用于签名的字符串。
+            string StringToSign = AliyunVideoServices.GetStringToSign(CanonicalizedQueryString);
+            //第三步得到签名HMAC值
+            string key = AliyunCommonParaConfig.AccessKeySecret + "&";
+            // string SignHMAC = AliyunVideoServices.GetSignHMAC(key,StringToSign);
+            //第四步转化为base64编码字符串的Signature
+            string Signature = AliyunVideoServices.GetSignature(key, StringToSign);
+            //第五步得到签名的URL
+            string SignUrl = "http://" + ApiUrl + "?" + AliyunVideoServices.GetSignUrl(VideoId, Timestamp, Action, SignatureNonce, Signature);
+
+
+            //通过URL获取videoinfo信息
+            string videoUrlInfoStr = AliyunVideoServices.VideoInfoJsonStr(SignUrl);
+            //通过URL获取videoinfo信息
+
+            VideoUrlInfo videoUrlInfo = JsonConvert.DeserializeObject<VideoUrlInfo>(videoUrlInfoStr);
+
+            return videoUrlInfo;
+
+
+        }
+
+        public static VideoUrlInfo videoUrlfo(string VideoUrlInfoJson)
+        {
+            VideoUrlInfo videoUrlfo = new VideoUrlInfo();
+            videoUrlfo = JsonConvert.DeserializeObject<VideoUrlInfo>(VideoUrlInfoJson);
+            return videoUrlfo;
         }
 
     }

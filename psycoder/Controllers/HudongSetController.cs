@@ -11,7 +11,7 @@ using Common;
 
 namespace psycoder.Controllers
 {
-    public class HudongSetController : Controller
+    public class HudongSetController : PsyBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         private int psyId = 1;

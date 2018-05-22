@@ -12,7 +12,7 @@ using psycoderEntity;
 
 namespace psycoder.Controllers
 {
-    public class AdminSysUserController : Controller
+    public class AdminSysUserController : AdminBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 

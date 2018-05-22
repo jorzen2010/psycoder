@@ -11,7 +11,7 @@ using psycoderEntity;
 
 namespace psycoder.Controllers
 {
-    public class PsyUserController : Controller
+    public class PsyUserController : PsyBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         private int psyId = 1;

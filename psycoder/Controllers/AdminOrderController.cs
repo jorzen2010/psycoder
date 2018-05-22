@@ -11,7 +11,7 @@ using Common;
 
 namespace psycoder.Controllers
 {
-    public class AdminOrderController : Controller
+    public class AdminOrderController : AdminBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         // GET: /Notice/

@@ -13,7 +13,7 @@ using AliyunVideo;
 
 namespace psycoder.Controllers
 {
-    public class AdminXCXSucaiController : Controller
+    public class AdminXCXSucaiController : AdminBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         //
@@ -300,6 +300,9 @@ namespace psycoder.Controllers
 
             ViewBag.PlayAuth = AliyunVideoServices.GetVideoInfo(ApiUrl, VideoId, Timestamp, Action, SignatureNonce).PlayAuth;
             ViewBag.title = "音频素材";
+            VideoUrlInfo videoUrlfo = new VideoUrlInfo();
+            videoUrlfo = AliyunVideoServices.VideoUrlInfo(ApiUrl, VideoId, Timestamp, "GetPlayInfo", SignatureNonce);
+            ViewData["xxx"] = videoUrlfo;
 
             return View(sucai);
         }
