@@ -1,0 +1,189 @@
+﻿@using psycoderEntity;
+@model psycoderEntity.DefaultHudongSetting
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var questionselects=ViewData["question"] as List<Question>;
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet">
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title 设置
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">@ViewBag.Title 设置</h3>
+
+                        <div class="pull-right">
+                            <a class="btn btn-@(ViewBag.type=="ZiyoushuxieReplyList"?"default":"info") btn-sm" href="@Url.Action("HudongSet", "AdminHudong", new { type = "ZiyoushuxieReplyList" })"><i class="fa fa-cog"></i> 自由书写设置</a>
+                            <a class="btn btn-@(ViewBag.type == "QuestionReplyList" ? "default" : "info") btn-sm" href="@Url.Action("HudongSet", "AdminHudong", new { type = "QuestionReplyList" })"><i class="fa fa-cog"></i> 问题引导设置</a>
+                            <a class="btn btn-@(ViewBag.type == "ZixunReplyList" ? "default" : "info") btn-sm" href="@Url.Action("HudongSet", "AdminHudong", new { type = "ZixunReplyList" })"><i class="fa fa-cog"></i> 留言咨询设置</a>
+                        </div>
+
+                    </div>
+                    <!-- /.box-header -->
+                    @using (Html.BeginForm("Edit", "AdminHudong", FormMethod.Post, new { @class = "form-horizontal", @name = "Edit", @id = "Edit" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        <input type="hidden" name="type" value="@ViewBag.type" />
+                        <div class="box-body">
+                            <div class="col-md-12">
+                                @if (ViewBag.type == "ZiyoushuxieReplyList")
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ZiyoushuxiePre, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.ZiyoushuxiePre, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ZiyoushuxiePost, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.ZiyoushuxiePost, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    @Html.HiddenFor(model => model.QuestionPre)
+                                    @Html.HiddenFor(model => model.QuestionPost)
+                                    @Html.HiddenFor(model => model.QuestionSelected)
+                                    @Html.HiddenFor(model => model.ZixunPre)
+                                    @Html.HiddenFor(model => model.ZixunPost)
+
+                                }
+                                else if (ViewBag.type == "QuestionReplyList")
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.QuestionPre, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.QuestionPre, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.QuestionPost, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.QuestionPost, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.QuestionSelected, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-6">
+                                            <select id="example-multiple" multiple="multiple" class="form-control col-sm-8" style="width:100%">
+
+                                                @foreach (Question q in questionselects)
+                                                {
+                                                      <option value="@q.Id">@q.QuestionTitle</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3 btn-group text-right">
+                                            <button type="button" class="btn btn-danger" onclick="querenxuanze()">确认选择</button>
+
+                                            <a class="btn btn-info" href="@Url.Action("Index","AdminQuestion")">查看所有问题列表</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">问题选择确认</label>
+
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(model => model.QuestionSelected, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+
+                                    @Html.HiddenFor(model => model.ZiyoushuxiePre)
+                                    @Html.HiddenFor(model => model.ZiyoushuxiePost)
+                                    @Html.HiddenFor(model => model.QuestionSelected)
+                                    @Html.HiddenFor(model => model.ZixunPre)
+                                    @Html.HiddenFor(model => model.ZixunPost)
+                                }
+                                else if (ViewBag.type == "ZixunReplyList")
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ZixunPre, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.ZixunPre, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ZixunPost, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.ZixunPost, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    @Html.HiddenFor(model => model.QuestionPre)
+                                    @Html.HiddenFor(model => model.QuestionPost)
+                                    @Html.HiddenFor(model => model.QuestionSelected)
+                                    @Html.HiddenFor(model => model.ZiyoushuxiePre)
+                                    @Html.HiddenFor(model => model.ZiyoushuxiePost)
+                                }
+
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <a class="btn btn-default" href="@Url.Action(ViewBag.type, "AdminHudong")">返回</a>
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">保存并发布</button>
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#example-multiple').multiselect(
+                {
+                    maxHeight: 200,
+                    includeSelectAllOption: false,
+                    enableFiltering: true,
+                    nonSelectedText: "请点击这里选择你需要的问题，选择完毕后点击右侧红色确认按钮！！！！！！"
+                }
+                );
+
+        });
+
+        function querenxuanze() {
+            var selected = $('#example-multiple').val();
+            $("#QuestionSelected").attr("value", selected);
+        }
+    </script>
+}

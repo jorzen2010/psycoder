@@ -1,0 +1,136 @@
+﻿@model psycoderEntity.XCXSucai
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@using AliyunVideo;
+@{
+    var videoUrlfo = ViewData["xxx"] as VideoUrlInfo;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Topcss {
+   <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
+<link rel="stylesheet" href="~/Src/css/Admin.css" />
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.title 
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                         @ViewBag.title
+                         </h3>
+                        <div class="pull-right">
+                            <a class="btn btn-info btn-sm" href="@Url.Action("Edit", "AdminJkSucai", new { id = Model.Id,type= "yinpin"})"><i class="fa fa-pencil"></i> 编辑修改</a>
+                            <a class="btn btn-success btn-sm" href="@Url.Action("Index", "AdminJkSucai", new { id = Model.Id,type= "yinpin"})"><i class="fa fa-list"></i> @ViewBag.Tilte 列表</a>
+
+                          </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <h3 class="text-center">@Model.Title</h3>
+                      
+                        <div class="col-md-offset-4 col-md-7">
+                            <div class="Audioplayer" style="background:url('@Model.Cover');background-size:540px 405px;background-repeat:no-repeat;border-radius:15px; ">
+                                <div class="playerTop text-center">
+                                    <h3>
+                                        @if (Model.Title.Length > 16)
+                                        {@Model.Title.Substring(0, 16)
+                                        }
+                                        else
+                                        { @Model.Title
+                                        }
+                                   
+                                    </h3>
+                                    <span>
+                                        作者：@Model.Author<br />
+                                        来源：@Model.Provider
+                                    </span>
+                                </div>
+                                <div class="prism-player" style="height:0px;" id="AudioAliyunPlayer">
+
+                                </div>
+
+                                <div class="playerBottom">
+                                  
+                                        <p>@if (string.IsNullOrEmpty(Model.Info))
+                                           {
+                                               @Html.Raw("暂无介绍") 
+                                           }
+                                           else
+                                           { 
+                                               if (Model.Info.Length > 16)
+                                            { @Model.Info.Substring(0,54)
+                                            }
+                                            else
+                                            {  @Model.Info
+                                            }
+                                           }
+                                           
+                                         
+                                        </p>
+                                        <small class="pull-right"> @Model.Author <br/>
+                                     创作于 @Model.CreateTime.ToString("yyyy-MM-dd")</small>
+                                
+</div>
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <p>
+                           作者： @Model.Author <br/>
+                           来源： @Model.Provider <br />
+                           视频播放地址： @videoUrlfo.PlayInfoList.PlayInfo[1].PlayURL
+                        </p>
+                        
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+@section BottomScripts {
+
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+    <script type="text/javascript">
+        var AudioPlayer = new Aliplayer({
+        id: "AudioAliyunPlayer",
+        autoplay: false,
+        mediaType: 'audio',
+        width: "100%",
+        height: "10px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+        controlBarVisibility: "always",
+        skinLayout: [{
+            "name": "controlBar", "align": "blabs", "x": 0, "y": 0,
+            "children": [
+           { "name": "progress", "align": "blabs", "x": 0, "y": 44 },
+           { "name": "playButton", "align": "cc", "x": 15, "y": 22 },
+           { "name": "speedButton", "align": "tr", "x": 0, "y": 10 },
+           { "name": "timeDisplay", "align": "tl", "x": 10, "y": 2 },
+           { "name": "volume", "align": "tr", "x": 10, "y": 10 }]
+        }]
+    });
+
+
+    </script>
+
+}

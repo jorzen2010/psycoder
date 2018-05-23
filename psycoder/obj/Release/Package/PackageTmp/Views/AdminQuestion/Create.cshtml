@@ -1,0 +1,110 @@
+﻿@model psycoderEntity.Question
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.title = "问题引导";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
+    <link href="~/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet">
+
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            新增 @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            新增 @ViewBag.title
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "AdminQuestion", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="box-body">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QuestionTitle, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextAreaFor(model => model.QuestionTitle, new { @class = "form-control", @row = "5" })
+                                        @Html.ValidationMessageFor(model => model.QuestionTitle)
+                                    </div>
+                                </div>
+
+                             
+                                  
+                               
+                             
+                             
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QuestionTags, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.QuestionTags, new { @class = "form-control", @data_role = "tagsinput" })
+                                    </div>
+                                </div>
+
+                              
+                                @Html.HiddenFor(model => model.QuestionStatus, new { @Value = "true" })
+                                @Html.HiddenFor(model => model.CreateTime, new { @Value = DateTime.Now })
+
+                            </div>
+
+
+                        </div>
+
+                    <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+            
+                            <button type="submit" class="btn btn-primary pull-right">保存并发布</button>
+                        </div>
+
+                    }
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+  
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        var ue = UE.getEditor('Content');
+
+
+    </script>
+}

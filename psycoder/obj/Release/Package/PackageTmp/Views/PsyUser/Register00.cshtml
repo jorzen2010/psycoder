@@ -1,0 +1,674 @@
+﻿@model psycoderEntity.PsyUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css">
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Src/css/web.css" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/bootstrap-step/css/style.css">
+
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+
+
+
+    <title>心理咨询师公众平台</title>
+</head>
+<body>
+      <div class="container">
+        <div class="logo pull-left">心理咨询师公众宣传平台</div>
+      </div>
+
+    <div class="container" style="background-color:#ffffff">
+
+        <ul class="nav nav-pills nav-justified step step-arrow">
+            <li class="active">
+                <a>基本信息</a>
+            </li>
+            <li>
+                <a>个人身份认证</a>
+            </li>
+            <li>
+                <a>业务联系方式</a>
+            </li>
+            <li>
+                <a>自我介绍</a>
+            </li>
+            <li>
+                <a>注册完成</a>
+            </li>
+        </ul>
+
+        <ul id="step-content">
+           
+            <li class="step-content-item">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="PsyId" id="PsyId" value="0" />
+                <input type="hidden" name="UserEmail" id="UserEmail" value="0" />
+                <div class="box">
+                    <div class="box-header">
+                       <h3>基本信息</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <form class="form-horizontal" name="jibenxinxi" id="jibenxinxi" action="#">
+                    <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8">
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-group">
+                                        <label for="PsyUserEmail" class="col-sm-3 control-label">邮箱</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="PsyUserEmail" name="PsyUserEmail">
+                                            <br />
+                                            <button class="btn btn-default">获取验证码</button>
+                                            <p class="help-block">作为平台唯一登录帐号，请填写未被心理咨询师公众平台注册的邮箱</p>
+                                            @Html.ValidationMessageFor(model => model.PsyUserEmail)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="EmailCode" class="col-sm-3 control-label">邮箱验证码</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="EmailCode" name="EmailCode">
+                                            <p class="help-block">激活邮箱后将收到验证邮件，请回填邮件中的6位验证码</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PsyPassword" class="col-sm-3 control-label">密码</label>
+                                        <div class="col-sm-8">
+                                            <input type="password" class="form-control" id="PsyPassword" name="PsyPassword">
+                                            <p class="help-block">字母、数字或者英文符号，最短8位，区分大小写</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PsyPasswordConfirm" class="col-sm-3 control-label">确认密码</label>
+                                        <div class="col-sm-8">
+                                            <input type="password" class="form-control" id="PsyPasswordConfirm" name="PsyPasswordConfirm">
+                                            <p class="help-block">请再次输入密码</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      
+                                        <div class="col-md-offset-3 col-sm-8">
+                                            <label>
+                                                <input type="checkbox" id="IfGree" name="IfGree"> 我同意并遵守<a href="###">《心理咨询师讲师公众平台服务协议》</a>
+                                            </label>
+                                        </div>
+                                       
+                                    </div>
+
+                    
+                            </div>
+                         
+                            </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix col-md-offset-2 col-md-8">
+                        <a class="btn btn-default" href="##">已有账号，直接登录</a>
+                        <button type="button" class="btn btn-success pull-right" onclick="NextStep(2)">下一步</button>
+                    </div>
+
+                    </form>
+                </div>
+
+            </li>
+            <li class="step-content-item">
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3>个人身份认证</h3>
+
+                    </div>
+                    <form class="form-horizontal" name="shenfenrenzheng" id="shenfenrenzheng" action="#">
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8">
+
+                                    <div class="form-group">
+                                        <label for="PsyRealName" class="col-sm-3 control-label">真实姓名</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="PsyRealName" name="PsyRealName">
+                                            <p class="help-block">请填写你的身份证上的真实姓名</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PsyNumber" class="col-sm-3 control-label">身份证号码</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="PsyNumber" name="PsyNumber">
+                                            <p class="help-block">请正确填写你的身份证号码，为有效保护你的隐私，我们不提供身份证上传验证，而采用人工验证。</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PsyZhengshuNumber" class="col-sm-3 control-label">心理咨询师资格证编号</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="PsyZhengshuNumber" name="PsyZhengshuNumber">
+                                            <p class="help-block">请正确填写您的国家二级（三级）心理咨询师资格证编号，为有效保护你的隐私，我们不提供身份证上传验证，而采用人工验证。</p>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix col-md-offset-2 col-md-8">
+
+                            <button class="btn btn-info" onclick="goStep(1)">上一步</button>
+
+                            <button class="btn btn-success pull-right" onclick="NextStep(3)">下一步</button>
+
+
+                        </div>
+                    </form>
+                </div>
+
+            </li>
+            <li class="step-content-item">
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">业务联系方式</h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="col-md-offset-2 col-md-8">
+                            <form class="form-horizontal" name="lianxifangshi" id="lianxifangshi" action="#">
+                                <div class="form-group">
+                                    <label for="Telephone" class="col-sm-3 control-label">手机号码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="Telephone">
+                                        <p class="help-block">请填写常用手机，让来访者能很容易找到你</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="QQ" class="col-sm-3 control-label">QQ号码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="QQ">
+                                        <p class="help-block">请填写常用QQ，让来访者能很容易找到你</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Wechat" class="col-sm-3 control-label">微信号码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="Wechat">
+                                        <p class="help-block">请填写常用微信，让来访者能很容易找到你</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Email" class="col-sm-3 control-label">邮箱号码</label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" id="Email">
+                                        <p class="help-block">请填写常用邮箱，让来访者能很容易找到你，默认为注册邮箱。</p>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix col-md-offset-2 col-md-8">
+
+                        <button class="btn btn-info" onclick="goStep(2)">上一步</button>
+
+                        <button class="btn btn-success pull-right" onclick="goStep(4)">下一步</button>
+
+                    </div>
+                </div>
+
+            </li>
+            <li class="step-content-item">
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">自我介绍</h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="col-md-offset-2 col-md-8">
+                            <form class="form-horizontal" name="pinpai" id="pinpai" action="#">
+                                <div class="form-group">
+                                    <label for="PsyTitle" class="col-sm-3 control-label">个人品牌名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="PsyTitle">
+                                        <p class="help-block">个人品牌名称是你在网络上的标识。例：心理咨询师赵征 或者 赵征的心理诊室 等</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PsyInfo" class="col-sm-3 control-label">一句话介绍</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="6" class="form-control" name="PsyInfo" id="PsyInfo"></textarea>
+                                        <p class="help-block">选填，注册成功后可在后台修改</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PsyContent" class="col-sm-3 control-label">自我介绍</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="6" class="form-control" name="PsyContent" id="PsyContent"></textarea>
+                                        <p class="help-block">优秀的自我介绍，能让来访者更相信你，注册成功后可在后台修改</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PsyShanchang" class="col-sm-3 control-label">擅长领域</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="6" class="form-control" name="PsyShanchang" id="PsyShanchang"></textarea>
+                                        <p class="help-block">你的实力也需要说出来，注册成功后可在后台修改</p>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix  col-md-offset-2 col-md-8">
+
+                        <button class="btn btn-info" onclick="goStep(3)">上一步</button>
+
+                        <button class="btn btn-success pull-right" onclick="goStep(5)">下一步</button>
+
+                    </div>
+                </div>
+
+            </li>
+            <li class="step-content-item">
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">注册完成</h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                       恭喜你， 你已经成功申请心理咨询师个人品牌小程序。程序员将为您全力开发，大约时间为2-3周，
+                      （声明：具体工期时长由微信小程序审核决定，您的年费时长也从小程序小程序上线之日开始计算。）请先付款￥999元。
+                        微信扫描，联系客服。
+                        或直接付款
+                        或直接进入后台。
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                        <button class="btn btn-info" onclick="goStep(4)">上一步</button>
+
+                        <button class="btn btn-success pull-right" onclick="">完成</button>
+
+
+                    </div>
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+    
+   
+     <div class="reg_footer container">
+        关于我们 | 服务协议 | 联系客服
+        <hr style="margin:5px 0;padding:0;">
+        Copyright © 2012-2018 版权所有. All Rights Reserved.
+    </div>
+   
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-step/js/lib.js"></script>
+    <script type="text/javascript" src="~/Src/js/web.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //初始化一个
+            goStep(1);
+
+            //register的表单验证
+
+            //$('#jibenxinxi').bootstrapValidator({
+            //    live: 'enabled',
+            //   // submitButtons: '#btn-test',
+            //    message: 'This value is not valid',
+            //    feedbackIcons: {
+            //        valid: 'glyphicon glyphicon-ok',
+            //        invalid: 'glyphicon glyphicon-remove',
+            //        validating: 'glyphicon glyphicon-refresh'
+            //    },
+            //    fields: {
+            //        PsyUserEmail: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '用户名不能为空'
+            //                },
+            //                stringLength: {
+            //                    min: 6,
+            //                    max: 20,
+            //                    message: '用户名长度必须在6到30之间'
+            //                },
+            //            }
+            //        },
+            //        PsyPassword: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '密码不能为空'
+            //                },
+            //                stringLength: {
+            //                    min: 6,
+            //                    max: 12,
+            //                    message: '密码长度在6到12位'
+            //                },
+            //                regexp: {
+            //                    regexp: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]{6,20})$/,
+            //                    message: '用户名需要同时包含字母和数字。'
+            //                },
+            //            }
+            //        },
+            //        PsyPasswordConfirm: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '重复密码也不能为空'
+            //                },
+            //                identical: {
+            //                    field: 'PsyPassword',
+            //                    message: '两次输入密码不一致'
+            //                }
+            //            }
+            //        },
+            //        EmailCode: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '验证码不能为空'
+            //                },
+            //                stringLength: {
+            //                    min: 6,
+            //                    max: 6,
+            //                    message: '验证码应为六位'
+            //                },
+            //            }
+            //        },
+            //        IfGree: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '请认真阅读此协议，并点击同意'
+            //                }
+            //            }
+            //        },
+
+            //    }
+            //});
+
+            //$('#shenfenrenzheng').bootstrapValidator({
+            //    live: 'enabled',
+            //   // submitButtons: '#btn-test',
+            //    message: 'This value is not valid',
+            //    feedbackIcons: {
+            //        valid: 'glyphicon glyphicon-ok',
+            //        invalid: 'glyphicon glyphicon-remove',
+            //        validating: 'glyphicon glyphicon-refresh'
+            //    },
+            //    fields: {
+            //        PsyRealName: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '真实姓名不能为空'
+            //                },
+            //            }
+            //        },
+            //        PsyNumber: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '身份证号不能为空'
+            //                },
+            //            }
+            //        },
+            //        PsyZhengshuNumber: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '咨询师证书编号不能为空'
+            //                },
+            //            }
+            //        },
+
+
+            //    }
+            //});
+
+            //$('#lianxifangshi').bootstrapValidator({
+            //    live: 'enabled',
+            //  //  submitButtons: '#btn-test',
+            //    message: 'This value is not valid',
+            //    feedbackIcons: {
+            //        valid: 'glyphicon glyphicon-ok',
+            //        invalid: 'glyphicon glyphicon-remove',
+            //        validating: 'glyphicon glyphicon-refresh'
+            //    },
+            //    fields: {
+            //        Email: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '邮箱不能为空'
+            //                },
+            //            }
+            //        },
+            //        QQ: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: 'QQ不能为空'
+            //                },
+            //            }
+            //        },
+            //        Wechat: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '微信号不能为空'
+            //                }
+            //            }
+            //        },
+            //        Telephone: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '手机号不能为空'
+            //                },
+            //                stringLength: {
+            //                    min: 11,
+            //                    max: 11,
+            //                    message: '手机号长度为11位'
+            //                },
+            //                regexp: {
+            //                    regexp: /^1\d{10}$/,
+            //                    message: '手机号格式不对。'
+            //                },
+            //            }
+            //        },
+
+            //    }
+            //});
+            //$('#pinpai').bootstrapValidator({
+            //    live: 'enabled',
+            //    //  submitButtons: '#btn-test',
+            //    message: 'This value is not valid',
+            //    feedbackIcons: {
+            //        valid: 'glyphicon glyphicon-ok',
+            //        invalid: 'glyphicon glyphicon-remove',
+            //        validating: 'glyphicon glyphicon-refresh'
+            //    },
+            //    fields: {
+            //        PsyTitle: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '品牌名称不能为空'
+            //                },
+            //            }
+            //        },
+            //        PsyInfo: {
+            //            validators: {
+            //                notEmpty: {
+            //                    message: '一句话介绍不能为空'
+            //                },
+            //            }
+            //        },
+
+            //    }
+            //});
+
+
+        });
+            
+        function NextStep(step) {
+            if (step == 2)
+            {
+                $("#jibenxinxi").bootstrapValidator('validate');//提交验证  
+                if ($("#jibenxinxi").data('bootstrapValidator').isValid()) {//获取验证结果，如果成功，执行下面代码  
+                   // alert("验证成功");//验证成功后的操作，如ajax  
+                    // goStep(2);
+                    var PsyUserEmail = $("[name='PsyUserEmail']").val();
+                    var PsyPassword = $("[name='PsyPassword']").val();
+                    var PsyPasswordCode = $("[name='PsyPasswordCode']").val();
+                    var PsyPasswordConfirm = $("[name='PsyPasswordConfirm']").val();
+                    var token = $('[name=__RequestVerificationToken]').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/PsyUser/RegisterJibenxinxi",
+                        data: {
+                           
+                            PsyUserEmail: PsyUserEmail,
+                            PsyPassword: PsyPassword,
+                            __RequestVerificationToken: token,
+                            PsyStatus:"false",
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.MessageStatus) {
+
+                                goStep(2);
+                                $("[name='UserEmail']").attr("value", PsyUserEmail);
+                                alert(data.MessageInfo);
+                            }
+                            else {
+                                alert("操作失败，请检查输入是否正确！");
+                            }
+
+                        }
+                    });
+
+                }
+                else {
+                    alert("验证失败");
+                }      
+            }
+           else if (step == 3) {
+                $("#shenfenrenzheng").bootstrapValidator('validate');//提交验证  
+                if ($("#shenfenrenzheng").data('bootstrapValidator').isValid()) {//获取验证结果，如果成功，执行下面代码  
+                    // alert("验证成功");//验证成功后的操作，如ajax  
+                    // goStep(2);
+                    var UserEmail = $("[name='UserEmail']").val();
+                    var PsyRealName = $("[name='PsyRealName']").val();
+                    var PsyNumber = $("[name='PsyNumber']").val();
+                    var PsyZhengshuNumber = $("[name='PsyZhengshuNumber']").val();
+                    var token = $('[name=__RequestVerificationToken]').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/PsyUser/RegisterShenfen",
+                        data: {
+                            UserEmail: UserEmail,
+                            PsyRealName: PsyRealName,
+                            PsyNumber: PsyNumber,
+                            PsyZhengshuNumber: PsyZhengshuNumber,
+                            __RequestVerificationToken: token,
+                            
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.MessageStatus) {
+
+                                goStep(3);
+                                alert(data.MessageInfo);
+                            }
+                            else {
+                                alert("操作失败，请检查输入是否正确！");
+                            }
+
+                        }
+                    });
+
+                }
+                else {
+                    // alert("验证失败");
+                }
+           }
+           else if (step == 4) {
+               $("#lianxifangshi").bootstrapValidator('validate');//提交验证  
+               if ($("#lianxifangshi").data('bootstrapValidator').isValid()) {//获取验证结果，如果成功，执行下面代码  
+                   // alert("验证成功");//验证成功后的操作，如ajax  
+                   // goStep(2);
+                   var UserEmail = $("[name='UserEmail']").val();
+                   var QQ = $("[name='QQ']").val();
+                   var Telephone = $("[name='Telephone']").val();
+                   var Wechat = $("[name='Wechat']").val();
+                   var Email = $("[name='Email']").val();
+                   var token = $('[name=__RequestVerificationToken]').val();
+
+                   $.ajax({
+                       type: 'POST',
+                       url: "/PsyUser/RegisterLianxi",
+                       data: {
+                           UserEmail: UserEmail,
+                           QQ: QQ,
+                           Telephone: Telephone,
+                           Wechat: Wechat,
+                           Email: Email,
+                           __RequestVerificationToken: token,
+                            
+                       },
+                       dataType: "json",
+                       success: function (data) {
+                           if (data.MessageStatus) {
+
+                               goStep(3);
+                               alert(data.MessageInfo);
+                           }
+                           else {
+                               alert("操作失败，请检查输入是否正确！");
+                           }
+
+                       }
+                   });
+           }
+           else {
+               // alert("验证失败");
+           }
+           }
+           else if (step == 5) {
+             
+               alert("完成");
+           }
+          
+        }
+
+
+        function goStep(step)
+        {
+            bsStep(step);
+            $(".step-content-item").hide();
+            $("#step-content").find("li").eq(step-1).show();
+        }
+
+       
+    </script>
+
+</body>
+</html>

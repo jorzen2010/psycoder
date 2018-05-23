@@ -1,0 +1,140 @@
+﻿@model StaticPagedList<psycoderEntity.Question>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Tilte = "问题列表";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Tilte
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">@ViewBag.Tilte  </h3>
+                        <div class="pull-right">
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "AdminQuestion")"><i class="fa fa-plus-circle"></i> 新增问题</a>
+                            <a class="btn btn-info btn-sm" href="@Url.Action("QuestionReplyList", "AdminHudong")"><i class="fa fa-list"></i> 查看所有问题回复列表</a>
+                            <a class="btn btn-default btn-sm" href="@Url.Action("HudongSet", "AdminHudong", new { type = "QuestionReplyList" })"><i class="fa fa-cog"></i> 问题引导设置</a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>ID</th>
+                                <th>问题内容</th>
+                                <th>问题标签</th>
+                                <th>创建时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.QuestionTitle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.QuestionTags)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreateTime)
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="QuestionStatus" value="@item.Id" @(item.QuestionStatus ? "checked='checked'" : "") />
+                                        @Html.AntiForgeryToken()
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "AdminQuestion", new { id=item.Id})"><i class="fa fa-pencil"></i> 编辑</a>
+
+                                    </td>
+                                </tr>
+
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "AdminQuestion", new { page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            //开关按钮样式加载
+            $('[name="QuestionStatus"]').bootstrapSwitch({
+                onText: "公用",
+                offText: "私用",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/AdminQuestion/UpdateStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                            __RequestVerificationToken: token,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
+
+
+
+
+        });
+    </script>
+}

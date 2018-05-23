@@ -1,0 +1,88 @@
+﻿@using psycoderEntity;
+@{
+  var notice=  ViewData["IndexNotice"] as Notice;
+}
+
+<div class="content">
+    <div class="content_main">
+        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("NoticeView", "Notice", new { id=notice.Id})" target="_blank">@notice.Title</a>
+        <span class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("Index", "Notice")" target="_blank" class="a2color">更多</a></span>
+        <span class="pull-right a2color">@notice.CreateTime.ToString("yyyy-MM-dd")</span>
+    </div>
+    <div class="content_main zhqingkuang">
+        <h4>账号收益</h4>
+        <ul>
+            <li>
+                <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> 浏览次数
+                <p><a href="###">9</a></p>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> 用户互动次数
+                <p><a href="###">25</a></p>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> 用户总数
+                <p><a href="###">156</a></p>
+            </li>
+        </ul>
+
+    </div>
+    <div class="content_main zhqingkuang">
+        <h4>账号整体配置<span class="pull-right"><button class="btn btn-success">手动更新账号配置</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-danger">一键自动更新</button></span></h4>
+        <ul>
+            <li>
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 文章数量
+                <p><a href="####">15</a></p>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> 音频数量
+                <p><a href="####">35</a></p>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-film" aria-hidden="true"></span> 视频数量
+                <p><a href="####">25</a></p>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="content_main">
+        <h4>账号互动内容设置</h4>
+        <div class="zhhudong">
+            <h5>广告设置<small>&nbsp;&nbsp;&nbsp;&nbsp;(说明：本部分内容会显示在所有文章下方广告位，用别人的文章打自己的广告)</small></h5>
+            <div>
+                <span class="pull-left" style="width:80%;">
+                    广告内容设置
+                    咨询内容设置
+                    自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字
+                </span>   <span class="pull-right"><button class="btn btn-warning"> 修改设置</button></span>
+            </div>
+
+        </div>
+
+        <div class="zhhudong">
+            <h5>咨询广告设置<small>&nbsp;&nbsp;&nbsp;&nbsp;(说明：本部分内容用来介绍自己的咨询业务范围)</small></h5>
+            <div>
+                <span class="pull-left" style="width:80%;">
+                    广告内容设置
+                    咨询内容设置
+                    自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字
+                </span>
+                <span class="pull-right"><button class="btn btn-warning"> 修改设置</button></span>
+            </div>
+
+        </div>
+
+        <div class="zhhudong">
+            <h5>自由书写引导设置<small>&nbsp;&nbsp;&nbsp;&nbsp;(说明：本部分内容是提供给用户通过自由书写疗愈自己的自助途径。)</small></h5>
+            <div>
+                <span class="pull-left" style="width:80%;">
+                    广告内容设置
+                    咨询内容设置
+                    自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字自由书写引导设置这里是广告内容不能超过1300个字
+                </span>   <span class="pull-right"><button class="btn btn-warning"> 修改设置</button></span>
+
+            </div>
+        </div>
+    </div>
+</div>

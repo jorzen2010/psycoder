@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title></title>
+	</head>
+
+	<body>
+		<!--
+        	作者：lopo1983@foxmail.com
+        	网站：www.bsfans.com
+        	QQ：64832897
+        	基友群：15832082
+        	更新时间：2017-12-3
+        	描述：
+        	1.	更新之前做的一个bootstrap step 插件 
+        	2.	更新为less 书写的css 方便定制(已修改为静态css，需定制颜色样式的请查看css/less/comp/)
+        	3.	适用less模式 请在服务器环境运行该页面 谢谢
+        	4.	style.less为less 编译入口文件
+        -->
+		<!--在data-step 中输入你想展示的默认步骤 若不填写 则默认为1-->
+		<div class="container">
+			<h3>水平方式</h3>
+			<hr>
+			<h5>arrow模式</h5>
+			<ul class="nav nav-pills nav-justified step step-arrow">
+				<li class="active">
+					<a>step1</a>
+				</li>
+				<li>
+					<a>step2</a>
+				</li>
+				<li>
+					<a>step3</a>
+				</li>
+				<li>
+					<a>step4</a>
+				</li>
+				<li>
+					<a>step5</a>
+				</li>
+			</ul>
+			<h5>square模式</h5>
+			<ul class="nav nav-pills nav-justified step step-square" data-step="2">
+				<li class="active">
+					<a>step1</a>
+				</li>
+				<li class="active">
+					<a>step2</a>
+				</li>
+				<li>
+					<a>step3</a>
+				</li>
+				<li>
+					<a>step4</a>
+				</li>
+				<li>
+					<a>step5</a>
+				</li>
+			</ul>
+			<h5>round模式</h5>
+			<ul class="nav nav-pills nav-justified step step-round" data-step="3">
+				<li class="active">
+					<a>step1</a>
+				</li>
+				<li class="active">
+					<a>step2</a>
+				</li>
+				<li class="active">
+					<a>step3</a>
+				</li>
+				<li>
+					<a>step4</a>
+				</li>
+				<li>
+					<a>step5</a>
+				</li>
+			</ul>
+			<h5>progress模式</h5>
+			<ul class="nav nav-pills nav-justified step step-progress" data-step="4">
+				<li class="active">
+					<a>step1<span class="caret"></span></a>
+				</li>
+				<li class="active">
+					<a>step2<span class="caret"></span></a>
+				</li>
+				<li class="active">
+					<a>step3<span class="caret"></span></a>
+				</li>
+				<li class="active">
+					<a>step4<span class="caret"></span></a>
+				</li>
+				<li>
+					<a>step5<span class="caret"></span></a>
+				</li>
+			</ul>
+			<style type="text/css">
+				.vertical li>a {
+					padding: 45px 15px;
+				}
+			</style>
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+					<h3>垂直方式（仅支持square 和round 模式）</h3>
+					<h4 class="text-danger">注意垂直方式需定义ul宽度或者给予其父级宽度！</h4>
+				</div>				
+				<div class="col-md-4">
+					<h5>square模式</h5>
+					<ul class="nav nav-stacked step step-square vertical" data-step="1">
+						<li class="active">
+							<a>我是进度一</a>
+						</li>
+						<li>
+							<a>我是进度二</a>
+						</li>
+						<li>
+							<a>我是进度三</a>
+						</li>
+						<li>
+							<a>我是进度四</a>
+						</li>
+						<li>
+							<a>我是进度五</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h5>round模式</h5>
+					<ul class="nav nav-stacked step step-round vertical" data-step="1">
+						<li class="active">
+							<a>我是进度一</a>
+						</li>
+						<li>
+							<a>我是进度二</a>
+						</li>
+						<li>
+							<a>我是进度三</a>
+						</li>
+						<li>
+							<a>我是进度四</a>
+						</li>
+						<li>
+							<a>我是进度五</a>
+						</li>
+					</ul>
+				</div>				
+			</div>
+			<hr>
+			<h4>bootstrap4.x的用户可做对对应的li和a 使用对应的class 也可适用！</h4>
+			<p class="text-danger">压缩包中step.vue为对应的vue组件</p>
+		</div>
+        <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/lib.js"></script>
+		<script>
+			$(function() {
+				bsStep();
+				//bsStep(i) i 为number 可定位到第几步 如bsStep(2)/bsStep(3)
+			})
+		</script>
+	
+
+</body></html>

@@ -1,0 +1,12 @@
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\psycoderEntity.dll.config
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\psycoderEntity.dll
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\psycoderEntity.pdb
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\EntityFramework.dll
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\EntityFramework.SqlServer.dll
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\EntityFramework.xml
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\EntityFramework.SqlServer.xml
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\MyPro\2018\psycoder\psycoderEntity\bin\Release\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\MyPro\2018\psycoder\psycoderEntity\obj\Release\psycoderEntity.csprojResolveAssemblyReference.cache
+D:\MyPro\2018\psycoder\psycoderEntity\obj\Release\psycoderEntity.dll
+D:\MyPro\2018\psycoder\psycoderEntity\obj\Release\psycoderEntity.pdb

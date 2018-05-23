@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="~/plugins/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="~/plugins/ionicons-2.0.1/css/ionicons.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Src/css/web.css" />
+    @RenderSection("TopCss", required: false)
+    @RenderSection("TopScripts", required: false)
+    <title>心理咨询师公众平台</title>
+</head>
+<body style=" background-color: #f7f8fa;">
+
+    @Html.Partial("_PartialHeader")
+    <div class="main row">
+
+        <div class="col-md-2">
+            @Html.Partial("_PartialMenu")
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+
+    </div>
+    <div class="footer row">
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+        <div class="footer_content col-md-10">
+            <a href="##" class="a2color">关于我们</a> | <a href="##" class="a2color">
+    服务协议
+</a> | <a href="##" class="a2color">
+    联系客服
+</a>
+    <hr style="margin:5px 0;padding:0;">
+    Copyright © 2012-2018 版权所有. All Rights Reserved.
+</div>
+    </div>
+
+    <!-- jQuery 2.2.3 -->
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/app.min.js"></script>
+    <script type="text/javascript" src="~/Src/js/web.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    @RenderSection("BottomScripts", required: false)
+</body>
+</html>

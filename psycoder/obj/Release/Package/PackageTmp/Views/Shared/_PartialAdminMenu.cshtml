@@ -1,0 +1,157 @@
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                @if (Session["uname"] != "" && Session["uname"] != null)
+                {
+                     <p>@Session["uname"]</p>
+                    
+                }
+                else
+                { <p>@Html.Raw("用户未登录");</p>
+                   
+                }
+                
+               
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">主导航</li>
+            <li>
+                <a href="@Url.Action("Index","Admin")">
+                    <i class="fa fa-dashboard"></i> <span>首页</span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>小程序素材管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "AdminXCXSucai", new { type = "tuwen" })"><i class="fa fa-circle-o"></i> 图文素材</a></li>
+                    <li><a href="@Url.Action("Index", "AdminXCXSucai", new { type = "yinpin" })"><i class="fa fa-circle-o"></i> 音频课程</a></li>
+                    <li><a href="@Url.Action("Index", "AdminXCXSucai", new { type = "shipin" })"><i class="fa fa-circle-o"></i> 视频课程</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-heart"></i>
+                    <span>互动管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ZiyoushuxieReplyList", "AdminHudong")"><i class="fa fa-circle-o"></i> 自由书写</a></li>
+                    <li><a href="@Url.Action("QuestionReplyList", "AdminHudong")"><i class="fa fa-circle-o"></i> 问题引导</a></li>
+                    <li><a href="@Url.Action("ZixunReplyList", "AdminHudong")"><i class="fa fa-circle-o"></i> 用户咨询</a></li>
+                    <li><a href="@Url.Action("AdvertList", "AdminHudong")"><i class="fa fa-circle-o"></i> 广告内容设置</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i>
+                    <span>讲课素材管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <!--
+                       <li><a href="@Url.Action("ScAnli","Admin")"><i class="fa fa-circle-o"></i> 经典语录素材</a></li> 
+                    -->
+                    <li><a href="@Url.Action("Index", "AdminJkSucai", new { type = "anli" })"><i class="fa fa-circle-o"></i> 案例素材</a></li>
+                    <li><a href="@Url.Action("Index", "AdminJkSucai", new { type = "tupian" })"><i class="fa fa-circle-o"></i> 图片素材</a></li>
+                    <li><a href="@Url.Action("Index", "AdminJkSucai", new { type = "yinpin" })"><i class="fa fa-circle-o"></i> 音频素材</a></li>
+                    <li><a href="@Url.Action("Index", "AdminJkSucai", new { type = "shipin" })"><i class="fa fa-circle-o"></i> 视频素材</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>用户管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("PsyUser", "AdminUser")"><i class="fa fa-circle-o"></i> 咨询师用户</a></li>
+                    <li><a href="@Url.Action("FensiUser", "AdminUser")"><i class="fa fa-circle-o"></i> 粉丝用户</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>平台插件</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index", "AdminQuestion")"><i class="fa fa-circle-o"></i> 问题平台</a></li>
+                    <li><a href="@Url.Action("Index", "AdminScale")"><i class="fa fa-circle-o"></i> 量表平台</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>订单管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("OrderList", "AdminOrder")"><i class="fa fa-circle-o"></i> 官方订单</a></li>
+                    <li><a href="@Url.Action("PsyOrderList", "AdminOrder")"><i class="fa fa-circle-o"></i> 咨询师用户订单</a></li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span>系统设置</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li><a href="@Url.Action("Index", "AdminSysUser")"><i class="fa fa-circle-o"></i> 管理员</a></li>
+                    <li><a href="@Url.Action("Index", "AdminSetting")"><i class="fa fa-circle-o"></i> 网站设置</a></li>
+                    <li><a href="@Url.Action("Index", "AdminNotice")"><i class="fa fa-circle-o"></i> 公告通知</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

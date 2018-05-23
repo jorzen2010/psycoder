@@ -1,0 +1,281 @@
+﻿@model psycoderEntity.XCXSucai
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Topcss {
+<link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+<link href="~/plugins/copper/css/cropper.css" rel="stylesheet">
+<link href="~/plugins/copper/css/avatar.css" rel="stylesheet">
+<link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+<link href="~/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet">
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>          
+            新增 @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            新增 @ViewBag.title
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    @using (Html.BeginForm("Edit", "AdminXCXSucai", FormMethod.Post, new { @class = "form-horizontal", @name = "Edit", @id = "Edit" }))
+                    {
+                        @Html.AntiForgeryToken()
+                         @Html.ValidationSummary(true)
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "标题最多允许64个字符，32个汉字"})
+                                </div>
+                            </div>
+
+
+
+
+                            @if (ViewBag.type == "tuwen")
+                            { <div class="form-group">
+                                @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    <textarea id="Content" name="Content" style="height:500px;">@Html.Raw(Model.Content)</textarea>
+                                </div>
+                            </div>
+                            }
+                            else 
+                            {
+                                <div class="form-group">
+                                @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Content, new { @class = "form-control", @placeholder = "此处填阿里云的ID" })
+                                </div>
+                            </div> 
+                            }
+                            
+
+
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Cover, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-3">
+                                    <img src="@Model.Cover" style="width:100%" id="CoverPhoto" />
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="hidden" name="Cover" id="Cover" value="@Model.Cover" />
+                                    <button class="btn btn-default" id="coverImgBtn" type="button">
+                                        选择文件
+                                    </button>
+
+                                    <p>建议尺寸700*600px，JPG、PNG格式， 图片小于5M。 </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", @data_role = "tagsinput" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Info, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextAreaFor(model => model.Info, new { @class = "form-control", @rows = "5", @placeholder = "选填，默认抓取正文的前54个字" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Author, new { @class = "form-control",@Value="来源于网络", @placeholder = "选填：默认来源于网络" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Provider, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Provider, new { @class = "form-control",@Value="0" })
+
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.type, new { @Value = ViewBag.type })
+                            @Html.HiddenFor(model => model.CreateTime, new{ @Value=DateTime.Now})
+                            @Html.HiddenFor(model => model.IfDelete, new { @Value = false })
+                            @Html.HiddenFor(model => model.Qanxian, new { @Value = true })
+                            @Html.HiddenFor(model => model.Price, new { @Value = "0" })
+                            @Html.HiddenFor(model => model.Ticheng, new { @Value = "40" })
+
+
+
+                        </div>
+
+
+                    </div>
+                    
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <button class="btn btn-default">取消</button>
+                        <button type="submit" class="btn btn-primary pull-right">保存并发布</button>
+                    </div>
+               
+                    } </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="img-container" style="width:855px;height:350px;">
+
+                                <img id="image" src="/Resource/img/nophoto.png" alt="Picture">
+                                <input id="imageaspectRatio" />
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="docs-buttons text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                            <span class="fa fa-search-plus"></span> 放大
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                            <span class="fa fa-search-minus"></span> 缩小
+                                        </span>
+                                    </button>
+                                </div>
+
+
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                            <span class="fa fa-rotate-left"></span> 左旋转
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                            <span class="fa fa-rotate-right"></span> 右旋转
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                            <span class="fa fa-arrows-h"></span> 水平翻转
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                            <span class="fa fa-arrows-v"></span> 垂直翻转
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
+                                            <span class="fa fa-refresh"></span> 重置
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="btn-group btn-group-crop">
+                                    <label class="btn btn-success btn-upload" for="inputImage" title="Upload image file">
+                                        <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="点击上传图片">
+                                            <span class="fa fa-upload"></span> 更换图片
+                                        </span>
+                                    </label>
+                                    <button type="button" id="getCroppedCanvasbtn" class="btn btn-warning" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 180, &quot;height&quot;: 180 }">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;)">
+                                            裁剪并上传
+                                        </span>
+                                    </button>
+
+                                </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <span data-toggle="tooltip">
+                                        取消关闭
+                                    </span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- /.docs-buttons -->
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @section BottomScripts {
+        <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+        <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+        <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+        <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
+        <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+        <script type="text/javascript" src="~/plugins/copper/js/cropper.js"></script>
+        <script type="text/javascript" src="~/plugins/copper/js/avatar.js"></script>
+<script type="text/javascript" src="~/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+        <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+        <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+        <script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
+
+
+        <script type="text/javascript">
+ 
+                var ue = UE.getEditor('Content');
+           
+
+            $('#imageaspectRatio').val('1.33333');
+            $('#coverImgBtn').click(function () {
+                $('#avatar-modal').modal('show');
+                //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
+                $(".img-container").removeAttr("style");
+
+                $('#getCroppedCanvasbtn').attr('data-skyac', "cover");
+            });
+
+        </script>
+    }

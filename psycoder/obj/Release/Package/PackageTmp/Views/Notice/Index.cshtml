@@ -1,0 +1,67 @@
+﻿@model StaticPagedList<psycoderEntity.Notice>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Src/css/web.css" />
+    <title>心理咨询师公众平台</title>
+</head>
+<body style="background-color: #f7f8fa">
+    <div id="header">
+        <div class="logo pull-left">心理咨询师专用公众平台</div>
+    </div>
+    
+    <div class="container">
+        <h3>系统通知</h3>
+        <div class="box gonggaoListPage" >
+            <div class="box-body gonggaoList">
+                <ul class="gonggaoListul">
+                    @foreach (var item in Model)
+                    {
+                        <li class="gonggaoitem">
+                            <a target="_blank" href="@Url.Action("NoticeView", "Notice", new { id=item.Id})">
+                                @item.Title <span class="pull-right text-gray">@item.CreateTime.ToString("yyyy-MM-dd")</span>
+                            </a>  
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="box-footer clearfix">
+                <div class="pull-right">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="reg_footer container">
+        关于我们 | 服务协议 | 联系客服
+        <hr style="margin:5px 0;padding:0;">
+        Copyright © 2012-2018 版权所有. All Rights Reserved.
+    </div>
+</body>
+</html>

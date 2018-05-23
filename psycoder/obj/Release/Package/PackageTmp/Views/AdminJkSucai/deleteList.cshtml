@@ -1,0 +1,230 @@
+﻿@model StaticPagedList<psycoderEntity.JkSucai>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.title 回收站
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Create", "AdminJkSucai", new { type=ViewBag.type})"><i class="fa fa-plus"></i> 新增 @ViewBag.title</a>
+                            <a class="btn btn-success btn-sm" href="@Url.Action("Index", "AdminJkSucai", new { type=ViewBag.type})"><i class="fa fa-list"></i> 正常库</a>
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-sm-1">
+                                        序号
+                                    </th>
+                                    <th class="col-sm-2">
+                                        标题
+                                    </th>
+                                    <th class="col-sm-2">
+                                        作者
+                                    </th>
+                                    <th class="col-sm-1">
+                                        提供者
+                                    </th>
+                                    <th class="col-sm-2">
+                                        权限
+                                    </th>
+                                    <th class="col-sm-2">操作</th>
+                                    <th class="col-sm-2">查看</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Author)
+                                        </td>
+                                        <td>
+                                            @PsyUserService.GetPsyUserNameById(item.Provider)
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="Qanxian" value="@item.Id" @(item.Qanxian ? "checked='checked'" : "") />
+                                            @Html.AntiForgeryToken()
+
+                                        <td>
+
+                                            <button class="btn btn-info btn-sm" type="button" onclick="RecoverItem('@item.Id','@(item.IfDelete ? "false" : "true")','/AdminJkSucai/UpdateDelete','/AdminJkSucai/Index?type=@ViewBag.type')"><i class="fa fa-recycle"></i> 恢复</button>
+                                            <button class="btn btn-danger btn-sm" type="button" onclick="delconfirm('@item.Id','/AdminJkSucai/DeleteConfirmed/','/AdminJkSucai/Index?type=@ViewBag.type')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
+
+                                        </td>
+                                        <td>
+                                            @if (item.type == "yinpin")
+                                            {
+                                                <a class="btn btn-warning btn-sm" href="@Url.Action("AudioView", "AdminJkSucai", new { id = item.Id })"><i class="fa fa-volume-up"></i> 预览查看</a>
+
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-warning btn-sm" href="@Url.Action("View", "AdminJkSucai", new { id = item.Id, type = item.type })"><i class="fa fa-volume-up"></i> 预览查看</a>
+
+                                            }
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("deleteList", new { page = page, type = Request.QueryString["type"] }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+
+
+        function RecoverItem(id,status, url, tourl) {
+
+            bootbox.confirm({
+                buttons: {
+                    confirm: {
+                        label: '恢复',
+                        className: 'btn-danger'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-default'
+                    }
+                },
+                message: '你确定要恢复本条信息吗？',
+                callback: function (result) {
+                    if (result) {
+                        var token = $('[name=__RequestVerificationToken]').val();
+                        var headers = {};
+                        //防伪标记放入headers
+                        //也可以将防伪标记放入data
+                        headers["__RequestVerificationToken"] = token;
+                        $.ajax({
+                            url: url,
+                            headers: headers,
+                            type: 'post',
+                            timeout: 3000,
+                            data: {
+                                id: id,
+                                __RequestVerificationToken: token,
+                                status:status,
+                            },
+                            success: function (msg) {
+                                if (msg.MessageStatus == 'true') {
+                                    //window.location.reload();
+                                    window.location.href = tourl;
+                                }
+                                else {
+                                    alertconfirm('恢复失败');
+                                }
+                            },
+                            error: function (e) {
+                                alertconfirm('出现意外错误，恢复失败！');
+                            }
+                        });
+                    }
+                    else {
+                        // alertconfirm('您已经取消删除了');
+                    }
+                },
+                title: "恢复确认提示框",
+            });
+        }
+
+
+        $(document).ready(function () {
+
+
+            //开关按钮样式加载
+            $('[name="Qanxian"]').bootstrapSwitch({
+                onText: "启用",
+                offText: "禁用",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/AdminJkSucai/UpdateStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                            __RequestVerificationToken: token,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
+
+
+
+
+        });
+
+    </script>
+}

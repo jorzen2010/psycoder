@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AdminNoticeController.cs" />
     <Compile Include="Controllers\AdminQuestionController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
+    <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminSettingController.cs" />
@@ -2988,6 +2989,7 @@
     <Content Include="fonts\ionicons-2.0.1\scss\_ionicons-icons.scss" />
     <Content Include="fonts\ionicons-2.0.1\scss\_ionicons-variables.scss" />
     <Content Include="plugins\bootstrap-multiselect\less\bootstrap-multiselect.less" />
+    <None Include="Properties\PublishProfiles\psycoder.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3099,6 +3101,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AdminBase\" />
+    <Folder Include="Views\API\" />
     <Folder Include="Views\PsyBase\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>

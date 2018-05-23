@@ -1,0 +1,136 @@
+﻿@model psycoderEntity.JkSucai
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+
+@section Topcss {
+   <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
+<link rel="stylesheet" href="~/Src/css/Admin.css" />
+}
+
+<div class="content">
+    @if (ViewBag.type == "anli")
+    { <h3 class="pageTitle">案例素材 <small>讲课中最怕的是没素材，没案例，这些素材能让你的内容更加生动。</small></h3>
+    }
+    else if (ViewBag.type == "tupian")
+    {  <h3 class="pageTitle">图片素材 <small>图片能让听众更好的理解你说的内容。</small></h3>
+    }
+    else if (ViewBag.type == "shipin")
+    { <h3 class="pageTitle">视频素材 <small>视频引用是例证你内容最好的方式。</small></h3>
+    }
+    else if (ViewBag.type == "yinpin")
+    { <h3 class="pageTitle">音频素材 <small>恰到好处的音乐能传递你需要的情绪。</small></h3>
+    }
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">
+                @ViewBag.title 预览
+            </h3>
+            <div class="pull-right">
+
+                <a class="btn btn-info btn-sm" href="@Url.Action("Index", "JkSucai", new { type = ViewBag.type })"><i class="fa fa-list"></i> @ViewBag.title 列表</a>
+        
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body text-center">
+            <h3 class="text-center">@Model.Title</h3>
+            @if (ViewBag.type == "tuwen")
+            {
+                <div style="text-align:left;">
+                    @Html.Raw(Model.Content)
+                    <p>
+                        标签：   @Model.Tags
+                    </p>
+                </div>
+
+            }
+              else if (ViewBag.type == "tupian")
+                        {
+                            <div class="text-center">
+                                <img src="@Model.Content" />
+                            </div>
+                        }
+            else if (ViewBag.type == "shipin")
+            {
+                <div class="AliyunVideoplayer_container">
+
+                    <div class="prism-player" style="height: 500px;" id="J_prismPlayer">
+                    </div>
+                    <p>
+                        标签：   @Model.Tags
+                    </p>
+                </div>
+
+            }
+            else
+            {
+                <div>
+                    @Html.Raw(Model.Content)
+                    <p>
+                        标签：   @Model.Tags
+                    </p>
+                </div>
+            }
+            
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <div class="row">
+                <div class="pull-left" style="padding:10px;">
+                    <img src="@Model.Cover" />
+                </div>
+                <div class="pull-left a2color">
+                    <h4>@Model.Title</h4>
+                    <p style="width:400px;">
+                        @if (string.IsNullOrEmpty(Model.Info))
+                        {
+                            @Html.Raw("暂无简介")
+                        }
+                        else
+                        { if (Model.Info.Length > 40)
+                        {
+                             @Model.Info.Substring(0, 40)
+                        }
+                        else
+                        { 
+                             @Model.Info
+                        }}
+
+                      
+                       <br />
+                    
+                        作者： @Model.Author <br />
+                        来源： @PsyUserService.GetPsyUserNameById(Model.Provider)
+                        <br />
+                        创作日期：@Model.CreateTime.ToString("yyyy-MM-dd")
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+
+@section BottomScripts {
+
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+    <script type="text/javascript">
+   
+    //初始化编辑器
+    var player = new Aliplayer({
+        id: "J_prismPlayer",
+        autoplay: false,
+        width: "850px",
+      //height: "550px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+    });
+
+  
+
+    </script>
+
+}

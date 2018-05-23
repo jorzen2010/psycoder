@@ -1,0 +1,121 @@
+﻿@model StaticPagedList<psycoderEntity.FensiUser>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Tilte = "粉丝用户管理";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Tilte 
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">粉丝用户管理 </h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>ID</th>
+                                <th>咨询师姓名</th>
+                                <th>粉丝昵称</th>
+                                <th>粉丝电话</th>
+                                <th>注册时间</th>
+                                <th>粉丝状态</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PsyUserId)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.FensiWechatName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.FensiTelephone)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CreateTime)</td>
+                                    <td>
+                                        <input type="checkbox" name="FensiStatus" value="@item.Id" @(item.FensiStatus ? "checked='checked'" : "") />
+                                        @Html.AntiForgeryToken()
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("PsyUser", "AdminUser", new { page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //开关按钮样式加载
+            $('[name="FensiStatus"]').bootstrapSwitch({
+                onText: "启用",
+                offText: "禁用",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/AdminUser/UpdateFensiUserStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                            __RequestVerificationToken: token,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            alertconfirm(data.MessageInfo)
+                        },
+                        error: function () {
+
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

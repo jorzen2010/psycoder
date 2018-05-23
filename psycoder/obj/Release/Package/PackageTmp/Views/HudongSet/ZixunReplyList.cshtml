@@ -1,0 +1,80 @@
+﻿@model StaticPagedList<psycoderEntity.ZixunReply>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    ViewBag.Tilte = "留言咨询回复列表";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="content">
+    <h3 class="pageTitle">@ViewBag.Tilte <small>经过自由书写和问题引导建立关系后，用户会直接留言咨询，是把用户转化为来访者的关键。</small> </h3>
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.Tilte  </h3>
+            <div class="pull-right">
+                <a class="btn btn-info btn-sm" href="@Url.Action("CreateZixunReply", "Hudongset")"><i class="fa fa-plus-circle"></i> 体验用户咨询</a>
+
+                <a class="btn btn-default btn-sm" href="@Url.Action("HudongSet", "Hudongset", new { type="ZixunReplyList"})"><i class="fa fa-cog"></i> 设置引导语</a>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>粉丝Id</th>
+                
+                    <th>回复内容</th>
+                    <th>回复时间</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                     
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReplyContent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateTime)
+                        </td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+
+            <ul class="pagination pagination-sm no-margin pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("ZixunReplyList", "HudongSet", new { page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+@section BottomScripts {
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+}
