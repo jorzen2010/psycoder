@@ -45,11 +45,11 @@ namespace psycoderEntity
         [Key]
         public int Id { get; set; }
         [Display(Name = "咨询师Id")]
-        public int PsyId { get; set; }
+        public int Zixunshi { get; set; }
         [Display(Name = "素材Id")]
-        public int SucaiId { get; set; }
+        public int Sucai { get; set; }
         [Display(Name = "顺序Id")]
-        public int PaixuId { get; set; }
+        public int Paixu { get; set; }
         [Display(Name = "状态")]
         public bool Status { get; set; }
         [Display(Name = "素材类型")]

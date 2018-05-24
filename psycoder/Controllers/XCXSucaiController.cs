@@ -23,14 +23,14 @@ namespace psycoder.Controllers
         {
             Message msg = new Message();
             XCXSucaiSelected sucaiSelect = null;
-            var sucaiSelecteds = unitOfWork.xcxSucaiSelectedsRepository.Get(filter: u => u.PsyId == psyId && u.SucaiId == sucaiId);
+            var sucaiSelecteds = unitOfWork.xcxSucaiSelectedsRepository.Get(filter: u => u.Zixunshi == psyId && u.Sucai == sucaiId);
             if (sucaiSelecteds.Count() == 0)
             {
                 sucaiSelect = new XCXSucaiSelected();
-                sucaiSelect.PsyId = psyId;
-                sucaiSelect.PaixuId = 0;
+                sucaiSelect.Zixunshi = psyId;
+                sucaiSelect.Paixu = 0;
                 sucaiSelect.Status = status;
-                sucaiSelect.SucaiId = sucaiId;
+                sucaiSelect.Sucai = sucaiId;
                 sucaiSelect.SucaiType = type;
                 sucaiSelect.CreateTime = DateTime.Now;
                 sucaiSelect.UpdateTime = DateTime.Now;
@@ -80,7 +80,7 @@ namespace psycoder.Controllers
             ViewBag.type = type;
             Pager pager = new Pager();
             pager.table = "XCXSucaiSelected";
-            pager.strwhere = "SucaiType='" + type + "' and PsyId="+psyId+" and Status=1";
+            pager.strwhere = "SucaiType='" + type + "' and Zixunshi="+psyId+" and Status=1";
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";

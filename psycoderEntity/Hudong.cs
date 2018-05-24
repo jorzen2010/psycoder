@@ -95,7 +95,7 @@ namespace psycoderEntity
         [Display(Name = "咨询师用户")]
         public int PsyUser { get; set; }
         [Display(Name = "来访者用户")]
-        public int UserId { get; set; }
+        public int FensiUser { get; set; }
         [Display(Name = "书写内容")]
         public string ReplyContent { get; set; }
         [Display(Name = "创建时间")]
@@ -109,9 +109,9 @@ namespace psycoderEntity
         [Display(Name = "咨询师用户")]
         public int PsyUser { get; set; }
         [Display(Name = "来访者用户")]
-        public int UserId { get; set; }
+        public int FensiUser { get; set; }
         [Display(Name = "问题Id")]
-        public int QuestionId { get; set; }
+        public int Question { get; set; }
         [Display(Name = "书写内容")]
         public string ReplyContent { get; set; }
         [Display(Name = "创建时间")]
@@ -126,7 +126,7 @@ namespace psycoderEntity
         [Display(Name = "咨询师用户")]
         public int PsyUser { get; set; }
         [Display(Name = "来访者用户")]
-        public int UserId { get; set; }
+        public int FensiUser { get; set; }
         [Display(Name = "书写内容")]
         public string ReplyContent { get; set; }
         [Display(Name = "创建时间")]

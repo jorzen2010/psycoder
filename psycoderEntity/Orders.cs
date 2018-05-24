@@ -13,13 +13,13 @@ namespace psycoderEntity
         public int Id { get; set; }
 
         [Display(Name = "用户ID")]
-        public int CustomerId { get; set; }
+        public int Customer { get; set; }
 
         [Display(Name = "商家ID")]
-        public int SellerId { get; set; }
+        public int Seller { get; set; }
 
         [Display(Name = "产品ID")]
-        public int ProductId { get; set; }
+        public int Product { get; set; }
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
@@ -41,13 +41,13 @@ namespace psycoderEntity
         public int Id { get; set; }
 
         [Display(Name = "用户ID")]
-        public int CustomerId { get; set; }
+        public int Customer { get; set; }
 
         [Display(Name = "商家ID")]
-        public int SellerId { get; set; }
+        public int Seller { get; set; }
 
         [Display(Name = "产品ID")]
-        public int ProductId { get; set; }
+        public int Product { get; set; }
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }

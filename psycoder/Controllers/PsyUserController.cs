@@ -31,7 +31,7 @@ namespace psycoder.Controllers
             if (psyUsers.Count()>0)
             {
                 psyUser = psyUsers.First();
-                psyUser.PsyPassword = PsyPassword;
+                psyUser.PsyPassword = Common.CommonTools.ToMd5(PsyPassword);
                 psyUser.CreateTime = DateTime.Now;
                 psyUser.PsyAvatar = PsyAvatar;
                 try
@@ -53,7 +53,7 @@ namespace psycoder.Controllers
             else
             {
                 psyUser.PsyUserEmail = PsyUserEmail;
-                psyUser.PsyPassword = PsyPassword;
+                psyUser.PsyPassword = Common.CommonTools.ToMd5(PsyPassword);
                 psyUser.PsyStatus = PsyStatus;
                 psyUser.CreateTime = DateTime.Now;
 

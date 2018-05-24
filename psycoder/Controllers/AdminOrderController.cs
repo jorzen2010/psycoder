@@ -52,9 +52,9 @@ namespace psycoder.Controllers
         public ActionResult CreatePsyOrder(int pid) {
             Orders order = new Orders();
 
-            order.ProductId=0;
-            order.SellerId=0;
-            order.CustomerId=pid;
+            order.Product=0;
+            order.Seller=0;
+            order.Customer=pid;
             order.CreateTime=DateTime.Now;
             order.ExpiryTime=DateTime.Now.AddYears(1).AddMonths(1);
             order.Status="未付款";
@@ -70,9 +70,9 @@ namespace psycoder.Controllers
         {
             PsyOrders order = new PsyOrders();
 
-            order.ProductId = 0;
-            order.SellerId = 0;
-            order.CustomerId = pid;
+            order.Product = 0;
+            order.Seller = 0;
+            order.Customer = pid;
             order.CreateTime = DateTime.Now;
             order.ExpiryTime = DateTime.Now.AddYears(1).AddMonths(1);
             order.Status = "未付款";

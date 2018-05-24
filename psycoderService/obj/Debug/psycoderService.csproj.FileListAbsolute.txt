@@ -14,6 +14,7 @@ E:\2018\psycoder\psycoderService\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\2018\psycoder\psycoderService\obj\Debug\psycoderService.csprojResolveAssemblyReference.cache
 E:\2018\psycoder\psycoderService\obj\Debug\psycoderService.dll
 E:\2018\psycoder\psycoderService\obj\Debug\psycoderService.pdb
+D:\MyPro\2018\psycoder\psycoderService\obj\Debug\psycoderService.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\psycoderService\bin\Debug\psycoderService.dll
 D:\MyPro\2018\psycoder\psycoderService\bin\Debug\psycoderService.pdb
 D:\MyPro\2018\psycoder\psycoderService\bin\Debug\Common.dll
@@ -27,6 +28,5 @@ D:\MyPro\2018\psycoder\psycoderService\bin\Debug\psycoderDal.pdb
 D:\MyPro\2018\psycoder\psycoderService\bin\Debug\psycoderEntity.pdb
 D:\MyPro\2018\psycoder\psycoderService\bin\Debug\EntityFramework.xml
 D:\MyPro\2018\psycoder\psycoderService\bin\Debug\zh-Hans\EntityFramework.resources.dll
-D:\MyPro\2018\psycoder\psycoderService\obj\Debug\psycoderService.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\psycoderService\obj\Debug\psycoderService.dll
 D:\MyPro\2018\psycoder\psycoderService\obj\Debug\psycoderService.pdb

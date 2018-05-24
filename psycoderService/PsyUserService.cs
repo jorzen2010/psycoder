@@ -43,7 +43,7 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             bool IfSelect = false;
-            var sucaiSelecteds = unitOfWork.xcxSucaiSelectedsRepository.Get(filter: u => u.PsyId == psyId && u.SucaiId == sucaiId &&u.Status==true);
+            var sucaiSelecteds = unitOfWork.xcxSucaiSelectedsRepository.Get(filter: u => u.Zixunshi == psyId && u.Sucai == sucaiId &&u.Status==true);
             if (sucaiSelecteds.Count() > 0)
             {
                 IfSelect = true;
