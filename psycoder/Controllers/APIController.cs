@@ -96,6 +96,16 @@ namespace psycoder.Controllers
             return Content(json);
 
         }
+
+        public JsonResult GetXCXSucaiJson(int cid)
+        {
+            XCXSucai sucai = new XCXSucai();
+            sucai = unitOfWork.xcxSucaiRepository.GetByID(cid);
+            string json = JsonHelper.JsonSerializerBySingleData(sucai);
+            return Json(json, JsonRequestBehavior.AllowGet);
+        //    return Content(json);
+
+        }
         public ActionResult GetXCXVideoSucai(int cid)
         {
             XCXSucai sucai = unitOfWork.xcxSucaiRepository.GetByID(cid);
@@ -127,7 +137,7 @@ namespace psycoder.Controllers
             Pager pager = new Pager();
             pager.table = "XCXSucaiSelected";
             pager.strwhere = "(SucaiType='shipin' or SucaiType='yinpin') and Zixunshi=" + pid;
-            pager.PageSize = 1;
+            pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
             pager.FiledOrder = "Id desc";
