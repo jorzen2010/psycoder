@@ -53,7 +53,7 @@
                                         @Html.DisplayFor(modelItem => item.Id)
                                     </td>
                                     <td>
-                                        @PsyUserService.GetXCXSucaiTitleById(item.SucaiId)
+                                        @PsyUserService.GetXCXSucaiTitleById(item.Sucai)
                                       
                                       
                                     </td>
@@ -63,22 +63,22 @@
                                     <td>
                                         @if (item.SucaiType == "yinpin")
                                         {
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "XCXSucai", new { id = item.SucaiId })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("AudioView", "XCXSucai", new { id = item.Sucai })"> 预览查看</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "XCXSucai", new { id = item.SucaiId, type = item.SucaiType })"> 预览查看</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("View", "XCXSucai", new { id = item.Sucai, type = item.SucaiType })"> 预览查看</a>
 
                                         }
                                    
-                                        @if (PsyUserService.GetIfSelectSucai(1, item.SucaiId))
+                                        @if (PsyUserService.GetIfSelectSucai(1, item.Sucai))
                                         {
-                                            <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.SucaiId" data-selected="false">取消选择</button>
+                                            <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.Sucai" data-selected="false">取消选择</button>
                                         }
                                         else
                                         {
-                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.SucaiId" data-selected="true">选择</button>
+                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.Sucai" data-selected="true">选择</button>
                                         }
 
                                     </td>

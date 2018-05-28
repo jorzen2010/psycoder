@@ -211,6 +211,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\PsyAccountController.cs" />
+    <Compile Include="WechatXiaochengxu\XiaochengxuAPI.cs" />
+    <Compile Include="WechatXiaochengxu\XiaochengxuModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />

@@ -13,12 +13,14 @@ using psycoderDal;
 using psycoderEntity;
 using Common;
 using AliyunVideo;
+using psycoder.WechatXiaochengxu;
 
 namespace psycoder.Controllers
 {
     public class APIController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+
         //第一种方式测试成功
         public ActionResult Test(int? page)
         {
@@ -151,6 +153,33 @@ namespace psycoder.Controllers
 
             //string jsonname = "xcxsucai";
             //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
+            return Content(json);
+
+        }
+
+        public ActionResult OnLogin(string js_code)
+        {
+            string json=string.Empty;
+            //这几个值都应该从数据库中获取。
+            string  appid = "wxee5a6a13000ac564";
+            string secret = "e52e4925d508339ca6c2d76a5262032a";
+            string grant_type="authorization_code";
+            json = XiaochengxuAPI.GetOpenidByWxlogin(appid, secret, js_code, grant_type);
+
+            return Content(json);  
+
+        }
+
+
+        public ActionResult GetTopSelectedXCXSucaiList(int pid,int size,string type)
+        {
+            string sql = string.Empty;
+            sql = "select Top "+size+" * from XCXSucaiSelected where Zixunshi=" + pid + " and Status=1 and SucaiType='"+type+"'";
+            IList<XCXSucaiSelected> List = unitOfWork.xcxSucaiSelectedsRepository.GetWithRawSql(sql) as IList<XCXSucaiSelected>;
+
+            string jsonname = "xcxsucai";
+
+            string json = JsonHelper.ListToJson(List, jsonname);
             return Content(json);
 
         }
