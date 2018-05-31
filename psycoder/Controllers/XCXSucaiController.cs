@@ -84,7 +84,7 @@ namespace psycoder.Controllers
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
-            pager.FiledOrder = "Id desc";
+            pager.FiledOrder = "UpdateTime desc";
 
             pager = CommonDal.GetPager(pager);
             IList<XCXSucaiSelected> dataList = DataConvertHelper<XCXSucaiSelected>.ConvertToModel(pager.EntityDataTable);

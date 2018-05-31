@@ -138,18 +138,43 @@ namespace psycoder.Controllers
 
             Pager pager = new Pager();
             pager.table = "XCXSucaiSelected";
-            pager.strwhere = "(SucaiType='shipin' or SucaiType='yinpin') and Zixunshi=" + pid;
+            pager.strwhere = "(SucaiType='shipin' or SucaiType='yinpin') and Zixunshi=" + pid + " and Status=1";
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
-            pager.FiledOrder = "Id desc";
+            pager.FiledOrder = "UpdateTime desc";
 
 
             pager = CommonDal.GetPager(pager);
             IList<XCXSucaiSelected> List = DataConvertHelper<XCXSucaiSelected>.ConvertToModel(pager.EntityDataTable);
 
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string json = js.Serialize(new { pagecount = pager.Amount, selectsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+            string json = js.Serialize(new { pagecount = pager.PageCount, selectsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            //string jsonname = "xcxsucai";
+            //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
+            return Content(json);
+
+        }
+
+        public ActionResult GetSelectedTuwenXCXSucaiList(int? page, int pid)
+        {
+
+
+            Pager pager = new Pager();
+            pager.table = "XCXSucaiSelected";
+            pager.strwhere = "(SucaiType='tuwen') and Zixunshi=" + pid + " and Status=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "UpdateTime desc";
+
+
+            pager = CommonDal.GetPager(pager);
+            IList<XCXSucaiSelected> List = DataConvertHelper<XCXSucaiSelected>.ConvertToModel(pager.EntityDataTable);
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { pagecount = pager.PageCount, selectsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
 
             //string jsonname = "xcxsucai";
             //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
@@ -164,6 +189,8 @@ namespace psycoder.Controllers
             string  appid = "wxee5a6a13000ac564";
             string secret = "e52e4925d508339ca6c2d76a5262032a";
             string grant_type="authorization_code";
+
+
             json = XiaochengxuAPI.GetOpenidByWxlogin(appid, secret, js_code, grant_type);
 
             return Content(json);  
@@ -183,6 +210,36 @@ namespace psycoder.Controllers
             return Content(json);
 
         }
+
+
+
+        public ActionResult GetFensiUserByopenid(string openid,int pid)
+        {
+            FensiUser user = new FensiUser();
+            var users = unitOfWork.fensiUsersRepository.Get(filter: u => u.openid == openid && u.Zixunshi==pid);
+            if (users.Count() > 0)
+            {
+                user = users.First();
+            }
+            string json = JsonHelper.JsonSerializerBySingleData(user);
+            return Content(json);
+
+        }
+
+        public ActionResult CreateFensiUser(string openid, int pid)
+        {
+            FensiUser user = new FensiUser();
+            var users = unitOfWork.fensiUsersRepository.Get(filter: u => u.openid == openid && u.Zixunshi == pid);
+            if (users.Count() > 0)
+            {
+                user = users.First();
+            }
+            string json = JsonHelper.JsonSerializerBySingleData(user);
+            return Content(json);
+
+        }
+
+
        
 	}
 }
