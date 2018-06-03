@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using System.Globalization;
 using System.Data;
 using System.Collections;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.ServiceModel.Web;
 using psycoderDal;
 using psycoderEntity;
 using Common;
@@ -219,25 +222,139 @@ namespace psycoder.Controllers
             var users = unitOfWork.fensiUsersRepository.Get(filter: u => u.openid == openid && u.Zixunshi==pid);
             if (users.Count() > 0)
             {
+                Message msg = new Message();
+                msg.MessageInfo = "have user";
+                msg.MessageStatus = "true";
+                msg.MessageUrl = "";
                 user = users.First();
+                System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+                string json = js.Serialize(new { openid = openid, userinfo = user,message=msg });
+                return Content(json);
             }
-            string json = JsonHelper.JsonSerializerBySingleData(user);
-            return Content(json);
-
-        }
-
-        public ActionResult CreateFensiUser(string openid, int pid)
-        {
-            FensiUser user = new FensiUser();
-            var users = unitOfWork.fensiUsersRepository.Get(filter: u => u.openid == openid && u.Zixunshi == pid);
-            if (users.Count() > 0)
+            else
             {
-                user = users.First();
+                Message msg = new Message();
+                msg.MessageInfo = "have no user";
+                msg.MessageStatus = "false";
+                msg.MessageUrl = "";
+                System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+                string json = js.Serialize(new { openid = openid, message = msg });
+                return Content(json);
+ 
             }
-            string json = JsonHelper.JsonSerializerBySingleData(user);
+            
+
+        }
+
+
+        //public ActionResult CreateFensiUser(string openid, int pid,object userinfo)
+        //{
+        //    XCXUserInfo xcxuserinfo = userinfo as XCXUserInfo;
+        //    FensiUser user = new FensiUser();
+        //    user.openid = openid;
+        //    user.Zixunshi = pid;
+        //    user.nickName = xcxuserinfo.nickName;
+        //    user.avatarUrl = xcxuserinfo.avatarUrl;
+        //    user.country = xcxuserinfo.country;
+        //    user.province = xcxuserinfo.province;
+        //    user.city = xcxuserinfo.city;
+        //    user.language = xcxuserinfo.language;
+        //    user.gender = xcxuserinfo.gender;
+        //    user.CreateTime = DateTime.Now;
+        //    user.FensiTelephone="";
+        //    user.FensiStatus=true;
+        //    unitOfWork.fensiUsersRepository.Insert(user);
+        //    unitOfWork.Save();
+        //    string json = JsonHelper.JsonSerializerBySingleData(user);
+        //    return Content(json);
+
+        //}
+
+        public ActionResult CreateFensiUser(string openid, int pid,string userinfo)
+        {
+
+            XCXUserInfo xcxuserinfo =new XCXUserInfo();
+            xcxuserinfo = JsonTools.JsonToObject(userinfo, xcxuserinfo) as XCXUserInfo;
+
+
+            FensiUser user = new FensiUser();
+            user.openid = openid;
+            user.Zixunshi = pid;
+            user.nickName = xcxuserinfo.nickName;
+            user.avatarUrl = xcxuserinfo.avatarUrl;
+            user.country = xcxuserinfo.country;
+            user.province = xcxuserinfo.province;
+            user.city = xcxuserinfo.city;
+            user.language = xcxuserinfo.language;
+            user.gender = xcxuserinfo.gender;
+            user.CreateTime = DateTime.Now;
+            user.FensiTelephone = "";
+            user.FensiStatus = true;
+            unitOfWork.fensiUsersRepository.Insert(user);
+            unitOfWork.Save();
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { openid = openid, datamsg = xcxuserinfo, pid = pid });
             return Content(json);
 
         }
+
+        public ActionResult CreateZiyoushuxieReply(int fid, int pid, string ReplyContent)
+        {
+            ZiyoushuxieReply ziyoushuxie = new ZiyoushuxieReply();
+
+            ziyoushuxie.FensiUser = fid;
+            ziyoushuxie.PsyUser = pid;
+            ziyoushuxie.ReplyContent = ReplyContent;
+            ziyoushuxie.CreateTime = DateTime.Now;
+            unitOfWork.ziyoushuxieReplyRepository.Insert(ziyoushuxie);
+            unitOfWork.Save();
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { fensiuser = fid, ziyoushuxie = ziyoushuxie, psyuser = pid });
+            return Content(json);
+
+        }
+
+        public ActionResult CreateZixunReply(int fid, int pid, string ReplyContent)
+        {
+            ZixunReply zixunReply = new ZixunReply();
+
+            zixunReply.FensiUser = fid;
+            zixunReply.PsyUser = pid;
+            zixunReply.ReplyContent = ReplyContent;
+            zixunReply.CreateTime = DateTime.Now;
+            unitOfWork.zixunReplyRepository.Insert(zixunReply);
+            unitOfWork.Save();
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { fensiuser = fid, zixunReply = zixunReply, psyuser = pid });
+            return Content(json);
+
+        }
+
+
+        public ActionResult hudongset(int pid)
+        {
+            
+            var hudongs = unitOfWork.hudongSettingRepository.Get(filter:u => u.PsyUser==pid);
+            if (hudongs.Count() > 0)
+            {
+                HudongSetting hudong = new HudongSetting();
+                hudong = hudongs.First();
+                string json = JsonHelper.JsonSerializerBySingleData(hudong);
+                return Content(json);
+            }
+            else
+            {
+                DefaultHudongSetting hudong = new DefaultHudongSetting();
+                var defaluthudongsets = unitOfWork.defalutHudongSettingRepository.Get();
+                hudong = defaluthudongsets.First();
+                string json = JsonHelper.JsonSerializerBySingleData(hudong);
+                return Content(json);
+            }
+
+        }
+
+
+
 
 
        

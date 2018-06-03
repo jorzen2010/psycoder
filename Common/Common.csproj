@@ -77,6 +77,7 @@
     <Compile Include="HttpWebResponseUtility.cs" />
     <Compile Include="ImageTools.cs" />
     <Compile Include="JsonHepler.cs" />
+    <Compile Include="JsonStr2obj.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Pager.cs" />
