@@ -24,59 +24,59 @@ namespace psycoder.Controllers
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
-        //第一种方式测试成功
-        public ActionResult Test(int? page)
-        {
+        ////第一种方式测试成功
+        //public ActionResult Test(int? page)
+        //{
 
 
-            Pager pager = new Pager();
-            pager.table = "XCXSucai";
-            pager.strwhere = "1=1";
-            pager.PageSize = 1;
-            pager.PageNo = page ?? 1;
-            pager.FieldKey = "Id";
-            pager.FiledOrder = "Id desc";
+        //    Pager pager = new Pager();
+        //    pager.table = "XCXSucai";
+        //    pager.strwhere = "1=1";
+        //    pager.PageSize = 1;
+        //    pager.PageNo = page ?? 1;
+        //    pager.FieldKey = "Id";
+        //    pager.FiledOrder = "Id desc";
 
 
-            pager = CommonDal.GetPager(pager);
-            IList<XCXSucai> List = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
+        //    pager = CommonDal.GetPager(pager);
+        //    IList<XCXSucai> List = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
 
-            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string json = js.Serialize(new { pagecount = pager.Amount, xcxsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+        //    System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        //    string json = js.Serialize(new { pagecount = pager.Amount, xcxsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
 
-            //string jsonname = "xcxsucai";
-            //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
-            return Content(json);
+        //    //string jsonname = "xcxsucai";
+        //    //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
+        //    return Content(json);
 
-        }
-        //第一种方式测试失败
-        public JsonResult Test2(int? page)
-        {
-
-
-            Pager pager = new Pager();
-            pager.table = "XCXSucai";
-            pager.strwhere = "1=1";
-            pager.PageSize = 2;
-            pager.PageNo = page ?? 1;
-            pager.FieldKey = "Id";
-            pager.FiledOrder = "Id desc";
+        //}
+        ////第一种方式测试失败
+        //public JsonResult Test2(int? page)
+        //{
 
 
-            pager = CommonDal.GetPager(pager);
+        //    Pager pager = new Pager();
+        //    pager.table = "XCXSucai";
+        //    pager.strwhere = "1=1";
+        //    pager.PageSize = 2;
+        //    pager.PageNo = page ?? 1;
+        //    pager.FieldKey = "Id";
+        //    pager.FiledOrder = "Id desc";
+
+
+        //    pager = CommonDal.GetPager(pager);
             
-            IList<XCXSucai> List = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
+        //    IList<XCXSucai> List = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
 
-            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string json = js.Serialize(new { pagecount = pager.Amount, xcxsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。  
-
-
-            //string jsonname = "xcxsucai";
-            //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
-            return Json(json, JsonRequestBehavior.AllowGet);
+        //    System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        //    string json = js.Serialize(new { pagecount = pager.Amount, xcxsucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。  
 
 
-        }
+        //    //string jsonname = "xcxsucai";
+        //    //string json = JsonHelper.ListToJson<XCXSucai>(List, jsonname);
+        //    return Json(json, JsonRequestBehavior.AllowGet);
+
+
+        //}
 
         public ActionResult GetPsyUser(int pid)
         {
@@ -92,6 +92,14 @@ namespace psycoder.Controllers
 
         }
 
+        public ActionResult GetQuestionById(int qid)
+        {
+            Question question = new Question();
+            question = unitOfWork.questionRepository.GetByID(qid);
+            string json = JsonHelper.JsonSerializerBySingleData(question);
+            return Content(json);
+
+        }
 
         public ActionResult GetXCXSucai(int cid)
         {
@@ -353,6 +361,99 @@ namespace psycoder.Controllers
 
         }
 
+        public ActionResult GetZiyoushuxieCount(int pid,int fid)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            int ZiyoushuxieCount = 0;
+            var Ziyoushuxie = unitOfWork.ziyoushuxieReplyRepository.Get(filter:u =>u.PsyUser==pid && u.FensiUser==fid);
+            ZiyoushuxieCount = Ziyoushuxie.Count();
+            string json = JsonHelper.JsonSerializerBySingleData(ZiyoushuxieCount);
+            return Content(json);
+        }
+        public ActionResult GetZixunCount(int pid,int fid)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            int ZixunCount = 0;
+            var Zixuns = unitOfWork.zixunReplyRepository.Get(filter: u => u.PsyUser == pid && u.FensiUser == fid);
+            ZixunCount = Zixuns.Count();
+            string json = JsonHelper.JsonSerializerBySingleData(ZixunCount);
+            return Content(json);
+        }
+        public ActionResult GetQuestionReplyCount(int pid,int fid)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            int QuestionCount = 0;
+            var questions = unitOfWork.questionReplyRepository.Get(filter: u => u.PsyUser == pid && u.FensiUser == fid);
+            QuestionCount = questions.Count();
+          //  string json = JsonHelper.JsonSerializerBySingleData(QuestionCount);
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { pagecount = QuestionCount });
+            return Content(json);
+        }
+
+
+        public ActionResult GetZiyouList(int? page,int pid, int fid)
+        {
+            Pager pager = new Pager();
+            pager.table = "ZiyoushuxieReply";
+            pager.strwhere = "PsyUser=" + pid + " and FensiUser="+fid;
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+
+            pager = CommonDal.GetPager(pager);
+            IList<ZiyoushuxieReply> List = DataConvertHelper<ZiyoushuxieReply>.ConvertToModel(pager.EntityDataTable);
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { pagecount = pager.PageCount, ziyoulist = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+
+        }
+
+        public ActionResult GetZixunList(int? page, int pid, int fid)
+        {
+            Pager pager = new Pager();
+            pager.table = "ZixunReply";
+            pager.strwhere = "PsyUser=" + pid + " and FensiUser=" + fid;
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+
+            pager = CommonDal.GetPager(pager);
+            IList<ZixunReply> List = DataConvertHelper<ZixunReply>.ConvertToModel(pager.EntityDataTable);
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { pagecount = pager.PageCount, ziyoulist = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+
+        }
+
+        public ActionResult GetQuestionReplyList(int? page, int pid, int fid)
+        {
+            Pager pager = new Pager();
+            pager.table = "QuestionReply";
+            pager.strwhere = "PsyUser=" + pid + " and FensiUser=" + fid;
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+
+
+            pager = CommonDal.GetPager(pager);
+            IList<QuestionReply> List = DataConvertHelper<QuestionReply>.ConvertToModel(pager.EntityDataTable);
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { pagecount = pager.PageCount, ziyoulist = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+
+        }
 
 
 
