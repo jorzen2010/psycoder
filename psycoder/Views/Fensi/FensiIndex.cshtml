@@ -1,0 +1,98 @@
+﻿@model StaticPagedList<psycoderEntity.FensiUser>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+<div class="content">
+
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">我的粉丝</h3>
+                    
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead class="text-center">
+                            <tr>
+                                <th class="col-sm-1">
+                                    序号
+                                </th>
+                                <th class="col-sm-4">
+                                    昵称
+                                </th>
+
+                                <th class="col-sm-3">
+                                    openid
+                                </th>
+                                <th class="col-sm-2">
+                                    手机号
+                                </th>
+
+                                <th class="col-sm-2">注册时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nickName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.openid)
+                                    </td>
+                                    <td>
+                                       @Html.DisplayFor(modelItem => item.FensiTelephone)
+                                    </td>
+
+
+                                    <td>
+                                        @item.CreateTime.ToString("yyyy-MM-dd hh:mm")
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("FensiIndex", "Fensi", new { type = Request.QueryString["type"], page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+@section BottomScripts {
+<script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    }

@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AdminQuestionController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\APIController.cs" />
+    <Compile Include="Controllers\FensiController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminSettingController.cs" />
@@ -3101,6 +3102,8 @@
     <Content Include="Views\PsyUser\RenzhengInfo.cshtml" />
     <Content Include="Views\AdminAccount\Login.cshtml" />
     <Content Include="Views\PsyAccount\Login.cshtml" />
+    <Content Include="Views\Fensi\FensiIndex.cshtml" />
+    <Content Include="Views\Fensi\OrderIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

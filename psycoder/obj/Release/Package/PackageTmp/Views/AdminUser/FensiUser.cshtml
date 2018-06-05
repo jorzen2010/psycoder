@@ -43,8 +43,8 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.PsyUserId)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.FensiWechatName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Zixunshi)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.nickName)</td>
                                     <td>@Html.DisplayFor(modelItem => item.FensiTelephone)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CreateTime)</td>
                                     <td>
@@ -58,7 +58,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("PsyUser", "AdminUser", new { page = page }),
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("FensiUser", "AdminUser", new { page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
