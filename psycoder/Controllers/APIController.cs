@@ -338,6 +338,23 @@ namespace psycoder.Controllers
 
         }
 
+        public ActionResult CreateQuestionReply(int fid, int pid, string ReplyContent,int qid)
+        {
+            QuestionReply qReply = new QuestionReply();
+
+            qReply.FensiUser = fid;
+            qReply.PsyUser = pid;
+            qReply.Question = qid;
+            qReply.ReplyContent = ReplyContent;
+            qReply.CreateTime = DateTime.Now;
+            unitOfWork.questionReplyRepository.Insert(qReply);
+            unitOfWork.Save();
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { fensiuser = fid, qReply = qReply, psyuser = pid ,question=qid});
+            return Content(json);
+
+        }
+
 
         public ActionResult hudongset(int pid)
         {
