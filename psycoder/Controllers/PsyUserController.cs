@@ -242,7 +242,8 @@ namespace psycoder.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult SendEmail(string Tomail)
         {
-            string EmailSendCode = "123456";
+           // string EmailSendCode = "123456";
+            string EmailSendCode = Common.CommonTools.getRandomNumber(100000, 999999);
             Message msg = new Message();
             EmailServer emailServer=new EmailServer();
             emailServer.SMTPClient=EmailConfig.SMTPClient;
