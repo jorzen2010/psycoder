@@ -57,7 +57,8 @@ namespace psycoder.Controllers
             Response.Cookies["psyid"].Expires = DateTime.Now.AddDays(-1);
             System.Web.HttpContext.Current.Session["psyid"] = null;
             System.Web.HttpContext.Current.Session["psyname"] = null;
-            return View("Login");
+            return RedirectToAction("Index","Home");
+           // return View("Login");
         }
         [HttpPost]
         public ActionResult Login(FormCollection fc)
@@ -85,6 +86,7 @@ namespace psycoder.Controllers
 
                     System.Web.HttpContext.Current.Session["psyid"] = psyUsers.First().PsyUserEmail.ToString();
                     System.Web.HttpContext.Current.Session["psyname"] = username;
+                    System.Web.HttpContext.Current.Session["pid"] = psyUsers.First().Id.ToString();
 
                     FormsAuthentication.SetAuthCookie(username, true);
 
@@ -114,7 +116,7 @@ namespace psycoder.Controllers
                     }
 
                     ViewData["IndexNotice"] = notice;
-                    ViewBag.msg = "此账号已经被禁用，不允许登陆";
+                    ViewBag.msg = "此账号已经尚未开通或被禁用，请联系管理员";
                     return View();
 
                 }

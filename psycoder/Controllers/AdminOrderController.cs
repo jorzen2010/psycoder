@@ -27,8 +27,8 @@ namespace psycoder.Controllers
             pager.FiledOrder = "Id desc";
 
             pager = CommonDal.GetPager(pager);
-            IList<Orders> dataList = DataConvertHelper<Orders>.ConvertToModel(pager.EntityDataTable);
-            var PageList = new StaticPagedList<Orders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            IList<FensiOrders> dataList = DataConvertHelper<FensiOrders>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<FensiOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
 
         }
@@ -48,18 +48,15 @@ namespace psycoder.Controllers
             var PageList = new StaticPagedList<PsyOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
         }
+        public ActionResult CreatePsyOrder(int pid) 
+        {
 
-        public ActionResult CreatePsyOrder(int pid) {
-            Orders order = new Orders();
-
-            order.Product=0;
-            order.Seller=0;
-            order.Customer=pid;
-            order.CreateTime=DateTime.Now;
-            order.ExpiryTime=DateTime.Now.AddYears(1).AddMonths(1);
-            order.Status="未付款";
-            order.Beizhu = "后台人工创建";
-            unitOfWork.ordersRepository.Insert(order);
+            return View();      
+        }
+        [HttpPost]
+        public ActionResult CreatePsyOrder(PsyOrders orders) 
+        {
+            unitOfWork.psyOrdersRepository.Insert(orders);
             unitOfWork.Save();
             return RedirectToAction("OrderList","AdminOrder");
 
@@ -68,7 +65,7 @@ namespace psycoder.Controllers
 
         public ActionResult CreateFensiOrder(int pid)
         {
-            PsyOrders order = new PsyOrders();
+            FensiOrders order = new FensiOrders();
 
             order.Product = 0;
             order.Seller = 0;
@@ -77,7 +74,7 @@ namespace psycoder.Controllers
             order.ExpiryTime = DateTime.Now.AddYears(1).AddMonths(1);
             order.Status = "未付款";
             order.Beizhu = "粉丝申请创建";
-            unitOfWork.psyOrdersRepository.Insert(order);
+            unitOfWork.fensiOrdersRepository.Insert(order);
             unitOfWork.Save();
             return RedirectToAction("OrderList", "AdminOrder");
 

@@ -33,7 +33,7 @@ namespace psycoder.Controllers
                 psyUser = psyUsers.First();
                 psyUser.PsyPassword = Common.CommonTools.ToMd5(PsyPassword);
                 psyUser.CreateTime = DateTime.Now;
-                psyUser.PsyAvatar = PsyAvatar;
+                
                 try
                 {
                     unitOfWork.zixunshiUsersRepository.Update(psyUser);
@@ -56,7 +56,7 @@ namespace psycoder.Controllers
                 psyUser.PsyPassword = Common.CommonTools.ToMd5(PsyPassword);
                 psyUser.PsyStatus = PsyStatus;
                 psyUser.CreateTime = DateTime.Now;
-
+                psyUser.PsyAvatar = PsyAvatar;
                 try
                 {
                     unitOfWork.zixunshiUsersRepository.Insert(psyUser);

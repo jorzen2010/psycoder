@@ -238,18 +238,18 @@ namespace psycoderDal
              }
          }
 
-         private GenericRepository<Orders> OrdersRepository;
+         private GenericRepository<FensiOrders> FensiOrdersRepository;
 
-         public GenericRepository<Orders> ordersRepository
+         public GenericRepository<FensiOrders> fensiOrdersRepository
          {
              get
              {
 
-                 if (this.OrdersRepository == null)
+                 if (this.FensiOrdersRepository == null)
                  {
-                     this.OrdersRepository = new GenericRepository<Orders>(context);
+                     this.FensiOrdersRepository = new GenericRepository<FensiOrders>(context);
                  }
-                 return OrdersRepository;
+                 return FensiOrdersRepository;
              }
          }
 

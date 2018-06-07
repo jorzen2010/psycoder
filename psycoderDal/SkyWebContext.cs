@@ -42,7 +42,7 @@ namespace psycoderDal
         public DbSet<ZiyoushuxieReply> ZiyoushuxieReplys { get; set; }
         public DbSet<ZixunReply> ZixunReplys { get; set; }
 
-        public DbSet<Orders> Orders { get; set; }
+        public DbSet<FensiOrders> FensiOrders { get; set; }
         public DbSet<PsyOrders> PsyOrders { get; set; }
 
         public DbSet<XCXSucaiSelected> XCXSucaiSelecteds { get; set; }

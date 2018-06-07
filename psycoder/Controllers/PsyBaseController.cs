@@ -16,6 +16,11 @@ namespace psycoder.Controllers
                 //filterContext.HttpContext.Response.Redirect("/User/Login");
                 filterContext.Result = Redirect("/PsyAccount/Login");
             }
+            if (Session["pid"] == null)
+            {
+                //filterContext.HttpContext.Response.Redirect("/User/Login");
+                filterContext.Result = Redirect("/PsyAccount/Login");
+            }
         }
 	}
 }

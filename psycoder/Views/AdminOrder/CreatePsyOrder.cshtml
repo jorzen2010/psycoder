@@ -1,0 +1,172 @@
+﻿@model psycoderEntity.PsyOrders
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.title="小程序订单";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            新增 @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            新增 @ViewBag.title
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    @using (Html.BeginForm("CreatePsyOrder", "AdminOrder", FormMethod.Post, new { @class = "form-horizontal", @name = "Create", @id = "Create" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="box-body">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AppId, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.AppId, new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.AppId)
+                                       </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AppSecret, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.AppSecret, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AppSecret)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ExpiryTime, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.ExpiryTime, new { @class = "form-control", @Value = DateTime.Now.AddYears(1).AddMonths(1).ToString("yyyy-MM-dd") })
+                                        @Html.ValidationMessageFor(model => model.ExpiryTime)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+
+                                        <select class="form-control" name="Status" id="Status">
+                                            <option>未付款</option>
+                                            <option>已付款</option>
+                                            <option>已过期</option>
+                                            <option>已禁用</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Beizhu, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextAreaFor(model => model.Beizhu, new { @class = "form-control", @rows="4" })
+                                        @Html.ValidationMessageFor(model => model.Beizhu)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Seller, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" value="公众平台官方" readonly="readonly" />
+                                        @Html.HiddenFor(model => model.Seller, new { @class = "form-control",@Value="1" })
+                                        @Html.ValidationMessageFor(model => model.Seller)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Product, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" value="小程序产品" readonly="readonly" />
+                                        @Html.HiddenFor(model => model.Customer, new { @class = "form-control", @Value = "1" })
+                                        @Html.ValidationMessageFor(model => model.Product)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Customer, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" value="用户名" readonly="readonly"/>
+                                        @Html.HiddenFor(model => model.Customer, new { @class = "form-control",@Value=ViewBag.pid })
+                                        @Html.ValidationMessageFor(model => model.Customer)
+                                    </div>
+                                </div>
+
+                              
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CreateTime, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.CreateTime, new { @class = "form-control" ,@Value=DateTime.Now,@readonly="readonly"})
+                                        @Html.ValidationMessageFor(model => model.CreateTime)
+                                    </div>
+                                </div>
+
+                               
+
+
+
+                             
+
+
+                            </div>
+
+
+                        </div>
+
+                    <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <button class="btn btn-default">取消</button>
+                            <button type="submit" class="btn btn-primary pull-right">保存并发布</button>
+                        </div>
+
+                    }
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+
+    <script type="text/javascript">
+        $('#ExpiryTime').datetimepicker({
+            language: "zh-CN", //汉化
+            todayBtn: "true",  //显示今天按钮
+            autoclose: true,   //选择日期后自动关闭日期选择框
+            todayHighlight: true,   //当天高亮显示
+            minView: "month",   //不显示时分秒
+            showMeridian: 1,
+            format:"yyyy-mm-dd",
+            pickerPosition: "bottom-left"
+        });
+
+    </script>
+}

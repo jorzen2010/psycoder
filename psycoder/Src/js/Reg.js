@@ -239,7 +239,7 @@ function NextStep(step) {
 
                         goStep(2);
                         $("[name='UserEmail']").attr("value", PsyUserEmail);
-                        alert(data.MessageInfo);
+                       // alert(data.MessageInfo);
                     }
                     else {
                         alert("操作失败，请检查输入是否正确！");
@@ -280,7 +280,7 @@ function NextStep(step) {
                     if (data.MessageStatus) {
 
                         goStep(step);
-                        alert(data.MessageInfo);
+                      //  alert(data.MessageInfo);
                     }
                     else {
                         alert("操作失败，请检查输入是否正确！");
@@ -323,7 +323,7 @@ function NextStep(step) {
                     if (data.MessageStatus) {
 
                         goStep(step);
-                        alert(data.MessageInfo);
+                      //  alert(data.MessageInfo);
                     }
                     else {
                         alert("操作失败，请检查输入是否正确！");
@@ -366,7 +366,7 @@ function NextStep(step) {
                     if (data.MessageStatus) {
 
                         goStep(step);
-                        alert(data.MessageInfo);
+                     //   alert(data.MessageInfo);
                     }
                     else {
                         alert("操作失败，请检查输入是否正确！");

@@ -36,7 +36,7 @@ namespace psycoder.Controllers
         {
             int PsyId = 1;
             Pager pager = new Pager();
-            pager.table = "PsyOrders";
+            pager.table = "FensiOrders";
             pager.strwhere = "Seller=" + PsyId;
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
@@ -44,8 +44,8 @@ namespace psycoder.Controllers
             pager.FiledOrder = "Id desc";
 
             pager = CommonDal.GetPager(pager);
-            IList<PsyOrders> dataList = DataConvertHelper<PsyOrders>.ConvertToModel(pager.EntityDataTable);
-            var PageList = new StaticPagedList<PsyOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            IList<FensiOrders> dataList = DataConvertHelper<FensiOrders>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<FensiOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
         }
 

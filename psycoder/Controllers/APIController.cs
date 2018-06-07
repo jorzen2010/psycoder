@@ -195,6 +195,9 @@ namespace psycoder.Controllers
 
         public ActionResult OnLogin(string js_code)
         {
+            //ZixunshiUser psyUser = new ZixunshiUser();
+            //psyUser = unitOfWork.zixunshiUsersRepository.GetByID(pid);
+
             string json=string.Empty;
             //这几个值都应该从数据库中获取。
             string  appid = "wxee5a6a13000ac564";

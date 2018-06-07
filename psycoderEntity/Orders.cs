@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace psycoderEntity
 {
-    public class Orders
+    public class FensiOrders
     {
         [Key]
         public int Id { get; set; }
@@ -48,6 +48,13 @@ namespace psycoderEntity
 
         [Display(Name = "产品ID")]
         public int Product { get; set; }
+
+        [Display(Name = "appid")]
+
+        public string AppId { get; set; }
+
+        [Display(Name = "秘钥secret")]
+        public string AppSecret { get; set; }
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }

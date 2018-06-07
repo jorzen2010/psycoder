@@ -14,7 +14,7 @@ namespace psycoder.Controllers
     public class HudongSetController : PsyBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-        private int psyId = 1;
+        private int psyId = int.Parse(System.Web.HttpContext.Current.Session["pid"].ToString());
 
         public ActionResult QuestionList(int? page)
         {

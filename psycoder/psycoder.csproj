@@ -2730,12 +2730,6 @@
     <Content Include="plugins\ueditor\net\Bin\Newtonsoft.Json.pdb" />
     <Content Include="plugins\ueditor\net\Bin\Newtonsoft.Json.xml" />
     <Content Include="plugins\ueditor\net\net.sln" />
-    <Content Include="plugins\ueditor\net\upload\image\20170423\6362855680297772615652988.jpg" />
-    <Content Include="plugins\ueditor\net\upload\image\20170423\6362855724797701645352766.jpg" />
-    <Content Include="plugins\ueditor\net\upload\image\20170423\6362855742145484962531521.jpg" />
-    <Content Include="plugins\ueditor\net\upload\image\20170423\6362855763708876652156870.jpg" />
-    <Content Include="plugins\ueditor\net\upload\image\20170423\6362855763735077826141244.jpg" />
-    <Content Include="plugins\ueditor\net\upload\image\20170423\6362855835126039646940235.jpg" />
     <Content Include="plugins\ueditor\themes\default\css\ueditor.css" />
     <Content Include="plugins\ueditor\themes\default\css\ueditor.min.css" />
     <Content Include="plugins\ueditor\themes\default\dialogbase.css" />
@@ -3104,9 +3098,11 @@
     <Content Include="Views\PsyAccount\Login.cshtml" />
     <Content Include="Views\Fensi\FensiIndex.cshtml" />
     <Content Include="Views\Fensi\OrderIndex.cshtml" />
+    <Content Include="Views\AdminOrder\CreatePsyOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="plugins\ueditor\net\upload\image\" />
     <Folder Include="Views\AdminBase\" />
     <Folder Include="Views\API\" />
     <Folder Include="Views\PsyBase\" />

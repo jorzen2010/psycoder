@@ -42,7 +42,8 @@
                                 <th>手机号码</th>
                                 <th>介绍</th>
                                 <th>状态</th>
-                                <th>开通小程序</th>
+                                <th>小程序设置</th>
+                                <th>小程序到期时间</th>
                             </tr>
                             @foreach (var item in Model)
                             {
@@ -56,7 +57,8 @@
                                     <input type="checkbox" name="PsyStatus" value="@item.Id" @(item.PsyStatus ? "checked='checked'" : "") />
                                         @Html.AntiForgeryToken()
                                     </td>
-                                    <td><a class="btn btn-info btn-sm" href="@Url.Action("CreatePsyOrder", "AdminOrder", new { pid=item.Id})">开通小程序</a> </td>
+                                    <td><a class="btn btn-info btn-sm" href="@Url.Action("CreatePsyOrder", "AdminOrder", new { pid=item.Id})">小程序设置</a> </td>
+                                    <td>小程序到期时间 </td>
                                 </tr>
                             }
 
