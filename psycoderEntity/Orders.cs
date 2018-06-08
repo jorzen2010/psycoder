@@ -78,4 +78,20 @@ namespace psycoderEntity
         已禁用,
     
     }
+
+    public class Product
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Display(Name = "产品名称")]
+        public string ProductName { get; set; }
+
+        [Display(Name = "产品价格")]
+        public float ProductPrice { get; set; }
+
+        [Display(Name = "商家ID")]
+        public int Zixunshi { get; set; }
+ 
+    }
 }

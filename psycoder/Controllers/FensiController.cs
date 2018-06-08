@@ -49,5 +49,9 @@ namespace psycoder.Controllers
             return View(PageList);
         }
 
+        public ActionResult OrderPriceSetting()
+        {
+            return View();
+        }
 	}
 }

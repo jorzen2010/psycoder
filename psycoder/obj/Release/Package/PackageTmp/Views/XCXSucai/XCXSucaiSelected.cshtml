@@ -25,7 +25,7 @@
                   @ViewBag.Title
                        </h3>
                     <div class="box-tools">
-                        <a class="btn btn-info btn-sm" href="@Url.Action("XCXSucaiAll", "XCXSucai", new { type=ViewBag.type,psyId=1})"><i class="fa fa-list"></i> 查看全部 @ViewBag.Title</a>
+                        <a class="btn btn-info btn-sm" href="@Url.Action("XCXSucaiAll", "XCXSucai", new { type = ViewBag.type, psyId = ViewBag.PsyId })"><i class="fa fa-list"></i> 查看全部 @ViewBag.Title</a>
 
                     </div>
                 </div>
@@ -72,13 +72,13 @@
 
                                         }
                                    
-                                        @if (PsyUserService.GetIfSelectSucai(1, item.Sucai))
-                                        {
-                                            <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.Sucai" data-selected="false">取消选择</button>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyid="1" data-sucaiid="@item.Sucai" data-selected="true">选择</button>
+                                        @if (PsyUserService.GetIfSelectSucai(ViewBag.PsyId, item.Sucai))
+{
+    <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyid="@ViewBag.PsyId" data-sucaiid="@item.Sucai" data-selected="false">取消选择</button>
+}
+else
+{
+                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyid="@ViewBag.PsyId" data-sucaiid="@item.Sucai" data-selected="true">选择</button>
                                         }
 
                                     </td>

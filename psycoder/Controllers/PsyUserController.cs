@@ -14,11 +14,46 @@ namespace psycoder.Controllers
     public class PsyUserController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-        private int psyId = 1;
 
         public ActionResult Register()
         {
             return View();
+        }
+
+        public ActionResult CheckPsyUserEmail(string PsyUserEmail)
+        {
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+             var psyUsers = unitOfWork.zixunshiUsersRepository.Get(filter: u => u.PsyUserEmail == PsyUserEmail);
+             string json = string.Empty;
+             if (psyUsers.Count() > 0)
+             {
+                 json = js.Serialize(new { valid = false });
+             }
+             else
+             {
+                 json = js.Serialize(new { valid = true });
+             }
+            return Content(json);;
+ 
+        }
+
+        public ActionResult CheckPsyUserNubmer(string PsyNumber)
+        {
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = string.Empty;
+            bool result = false;
+            result = CommonTools.Verify(PsyNumber);
+            if (result)
+            {
+                json = js.Serialize(new { valid = true });
+            }
+            else
+            {
+                json = js.Serialize(new { valid = false });
+            }
+            
+            return Content(json); ;
+
         }
 
         [HttpPost]
@@ -192,47 +227,6 @@ namespace psycoder.Controllers
 
                 msg.MessageStatus = "false";
                 msg.MessageInfo = "个人品牌失败：记录没找到";
-            }
-
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult XCXSetting()
-        {
-            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(psyId);
-            return View(psyUser);
-        }
-
-        public ActionResult RenzhengInfo()
-        {
-          
-            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(psyId);
-            return View(psyUser);
-        }
-
-        public ActionResult Setting()
-        {
-           
-            ZixunshiUser psyUser = unitOfWork.zixunshiUsersRepository.GetByID(psyId);
-            return View(psyUser);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult UpdateOpt(int Id, string optName, string optVal)
-        {
-            Message msg = new Message();
-            string sql = "update ZixunshiUser set " + optName + "='" + optVal + "' where Id=" + Id;
-            try
-            {
-                unitOfWork.zixunshiUsersRepository.UpdateWithRawSql(sql);
-                msg.MessageStatus = "true";
-                msg.MessageInfo = "更新成功";
-            }
-            catch (Exception ex)
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "更新失败" + ex.ToString();
             }
 
             return Json(msg, JsonRequestBehavior.AllowGet);

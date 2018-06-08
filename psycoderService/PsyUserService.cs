@@ -13,10 +13,34 @@ namespace psycoderService
 
         public static string GetPsyUserNameById(int id)
         {
+            UnitOfWork unitOfWork = new UnitOfWork();
             string username = string.Empty;
             if (id == 0)
             {
                 username = "官方提供";
+            }
+            else
+            {
+                ZixunshiUser zixunshi= unitOfWork.zixunshiUsersRepository.GetByID(id);
+                username = zixunshi.PsyNickName;
+ 
+            }
+            return username;
+
+        }
+
+        public static string GetFensiUserNameById(int id)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            string username = string.Empty;
+            if (id == 0)
+            {
+                username = "体验用户";
+            }
+            else
+            {
+                FensiUser fensi = unitOfWork.fensiUsersRepository.GetByID(id);
+                username = fensi.nickName;
             }
             return username;
 

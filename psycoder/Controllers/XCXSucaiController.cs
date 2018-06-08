@@ -16,6 +16,7 @@ namespace psycoder.Controllers
     public class XCXSucaiController : PsyBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+        private int psyId = int.Parse(System.Web.HttpContext.Current.Session["pid"].ToString());
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -57,7 +58,6 @@ namespace psycoder.Controllers
 
         public ActionResult XCXSucaiSelected(int? page, string type = "tuwen")
         {
-            int psyId = 1;
             if (type == "tuwen")
             {
                 ViewBag.title = "图文素材";
@@ -89,6 +89,7 @@ namespace psycoder.Controllers
             pager = CommonDal.GetPager(pager);
             IList<XCXSucaiSelected> dataList = DataConvertHelper<XCXSucaiSelected>.ConvertToModel(pager.EntityDataTable);
             var PageList = new StaticPagedList<XCXSucaiSelected>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            ViewBag.PsyId = psyId;
             return View(PageList);
         }
 
@@ -125,6 +126,7 @@ namespace psycoder.Controllers
             pager = CommonDal.GetPager(pager);
             IList<XCXSucai> dataList = DataConvertHelper<XCXSucai>.ConvertToModel(pager.EntityDataTable);
             var PageList = new StaticPagedList<XCXSucai>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            ViewBag.PsyId = psyId;
             return View(PageList);
         }
 

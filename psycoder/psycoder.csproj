@@ -195,8 +195,8 @@
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\AdminOrderController.cs" />
     <Compile Include="Controllers\PsyBaseController.cs" />
+    <Compile Include="Controllers\PsyUserSettingController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\XCXSucaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3053,7 +3053,6 @@
     <Content Include="Views\AdminHudong\HudongSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoSet.cshtml" />
     <Content Include="Views\AdminHudong\GuanggaoList.cshtml" />
-    <Content Include="Views\PsyUser\Register00.cshtml" />
     <Content Include="Views\PsyUser\Register.cshtml" />
     <Content Include="Src\js\reg.min.js" />
     <Content Include="Views\AdminNotice\Create.cshtml" />
@@ -3090,15 +3089,16 @@
     <Content Include="Views\HudongSet\CreateZiyoushuxieReply.cshtml" />
     <Content Include="Views\HudongSet\CreateZixunReply.cshtml" />
     <Content Include="Views\HudongSet\CreateQuestionReply.cshtml" />
-    <Content Include="Views\PsyUser\Setting.cshtml" />
-    <Content Include="Views\PsyUser\XCXSetting.cshtml" />
-    <Content Include="Views\PsyUser\ZhuceInfo.cshtml" />
-    <Content Include="Views\PsyUser\RenzhengInfo.cshtml" />
     <Content Include="Views\AdminAccount\Login.cshtml" />
     <Content Include="Views\PsyAccount\Login.cshtml" />
     <Content Include="Views\Fensi\FensiIndex.cshtml" />
     <Content Include="Views\Fensi\OrderIndex.cshtml" />
     <Content Include="Views\AdminOrder\CreatePsyOrder.cshtml" />
+    <Content Include="Views\PsyUserSetting\RenzhengInfo.cshtml" />
+    <Content Include="Views\PsyUserSetting\Setting.cshtml" />
+    <Content Include="Views\PsyUserSetting\XCXSetting.cshtml" />
+    <Content Include="Views\PsyUserSetting\ZhuceInfo.cshtml" />
+    <Content Include="Views\Fensi\OrderPriceSetting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

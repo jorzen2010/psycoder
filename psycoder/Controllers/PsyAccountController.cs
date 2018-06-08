@@ -84,6 +84,10 @@ namespace psycoder.Controllers
                     cookieid.Value = psyUsers.First().Id.ToString();
                     System.Web.HttpContext.Current.Response.Cookies.Add(cookieid);
 
+                    HttpCookie cookienickname = new HttpCookie("nickname");
+                    cookienickname.Value = psyUsers.First().PsyNickName.ToString();
+                    System.Web.HttpContext.Current.Response.Cookies.Add(cookienickname);
+
                     System.Web.HttpContext.Current.Session["psyid"] = psyUsers.First().PsyUserEmail.ToString();
                     System.Web.HttpContext.Current.Session["psyname"] = username;
                     System.Web.HttpContext.Current.Session["pid"] = psyUsers.First().Id.ToString();

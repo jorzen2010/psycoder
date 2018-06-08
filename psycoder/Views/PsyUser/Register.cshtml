@@ -64,36 +64,33 @@
                                 <div class="col-md-offset-2 col-md-8">
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
-                                    <input type="hidden" name="PsyAvatar" id="PsyAvatar" value="/Resourse/img/avatar.jpg" />
+                                    <input type="hidden" name="PsyAvatar" id="PsyAvatar" value="/Resource/img/avatar.jpg" />
                                     <div class="form-group">
                                         <label for="PsyUserEmail" class="col-sm-3 control-label">邮箱</label>
                                         <div class="col-sm-8">
-                                            <input type="email" class="form-control" id="PsyUserEmail" name="PsyUserEmail">
+                                            <input type="email" class="form-control" id="PsyUserEmail" name="PsyUserEmail" placeholder="作为平台唯一登录帐号，请填写未被心理咨询师公众平台注册的邮箱">
                                             <br />
                                             <button class="btn btn-default" type="button" onclick="CodeAjax()">获取验证码</button>
-                                            <p class="help-block">作为平台唯一登录帐号，请填写未被心理咨询师公众平台注册的邮箱</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="EmailCode" class="col-sm-3 control-label">邮箱验证码</label>
                                         <div class="col-sm-8">
                                             <input type="hidden" class="form-control" id="EmailSendCode" name="EmailSendCode">
-                                            <input type="text" class="form-control" id="EmailCode" name="EmailCode">
-                                            <p class="help-block">激活邮箱后将收到验证邮件，请回填邮件中的6位验证码</p>
+                                            <input type="text" class="form-control" id="EmailCode" name="EmailCode" placeholder="激活邮箱后将收到验证邮件，请回填邮件中的6位验证码">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="PsyPassword" class="col-sm-3 control-label">密码</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="PsyPassword" name="PsyPassword">
-                                            <p class="help-block">字母、数字或者英文符号，最短8位，区分大小写</p>
+                                            <input type="password" class="form-control" id="PsyPassword" name="PsyPassword" placeholder="字母、数字或者英文符号，最短8位，区分大小写">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="PsyPasswordConfirm" class="col-sm-3 control-label">确认密码</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="PsyPasswordConfirm" name="PsyPasswordConfirm">
-                                            <p class="help-block">请再次输入密码</p>
+                                            <input type="password" class="form-control" id="PsyPasswordConfirm" name="PsyPasswordConfirm" placeholder="请再次输入密码">
+
                                         </div>
                                     </div>
                                     <div class="form-group">

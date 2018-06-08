@@ -90,13 +90,13 @@
 
                                         }
                                    
-                                        @if (PsyUserService.GetIfSelectSucai(1, item.Id))
-                                        { 
-                                            <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyId="1" data-sucaiId="@item.Id" data-selected="false">取消选择</button> 
-                                        }
+                                        @if (PsyUserService.GetIfSelectSucai(ViewBag.PsyId, item.Id))
+{
+    <button class="btn btn-danger btn-xs ScSelect" type="button" data-psyid="@ViewBag.PsyId" data-sucaiid="@item.Id" data-selected="false">取消选择</button>
+}
                                         else
-                                        { 
-                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyId="1" data-sucaiId="@item.Id" data-selected="true">选择</button> 
+                                        {
+                                            <button class="btn btn-success btn-xs ScSelect" type="button" data-psyid="@ViewBag.PsyId" data-sucaiid="@item.Id" data-selected="true">选择</button>
                                         }
                                         
                                     </td>
@@ -175,9 +175,12 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.MessageStatus)
-                    { alertconfirm(data.MessageInfo); }
+                    {
+                        
+                        alertconfirm("选择成功，你可以继续选择或返回");
+                    }
                     else
-                    { alertconfirm("重置密码失败！"); }
+                    { alertconfirm("选择失败！"); }
 
                 }
             });

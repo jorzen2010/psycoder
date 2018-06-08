@@ -1,4 +1,36 @@
 ﻿<div id="header">
     <div class="logo pull-left">心理咨询师专用公众平台</div>
-    <div class="regbtn pull-right"><a href="@Url.Action("Register", "PsyUser")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 立即注册</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="###"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 简体中文</a></div>
+    <div class="regbtn pull-right">
+
+        @if (string.IsNullOrEmpty(Session["pid"].ToString()))
+        {
+            <div>
+                <a href="@Url.Action("Register", "PsyUser")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 立即注册</a>
+                &nbsp;&nbsp; | &nbsp;&nbsp;
+                <a href="###"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 简体中文</a>
+
+            </div>
+
+
+        }
+        else
+        {
+           @Request.Cookies["nickname"].Value.ToString();
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  @Session["psyname"] <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("Index","Notice")">查看系统消息</a></li>
+                    <li><a href="@Url.Action("Setting","PsyUserSetting")">个人设置</a></li>
+                    <li><a href="@Url.Action("XCXSetting", "PsyUserSetting")">小程序设置</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="@Url.Action("Logout", "PsyAccount")">退出</a></li>
+                </ul>
+            </div>
+
+        }
+
+
+    </div>
 </div>

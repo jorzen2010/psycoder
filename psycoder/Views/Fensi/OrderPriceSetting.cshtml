@@ -1,6 +1,6 @@
-﻿@model psycoderEntity.ZiyoushuxieReply
+﻿@model psycoderEntity.Product
 @{
-    ViewBag.Title = "自由书写演示";
+    ViewBag.Title = "VIP会员价格设置";
 }
 
 @section Topcss {
@@ -22,27 +22,32 @@
           
         </div>
         <!-- /.box-header -->
-        @using (Html.BeginForm("CreateZiyoushuxieReply", "HudongSet", FormMethod.Post, new { @class = "form-horizontal", @name = "GuanggaoSet", @id = "GuanggaoSet" }))
+        @using (Html.BeginForm("OrderPriceSetting", "Fensi", FormMethod.Post, new { @class = "form-horizontal", @name = "OrderPriceSetting", @id = "OrderPriceSetting" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.PsyUser, new { Value = Session["pid"] })
-            @Html.HiddenFor(model => model.FensiUser, new { Value = "0" })
-            @Html.HiddenFor(model => model.CreateTime, new { Value =DateTime.Now })
+            @Html.HiddenFor(model => model.Zixunshi, new { Value = Session["pid"] })
             <input type="hidden" name="type" value="@ViewBag.type" />
             <div class="box-body">
                 <div class="col-md-12">
 
-
-
                     <div class="form-group">
-                        @Html.LabelFor(model => model.ReplyContent, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.ProductName, new { @class = "control-label col-md-2" })
                         <div class="col-sm-9">
-                            @Html.TextAreaFor(model => model.ReplyContent, new { @class = "form-control",@rows="8" })
-                            @Html.ValidationMessageFor(model => model.ReplyContent)
+                            @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @rows = "8" })
+                            @Html.ValidationMessageFor(model => model.ProductName)
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductPrice, new { @class = "control-label col-md-2" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control", @rows = "8" })
+                            @Html.ValidationMessageFor(model => model.ProductPrice)
+                        </div>
+                    </div>
+
+                  
                   
 
 
@@ -51,7 +56,7 @@
             </div>
                         <!-- /.box-body -->
             <div class="box-footer clearfix" id="guanggaobtn">
-                <a class="btn btn-default" href="@Url.Action("ZiyoushuxieReplyList", "HudongSet")">返回</a>
+                <a class="btn btn-default" href="@Url.Action("QuestionReplyList", "HudongSet")">返回</a>
                 <div class="pull-right">
                     <button type="submit" class="btn btn-primary">保存并发布</button>
                 </div>

@@ -25,6 +25,13 @@
                         max: 20,
                         message: '用户名长度必须在6到30之间'
                     },
+                    remote: {
+                        url: '/PsyUser/CheckPsyUserEmail',
+                        message: '此邮箱已经被注册',
+                        delay: 2000,
+                        type:'POST'
+                        
+                    },
                 }
             },
             PsyPassword: {
@@ -114,6 +121,19 @@
                 validators: {
                     notEmpty: {
                         message: '身份证号不能为空'
+                    },
+                    stringLength: {
+                        min: 15,
+                        max: 18,
+                        message: '身份证号长度为15位或18位'
+                    },
+                    threshold: 18,
+                    remote: {
+                        url: '/PsyUser/CheckPsyUserNubmer',
+                        message: '身份证校验失败，请填写正确的身份证号码',
+                        delay: 2000,
+                        type: 'POST'
+
                     },
                 }
             },

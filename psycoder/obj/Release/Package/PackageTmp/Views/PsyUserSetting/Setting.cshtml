@@ -40,7 +40,7 @@
                             
                                     @Html.TextBoxFor(model => model.PsyUserEmail, new { @class = "SettingInput col-sm-10", @readOnly = "true" })
                                 </div>
-                                <div class="col-sm-1 editBtn" data-z="">修改</div>
+                                
                             </div>
                         </li>
 
@@ -469,7 +469,7 @@
                 var token = $('[name=__RequestVerificationToken]').val();
                 $.ajax({
                     type: 'POST',
-                    url: "/PsyUser/UpdateOpt",
+                    url: "/PsyUserSetting/UpdateOpt",
                     data: {
                         Id: psyId,
                         optName: opt_name,
