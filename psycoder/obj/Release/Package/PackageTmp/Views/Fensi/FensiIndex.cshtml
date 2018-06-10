@@ -2,18 +2,24 @@
 @using PagedList;
 @using PagedList.Mvc;
 @using psycoderService;
+@{
+    ViewBag.Title = "我的粉丝";
+}
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 }
 <div class="content">
 
+    <h3 class="pageTitle">
+        @ViewBag.Title
+    </h3>
 
 
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">我的粉丝</h3>
+                    <h3 class="box-title">@ViewBag.Title</h3>
                     
                 </div>
                 <!-- /.box-header -->

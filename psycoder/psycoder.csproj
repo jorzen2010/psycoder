@@ -3061,7 +3061,7 @@
     <Content Include="Views\Notice\Index.cshtml" />
     <Content Include="Views\Notice\NoticeView.cshtml" />
     <Content Include="Views\Shared\_PartialBeiyong.cshtml" />
-    <Content Include="Views\AdminOrder\OrderList.cshtml" />
+    <Content Include="Views\AdminOrder\FensiOrderList.cshtml" />
     <Content Include="Views\AdminOrder\PsyOrderList.cshtml" />
     <Content Include="Views\AdminHudong\QuestionReplyList.cshtml" />
     <Content Include="Views\AdminQuestion\Create.cshtml" />
@@ -3099,6 +3099,8 @@
     <Content Include="Views\PsyUserSetting\XCXSetting.cshtml" />
     <Content Include="Views\PsyUserSetting\ZhuceInfo.cshtml" />
     <Content Include="Views\Fensi\OrderPriceSetting.cshtml" />
+    <Content Include="Views\AdminUser\ZixunshiApp.cshtml" />
+    <Content Include="Views\AdminOrder\PsyUserOrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

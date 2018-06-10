@@ -117,7 +117,7 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             int ZixunReplyCount = 0;
-            var ZixunReplys = unitOfWork.ziyoushuxieReplyRepository.Get(filter: u => u.PsyUser == pid);
+            var ZixunReplys = unitOfWork.zixunReplyRepository.Get(filter: u => u.PsyUser == pid);
             ZixunReplyCount = ZixunReplys.Count();
             return ZixunReplyCount;
         }

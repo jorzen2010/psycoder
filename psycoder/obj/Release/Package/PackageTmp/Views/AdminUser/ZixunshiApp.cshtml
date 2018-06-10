@@ -1,0 +1,111 @@
+﻿@using psycoderService;
+@model psycoderEntity.ZixunshiApp
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.title="小程序APP设置";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+             @ViewBag.title
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                             @ViewBag.title
+                        </h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                 
+                        <form class="form-horizontal" action="/AdminUser/@ViewBag.acmethod" method="post">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            @if (ViewBag.acmethod == "EditZixunshiApp")
+                            { 
+                                 @Html.HiddenFor(model => model.Id, new { @class = "form-control"})
+                            }
+                           
+                            <div class="box-body">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PsyUser, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.HiddenFor(model => model.PsyUser, new { @class = "form-control" ,@Value=ViewBag.pid})
+                                            <input class="form-control" value="@PsyUserService.GetPsyUserNameById(ViewBag.pid)" readonly="readonly"/>
+                                            @Html.ValidationMessageFor(model => model.PsyUser)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AppId, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(model => model.AppId, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.AppId)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AppSecret, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(model => model.AppSecret, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.AppSecret)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AppInfo, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            @Html.TextAreaFor(model => model.AppInfo, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(model => model.AppInfo)
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+                                <button class="btn btn-default">取消</button>
+                                <button type="submit" class="btn btn-primary pull-right">保存</button>
+                            </div>
+
+                           </form>
+</div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+@section BottomScripts {
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+
+    <script type="text/javascript">
+
+
+    </script>
+}

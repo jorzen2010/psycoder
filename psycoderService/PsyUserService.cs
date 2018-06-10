@@ -29,6 +29,24 @@ namespace psycoderService
 
         }
 
+        public static string GetProductNameById(int id)
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            string ProductName = string.Empty;
+            if (id == 0)
+            {
+                ProductName = "默认VIP会员订单";
+            }
+            else
+            {
+                Product product = unitOfWork.productsRepository.GetByID(id);
+                ProductName = product.ProductName;
+
+            }
+            return ProductName;
+
+        }
+
         public static string GetFensiUserNameById(int id)
         {
             UnitOfWork unitOfWork = new UnitOfWork();

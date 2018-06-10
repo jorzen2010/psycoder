@@ -8,9 +8,6 @@
 
     <h3 class="pageTitle">
         小程序设置 <small>此内容将公开显示在您的推广小程序中，让来访者找到你，了解你！</small>
-        @*<span class="pull-right">
-                <small style="font-size:12px">价值说明</small>
-            </span>*@
     </h3>
     <div class="box">
         <div class="box-header">
@@ -182,7 +179,7 @@
             if ($("#xcxsetting").data('bootstrapValidator').isValid()) {
 
                // alert("验证成功");
-                var psyId = 2;
+                var psyId = $("[name='Id']").val();
                 var opt_name = $(opt).attr("data-z");
 
 
@@ -203,8 +200,8 @@
                         if (data.MessageStatus) {
                             //  alert(data.MessageInfo);
                             // location.reload();
-                          //  alert("更新成功！");
-                          location.reload();
+                           // alert("更新成功！");
+                         location.reload();
                         }
                         else { alert("更新失败！"); }
 

@@ -283,6 +283,36 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<Product> ProductsRepository;
+
+         public GenericRepository<Product> productsRepository
+         {
+             get
+             {
+
+                 if (this.ProductsRepository == null)
+                 {
+                     this.ProductsRepository = new GenericRepository<Product>(context);
+                 }
+                 return ProductsRepository;
+             }
+         }
+
+         private GenericRepository<ZixunshiApp> ZixunshiAppsRepository;
+
+         public GenericRepository<ZixunshiApp> zixunshiAppsRepositoryRepository
+         {
+             get
+             {
+
+                 if (this.ZixunshiAppsRepository == null)
+                 {
+                     this.ZixunshiAppsRepository = new GenericRepository<ZixunshiApp>(context);
+                 }
+                 return ZixunshiAppsRepository;
+             }
+         }
+
 
 
        

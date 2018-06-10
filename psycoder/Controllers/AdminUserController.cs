@@ -98,5 +98,51 @@ namespace psycoder.Controllers
             }
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult CreateZixunshiApp(ZixunshiApp app)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.zixunshiAppsRepositoryRepository.Insert(app);
+                unitOfWork.Save();
+                return RedirectToAction("PsyUser", "AdminUser");
+            }
+            return RedirectToAction("ZixunshiApp", "AdminUser", new { pid=app.PsyUser});
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult EditZixunshiApp(ZixunshiApp app)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.zixunshiAppsRepositoryRepository.Update(app);
+                unitOfWork.Save();
+                return RedirectToAction("PsyUser", "AdminUser");
+            }
+            return RedirectToAction("ZixunshiApp", "AdminUser", new { pid = app.PsyUser });
+        }
+
+        public ActionResult ZixunshiApp(int pid)
+        {
+            ZixunshiApp app = new ZixunshiApp();
+            var apps = unitOfWork.zixunshiAppsRepositoryRepository.Get(filter:u =>u.PsyUser==pid);
+            if (apps.Count() > 0)
+            {
+                ViewBag.acmethod = "EditZixunshiApp";
+                ViewBag.pid = pid;
+                app = apps.First();
+                return View(app);
+            }
+            else
+            {
+                ViewBag.acmethod = "CreateZixunshiApp";
+                ViewBag.pid = pid;
+                return View();
+            }
+            
+        }
 	}
 }

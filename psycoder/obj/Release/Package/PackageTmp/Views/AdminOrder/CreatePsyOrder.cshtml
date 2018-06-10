@@ -1,4 +1,5 @@
-﻿@model psycoderEntity.PsyOrders
+﻿@using psycoderService;
+@model psycoderEntity.PsyOrders
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.title="小程序订单";
@@ -35,18 +36,10 @@
                             <div class="col-md-12">
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.AppId, new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.ProductPrice, new { @class = "control-label col-md-2" })
                                     <div class="col-sm-9">
-                                        @Html.TextBoxFor(model => model.AppId, new { @class = "form-control"})
-                                        @Html.ValidationMessageFor(model => model.AppId)
-                                       </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.AppSecret, new { @class = "control-label col-md-2" })
-                                    <div class="col-sm-9">
-                                        @Html.TextBoxFor(model => model.AppSecret, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.AppSecret)
+                                        @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ProductPrice)
                                     </div>
                                 </div>
 
@@ -100,7 +93,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Customer, new { @class = "control-label col-md-2" })
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" value="用户名" readonly="readonly"/>
+                                        <input type="text" class="form-control" value="@PsyUserService.GetPsyUserNameById(ViewBag.pid)" readonly="readonly"/>
                                         @Html.HiddenFor(model => model.Customer, new { @class = "form-control",@Value=ViewBag.pid })
                                         @Html.ValidationMessageFor(model => model.Customer)
                                     </div>
@@ -115,13 +108,6 @@
                                         @Html.ValidationMessageFor(model => model.CreateTime)
                                     </div>
                                 </div>
-
-                               
-
-
-
-                             
-
 
                             </div>
 

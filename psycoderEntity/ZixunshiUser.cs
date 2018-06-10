@@ -46,4 +46,19 @@ namespace psycoderEntity
         [Display(Name = "注册时间")]
         public DateTime CreateTime { get; set; }
     }
+
+    public class ZixunshiApp
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "咨询师")]
+        public int PsyUser { get; set; }
+        [Display(Name = "appid")]
+        public string AppId { get; set; }
+        [Display(Name = "秘钥secret")]
+        public string AppSecret { get; set; }
+        [Display(Name = "小程序说明")]
+        public string AppInfo { get; set; }
+
+    }
 }

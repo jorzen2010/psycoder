@@ -28,7 +28,7 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.PsyUser, new { Value = "1" })
+            @Html.HiddenFor(model => model.PsyUser, new { Value = Session["pid"].ToString() })
             @Html.HiddenFor(model => model.GuanggaoStatus, new { Value = "True" })
             @Html.HiddenFor(model => model.CreateTime, new { Value =DateTime.Now })
             <input type="hidden" name="type" value="@ViewBag.type" />

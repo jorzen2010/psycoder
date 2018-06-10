@@ -2,20 +2,28 @@
 @using PagedList;
 @using PagedList.Mvc;
 @using psycoderService;
+@{
+    ViewBag.Title = "我的订单";
+}
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+   
 }
 <div class="content">
 
-
+    <h3 class="pageTitle">
+        @ViewBag.Title
+    </h3>
 
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">我的订单</h3>
-                    
-                </div>
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                    <div class="box-tools">
+                        <a href="@Url.Action("OrderPriceSetting", "Fensi")" class="btn btn-success pull-right">设置会员价格</a> 
+                    </div>
+                    </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">

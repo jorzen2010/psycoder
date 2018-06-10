@@ -15,13 +15,13 @@
         }
         else
         {
-           @Request.Cookies["nickname"].Value.ToString();
+          
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  @Session["psyname"] <span class="caret"></span>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> @Request.Cookies["nickname"].Value.ToString() <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action("Index","Notice")">查看系统消息</a></li>
+                    <li><a href="@Url.Action("Index","Notice")" target="_blank">查看系统消息</a></li>
                     <li><a href="@Url.Action("Setting","PsyUserSetting")">个人设置</a></li>
                     <li><a href="@Url.Action("XCXSetting", "PsyUserSetting")">小程序设置</a></li>
                     <li role="separator" class="divider"></li>

@@ -193,18 +193,24 @@ namespace psycoder.Controllers
 
         }
 
-        public ActionResult OnLogin(string js_code)
+        public ActionResult OnLogin(string js_code,int pid)
         {
             //ZixunshiUser psyUser = new ZixunshiUser();
             //psyUser = unitOfWork.zixunshiUsersRepository.GetByID(pid);
 
             string json=string.Empty;
             //这几个值都应该从数据库中获取。
+            ZixunshiApp app = new ZixunshiApp();
             string  appid = "wxee5a6a13000ac564";
             string secret = "e52e4925d508339ca6c2d76a5262032a";
+            var apps = unitOfWork.zixunshiAppsRepositoryRepository.Get(filter: u => u.PsyUser == pid);
+            if (apps.Count() > 0)
+            {
+                app = apps.First();
+                 appid = app.AppId;
+                 secret = app.AppSecret;
+            }
             string grant_type="authorization_code";
-
-
             json = XiaochengxuAPI.GetOpenidByWxlogin(appid, secret, js_code, grant_type);
 
             return Content(json);  
@@ -474,6 +480,59 @@ namespace psycoder.Controllers
             return Content(json);
 
         }
+
+        public ActionResult GetProductByPid(int pid)
+        {
+            Product product = new Product();
+            var products = unitOfWork.productsRepository.Get(filter:u =>u.Zixunshi==pid);
+            if (products.Count() > 0)
+            {
+                product = products.First();
+            }
+            else
+            {
+                product.Id=0;
+                product.ProductName = "VIP会员";
+                product.ProductPrice = 0;
+                product.Zixunshi = pid;
+            }
+            string json = JsonHelper.JsonSerializerBySingleData(product);
+            return Content(json);
+        }
+
+        public ActionResult CreateVip(int cid,int pid,string tel,string product)
+        {
+            Product pro = new Product();
+            pro = JsonTools.JsonToObject(product, pro) as Product;
+
+
+            string json = string.Empty;
+            FensiUser user = unitOfWork.fensiUsersRepository.GetByID(cid);
+            user.FensiTelephone = tel;
+            unitOfWork.fensiUsersRepository.Update(user);
+            unitOfWork.Save();
+
+
+            FensiOrders order = new FensiOrders();
+            order.Product = pro.Id;
+            order.Seller = pid;
+            order.Customer = cid;
+            order.ProductPrice = pro.ProductPrice;
+            order.CreateTime = DateTime.Now;
+            order.ExpiryTime = DateTime.Now.AddYears(1);
+            order.Beizhu = "";
+            unitOfWork.fensiOrdersRepository.Insert(order);
+            unitOfWork.Save();
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            json = js.Serialize(new { fensiuser = user, fensiorder = order });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+ 
+        }
+
+
+
+
 
 
 

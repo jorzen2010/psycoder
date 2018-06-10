@@ -20,6 +20,8 @@ namespace psycoderEntity
 
         [Display(Name = "产品ID")]
         public int Product { get; set; }
+        [Display(Name = "产品价格")]
+        public float ProductPrice { get; set; }
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
@@ -48,13 +50,8 @@ namespace psycoderEntity
 
         [Display(Name = "产品ID")]
         public int Product { get; set; }
-
-        [Display(Name = "appid")]
-
-        public string AppId { get; set; }
-
-        [Display(Name = "秘钥secret")]
-        public string AppSecret { get; set; }
+        [Display(Name = "产品价格")]
+        public float ProductPrice { get; set; }
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
@@ -72,10 +69,10 @@ namespace psycoderEntity
 
     public enum OrderStatus
     {
-        未付款,
-        已付款,
-        已过期,
-        已禁用,
+        未付款=1,
+        已付款=2,
+        已过期=3,
+        已禁用=0,
     
     }
 
@@ -85,9 +82,11 @@ namespace psycoderEntity
         public int Id { get; set; }
 
         [Display(Name = "产品名称")]
+        [Required]
         public string ProductName { get; set; }
 
         [Display(Name = "产品价格")]
+        [Required(ErrorMessage="请输入价格")]
         public float ProductPrice { get; set; }
 
         [Display(Name = "商家ID")]

@@ -118,6 +118,7 @@
                 }
             },
             PsyNumber: {
+                threshold: 17,
                 validators: {
                     notEmpty: {
                         message: '身份证号不能为空'
@@ -127,7 +128,6 @@
                         max: 18,
                         message: '身份证号长度为15位或18位'
                     },
-                    threshold: 18,
                     remote: {
                         url: '/PsyUser/CheckPsyUserNubmer',
                         message: '身份证校验失败，请填写正确的身份证号码',

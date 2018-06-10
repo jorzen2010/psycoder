@@ -15,12 +15,13 @@ namespace psycoder.Controllers
 {
     public class FensiController : Controller
     {
+        private UnitOfWork unitOfWork = new UnitOfWork();
+        private int psyId = int.Parse(System.Web.HttpContext.Current.Session["pid"].ToString());
         public ActionResult FensiIndex(int? page)
         {
-            int PsyId = 1;
             Pager pager = new Pager();
             pager.table = "FensiUser";
-            pager.strwhere = "Zixunshi="+PsyId;
+            pager.strwhere = "Zixunshi=" + psyId;
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
@@ -34,24 +35,86 @@ namespace psycoder.Controllers
 
         public ActionResult OrderIndex(int? page)
         {
-            int PsyId = 1;
             Pager pager = new Pager();
             pager.table = "FensiOrders";
-            pager.strwhere = "Seller=" + PsyId;
+            pager.strwhere = "Seller=" + psyId;
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
             pager.FiledOrder = "Id desc";
-
+            ViewBag.pid = psyId;
             pager = CommonDal.GetPager(pager);
             IList<FensiOrders> dataList = DataConvertHelper<FensiOrders>.ConvertToModel(pager.EntityDataTable);
             var PageList = new StaticPagedList<FensiOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
             return View(PageList);
         }
 
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateVIPPrice(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.productsRepository.Insert(product);
+                unitOfWork.Save();
+                return RedirectToAction("OrderIndex", "Fensi");
+            }
+            ViewBag.pid = psyId;
+            ViewBag.acmethod = "CreateVIPPrice";
+         //  return RedirectToAction("OrderPriceSetting", "Fensi", new { pid = product.Zixunshi });
+           return View("OrderPriceSetting", product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditVIPPrice(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.productsRepository.Update(product);
+                unitOfWork.Save();
+                return RedirectToAction("OrderIndex", "Fensi");
+            }
+            ViewBag.pid = psyId;
+            ViewBag.acmethod = "EditVIPPrice";
+           // return RedirectToAction("OrderPriceSetting", "Fensi", new { pid = product.Zixunshi });
+            return View("OrderPriceSetting", product);
+        }
+
         public ActionResult OrderPriceSetting()
         {
-            return View();
+            Product product = new Product();
+            var products = unitOfWork.productsRepository.Get(filter: u => u.Zixunshi == psyId);
+            if (products.Count() > 0)
+            {
+                ViewBag.acmethod = "EditVIPPrice";
+                ViewBag.pid = psyId;
+                product = products.First();
+                return View(product);
+            }
+            else
+            {
+                ViewBag.acmethod = "CreateVIPPrice";
+                ViewBag.pid = psyId;
+                return View();
+            }
+
         }
-	}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OrderPriceSetting(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.productsRepository.Insert(product);
+                unitOfWork.Save();
+                return RedirectToAction("OrderIndex", "Fensi");
+            }
+            return View(product);
+        }
+
+
+    }
 }

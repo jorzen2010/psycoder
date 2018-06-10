@@ -1,7 +1,8 @@
 ﻿@model StaticPagedList<psycoderEntity.PsyOrders>
 @using PagedList;
 @using PagedList.Mvc;
-@using psycoderService;@{
+@using psycoderService;
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Tilte = "咨询师订单";
 }
@@ -39,19 +40,22 @@
                                 <th>订单状态</th>
                                 <th>操作</th>
                             </tr>
+                            @Html.AntiForgeryToken()
                             @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Customer)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Product)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.ExpiryTime)</td>
+                                    <td>@PsyUserService.GetPsyUserNameById(item.Customer)</td>
+                                    <td>@PsyUserService.GetProductNameById(item.Product)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CreateTime)</td>
+                                    <td>
+                                        <span class="label label-@(DateTime.Compare(item.ExpiryTime,DateTime.Now)>0?"success":"danger")">@item.ExpiryTime.ToString("yyyy-MM-dd")</span>
+                                   </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Status)
                                     </td>
                                     <td>
-                                        操作
+                                       @Html.Raw(OrderService.GetOrderActionById(item.Id))
                                     </td>
                                 </tr>
                             }
@@ -94,5 +98,53 @@
             //开关按钮样式加载
 
         });
+        function setorderstatus(ac, oid) {
+            switch(ac)
+            {
+                case "fukuan":
+                    setorder(oid, "已付款");
+                    break;
+                case "guoqi":
+                    setorder(oid, "已过期");
+                    break;
+                case "jinyong":
+                    setorder(oid, "已禁用");
+                    break;
+                case "close":
+                    setorder(oid, "已关闭");
+                    break;
+                case "jieshu":
+                    alertconfirm('订单已关闭');
+                    break;
+                   
+            }
+
+        }
+
+        function setorder(oid, status) {
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/AdminOrder/UpdateOrderStatus",
+                data: {
+                    oid: oid,
+                    status: status,
+                    __RequestVerificationToken: token,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus) {
+                        //  alert(data.MessageInfo);
+                        //alert("更新成功！");
+                        location.reload();
+                    }
+                    else { alert("更新失败！"); }
+
+                },
+                error: function () {
+                    alert("远程更新失败");
+                }
+            });
+        }
     </script>
 }
