@@ -15,13 +15,14 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             string username = string.Empty;
-            if (id == 0)
+            ZixunshiUser zixunshi = unitOfWork.zixunshiUsersRepository.GetByID(id);
+            if (zixunshi == null)
             {
                 username = "官方提供";
             }
             else
             {
-                ZixunshiUser zixunshi= unitOfWork.zixunshiUsersRepository.GetByID(id);
+                
                 username = zixunshi.PsyNickName;
  
             }
@@ -33,13 +34,14 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             string ProductName = string.Empty;
-            if (id == 0)
+            Product product = unitOfWork.productsRepository.GetByID(id);
+            if (product == null)
             {
                 ProductName = "默认VIP会员订单";
             }
             else
             {
-                Product product = unitOfWork.productsRepository.GetByID(id);
+               
                 ProductName = product.ProductName;
 
             }
@@ -51,15 +53,17 @@ namespace psycoderService
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             string username = string.Empty;
-            if (id == 0)
-            {
-                username = "体验用户";
-            }
-            else
-            {
+           
                 FensiUser fensi = unitOfWork.fensiUsersRepository.GetByID(id);
-                username = fensi.nickName;
-            }
+                if (fensi == null)
+                {
+                    username = "未知用户";
+                }
+                else
+                {
+                    username = fensi.nickName;
+                }
+                
             return username;
 
         }

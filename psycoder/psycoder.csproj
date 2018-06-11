@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aliyun-net-sdk-core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AliyunMsg\aliyun-net-sdk-core.dll</HintPath>
+    </Reference>
+    <Reference Include="aliyun-net-sdk-dysmsapi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AliyunMsg\aliyun-net-sdk-dysmsapi.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -166,6 +174,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliyunMsg\AliyunMsg.cs" />
+    <Compile Include="AliyunMsg\AliyunMsgModel.cs" />
+    <Compile Include="AliyunMsg\Program.cs" />
     <Compile Include="AliyunVideo\business\AliyunVideoServices.cs" />
     <Compile Include="AliyunVideo\Model\AliyunCommonParaConfig.cs" />
     <Compile Include="AliyunVideo\Model\CommonParam.cs" />
@@ -197,6 +208,7 @@
     <Compile Include="Controllers\PsyBaseController.cs" />
     <Compile Include="Controllers\PsyUserSettingController.cs" />
     <Compile Include="Controllers\PsyUserController.cs" />
+    <Compile Include="Controllers\TestMsgController.cs" />
     <Compile Include="Controllers\XCXSucaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +230,10 @@
     <Compile Include="WechatXiaochengxu\XiaochengxuModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AliyunMsg\aliyun-net-sdk-core.dll" />
+    <Content Include="AliyunMsg\aliyun-net-sdk-dysmsapi.dll" />
+    <Content Include="AliyunMsg\net2.0\aliyun-net-sdk-core.dll" />
+    <Content Include="AliyunMsg\net2.0\aliyun-net-sdk-dysmsapi.dll" />
     <Content Include="bootstrap\css\bootstrap-theme.css" />
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -3101,6 +3117,7 @@
     <Content Include="Views\Fensi\OrderPriceSetting.cshtml" />
     <Content Include="Views\AdminUser\ZixunshiApp.cshtml" />
     <Content Include="Views\AdminOrder\PsyUserOrderList.cshtml" />
+    <Content Include="Views\Fensi\OrderListByCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3108,6 +3125,7 @@
     <Folder Include="Views\AdminBase\" />
     <Folder Include="Views\API\" />
     <Folder Include="Views\PsyBase\" />
+    <Folder Include="Views\TestMsg\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

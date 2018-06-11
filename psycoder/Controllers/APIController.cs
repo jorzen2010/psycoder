@@ -521,6 +521,7 @@ namespace psycoder.Controllers
             order.CreateTime = DateTime.Now;
             order.ExpiryTime = DateTime.Now.AddYears(1);
             order.Beizhu = "";
+            order.Status = "未付款";
             unitOfWork.fensiOrdersRepository.Insert(order);
             unitOfWork.Save();
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();

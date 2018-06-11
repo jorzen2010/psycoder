@@ -53,7 +53,7 @@
                             @Html.AntiForgeryToken()
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Id)
                                     </td>
@@ -88,7 +88,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pagination pagination-sm no-margin pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("OrderIndex", "Fensi", new { type = Request.QueryString["type"], page = page }),
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("OrderListByCustomer", "Fensi", new { cid = Request.QueryString["cid"], page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
@@ -112,6 +112,7 @@
 @section BottomScripts {
 <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
 <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+
 <script type="text/javascript">
 
     function setorderstatus(ac, oid) {
@@ -162,5 +163,4 @@
         });
     }
 </script>
-
     }

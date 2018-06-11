@@ -30,18 +30,15 @@
                                 <th class="col-sm-1">
                                     序号
                                 </th>
-                                <th class="col-sm-4">
-                                    昵称
-                                </th>
-
                                 <th class="col-sm-3">
-                                    openid
+                                    昵称
                                 </th>
                                 <th class="col-sm-2">
                                     手机号
                                 </th>
-
                                 <th class="col-sm-2">注册时间</th>
+                                <th class="col-sm-2">会员到期</th>
+                                <th class="col-sm-2">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,19 +52,35 @@
                                         @Html.DisplayFor(modelItem => item.nickName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.openid)
-                                    </td>
-                                    <td>
                                        @Html.DisplayFor(modelItem => item.FensiTelephone)
                                     </td>
-
-
                                     <td>
                                         @item.CreateTime.ToString("yyyy-MM-dd hh:mm")
                                     </td>
-
+                                                           
+                                        @if (DateTime.Compare(OrderService.GetFensiOrderExpiryTimeByPid(item.Id), DateTime.Now) > 0)
+{<td><span class="label label-success">@OrderService.GetFensiOrderExpiryTimeByPid(item.Id).ToString("yyyy-MM-dd") 到期</span>
+                                    </td>
+                                            <td><a class="btn btn-success btn-xs" href="@Url.Action("OrderListByCustomer", "Fensi", new { cid = item.Id })">查看订单</a></td>
+   
+}
+                                        else
+                                        {
+                                            if (OrderService.GetFensiOrderExpiryTimeByPid(item.Id) == DateTime.Parse("1996-07-21 06:06:06"))
+                                            {<td><span class="label label-info">尚未申请VIP会员</span>
+                                    </td>
+                                               
+                                              <td><a class="btn btn-info btn-xs" href="###">暂无订单</a></td>
+                                            }
+                                            else
+                                            {<td><span class="label label-danger">VIP会员已过期</span>
+                                    </td>
+                                               
+                                              <td><a class="btn btn-danger btn-xs" href="@Url.Action("OrderListByCustomer", "Fensi", new { cid = item.Id })">查看订单</a></td>
+                                            }
+                                        }
+                                  
                                 </tr>
-
                             }
 
                         </tbody>

@@ -176,3 +176,5 @@ D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.Twitter.reso
 D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.dll
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-core.dll
+D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-dysmsapi.dll

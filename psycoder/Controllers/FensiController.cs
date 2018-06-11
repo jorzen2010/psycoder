@@ -13,7 +13,7 @@ using AliyunVideo;
 
 namespace psycoder.Controllers
 {
-    public class FensiController : Controller
+    public class FensiController : PsyBaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         private int psyId = int.Parse(System.Web.HttpContext.Current.Session["pid"].ToString());
@@ -38,6 +38,22 @@ namespace psycoder.Controllers
             Pager pager = new Pager();
             pager.table = "FensiOrders";
             pager.strwhere = "Seller=" + psyId;
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "Id";
+            pager.FiledOrder = "Id desc";
+            ViewBag.pid = psyId;
+            pager = CommonDal.GetPager(pager);
+            IList<FensiOrders> dataList = DataConvertHelper<FensiOrders>.ConvertToModel(pager.EntityDataTable);
+            var PageList = new StaticPagedList<FensiOrders>(dataList, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(PageList);
+        }
+
+        public ActionResult OrderListByCustomer(int? page,int cid)
+        {
+            Pager pager = new Pager();
+            pager.table = "FensiOrders";
+            pager.strwhere = "Seller=" + psyId+" and Customer="+cid;
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
@@ -113,6 +129,27 @@ namespace psycoder.Controllers
                 return RedirectToAction("OrderIndex", "Fensi");
             }
             return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateOrderStatus(int oid, string status)
+        {
+            Message msg = new Message();
+            string sql = "update FensiOrders set Status='" + status + "' where Id=" + oid;
+            try
+            {
+                unitOfWork.fensiOrdersRepository.UpdateWithRawSql(sql);
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "更新成功";
+            }
+            catch (Exception ex)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "更新失败" + ex.ToString();
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
 
