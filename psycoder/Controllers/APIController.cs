@@ -17,6 +17,11 @@ using psycoderEntity;
 using Common;
 using AliyunVideo;
 using psycoder.WechatXiaochengxu;
+using Aliyun.Acs.Core;
+using Aliyun.Acs.Core.Exceptions;
+using Aliyun.Acs.Core.Profile;
+using Aliyun.Acs.Dysmsapi.Model.V20170525;
+using AliyunMsg;
 
 namespace psycoder.Controllers
 {
@@ -367,8 +372,8 @@ namespace psycoder.Controllers
 
         public ActionResult hudongset(int pid)
         {
-            
-            var hudongs = unitOfWork.hudongSettingRepository.Get(filter:u => u.PsyUser==pid);
+
+            var hudongs = unitOfWork.hudongSettingRepository.Get(filter: u => u.PsyUser == pid, orderBy: q => q.OrderByDescending(u => u.Id));
             if (hudongs.Count() > 0)
             {
                 HudongSetting hudong = new HudongSetting();
@@ -379,9 +384,31 @@ namespace psycoder.Controllers
             else
             {
                 DefaultHudongSetting hudong = new DefaultHudongSetting();
-                var defaluthudongsets = unitOfWork.defalutHudongSettingRepository.Get();
+                var defaluthudongsets = unitOfWork.defalutHudongSettingRepository.Get(orderBy: q => q.OrderByDescending(u => u.Id));
                 hudong = defaluthudongsets.First();
                 string json = JsonHelper.JsonSerializerBySingleData(hudong);
+                return Content(json);
+            }
+
+        }
+
+        public ActionResult GetGuanggaoByPsyUser(int pid)
+        {
+
+            var guanggaos = unitOfWork.guanggaoSettingRepository.Get(filter: u => u.PsyUser == pid,orderBy: q =>q.OrderByDescending(u=>u.Id));
+            if (guanggaos.Count() > 0)
+            {
+                GuanggaoSetting guanggao = new GuanggaoSetting();
+                guanggao = guanggaos.First();
+                string json = JsonHelper.JsonSerializerBySingleData(guanggao);
+                return Content(json);
+            }
+            else
+            {
+                DefaultGuanggaoSetting guanggao = new DefaultGuanggaoSetting();
+                var defaultguanggaos = unitOfWork.defaultGuanggaoSettingRepository.Get(orderBy: q => q.OrderByDescending(u => u.Id));
+                guanggao = defaultguanggaos.First();
+                string json = JsonHelper.JsonSerializerBySingleData(guanggao);
                 return Content(json);
             }
 
@@ -500,18 +527,10 @@ namespace psycoder.Controllers
             return Content(json);
         }
 
-        public ActionResult CreateVip(int cid,int pid,string tel,string product)
+        public ActionResult CreateVip(int cid,int pid,string product)
         {
             Product pro = new Product();
             pro = JsonTools.JsonToObject(product, pro) as Product;
-
-
-            string json = string.Empty;
-            FensiUser user = unitOfWork.fensiUsersRepository.GetByID(cid);
-            user.FensiTelephone = tel;
-            unitOfWork.fensiUsersRepository.Update(user);
-            unitOfWork.Save();
-
 
             FensiOrders order = new FensiOrders();
             order.Product = pro.Id;
@@ -525,17 +544,88 @@ namespace psycoder.Controllers
             unitOfWork.fensiOrdersRepository.Insert(order);
             unitOfWork.Save();
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            json = js.Serialize(new { fensiuser = user, fensiorder = order });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+            string json = js.Serialize(new { fensiorder = order });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
 
             return Content(json);
  
+        }
+
+        public ActionResult GetSmgCode(string tel)
+        {
+            string smgcode = Common.CommonTools.getRandomNumber(100000, 999999).ToString();
+            //暂时先关闭，正式启用前在使用
+            AliyunSendMsgModel msg = new AliyunSendMsgModel();
+            msg.PhoneNumbers = tel;
+            msg.SignName = "心理咨询师平台";
+            msg.TemplateCode = "SMS_134245287";
+            //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
+            msg.TemplateParam = "{\"code\":\"" + smgcode + "\"}";
+            msg.OutId = "10001";
+            SendSmsResponse res = AliyunMsg.AliyunMsg.sendSms(msg);
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { smgcode = smgcode,sensmsres=res });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+           // string json = js.Serialize(new { smgcode = smgcode});//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+        }
+
+        public ActionResult UpdateFensiTel(int cid, string tel)
+        {
+            
+
+
+            string json = string.Empty;
+            FensiUser user = unitOfWork.fensiUsersRepository.GetByID(cid);
+            user.FensiTelephone = tel;
+            unitOfWork.fensiUsersRepository.Update(user);
+            unitOfWork.Save();
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            json = js.Serialize(new { fensiuser = user });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+
         }
 
 
 
 
 
+        public ActionResult GetFensiById(int cid)
+        {
+            FensiUser user = new FensiUser();
+            user = unitOfWork.fensiUsersRepository.GetByID(cid);
+            bool ifHasTel = false;
+            if (!string.IsNullOrEmpty(user.FensiTelephone))
+            {
+                ifHasTel = true;
+            }
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { fensiuser = user, ifHasTel = ifHasTel });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+            return Content(json);
 
+        }
+
+
+        public ActionResult GetVipOrderByFensiId(int cid)
+        {
+            FensiOrders order = new FensiOrders();
+            bool ifHasVip = false;
+            var fensiOrders = unitOfWork.fensiOrdersRepository.Get(filter:u =>u.Customer==cid);
+            if (fensiOrders.Count() > 0)
+            {
+                order = fensiOrders.First();
+                if (DateTime.Compare(order.ExpiryTime, DateTime.Now) > 0 && order.Status == "已付款")
+                {
+                    ifHasVip = true;
+                }
+                
+            }
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { ifHasVip = ifHasVip, order = order });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+            return Content(json);
+
+        }
 
 
        

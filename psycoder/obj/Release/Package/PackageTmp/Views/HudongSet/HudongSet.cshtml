@@ -31,6 +31,7 @@
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.CreateTime)
             <input type="hidden" name="type" value="@ViewBag.type" />
+    <input type="hidden" name="PsyUser" id="PsyUser" value="@Session["pid"].ToString()" />
             <div class="box-body">
                 <div class="col-md-12">
                     @if (ViewBag.type == "ZiyoushuxieReplyList")

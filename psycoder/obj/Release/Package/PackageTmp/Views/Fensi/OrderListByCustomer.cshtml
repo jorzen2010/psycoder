@@ -1,0 +1,166 @@
+﻿@model StaticPagedList<psycoderEntity.FensiOrders>
+@using PagedList;
+@using PagedList.Mvc;
+@using psycoderService;
+@{
+    ViewBag.Title = "我的订单";
+}
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+   
+}
+<div class="content">
+
+    <h3 class="pageTitle">
+        @ViewBag.Title
+    </h3>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                    <div class="box-tools">
+                        <a href="@Url.Action("OrderPriceSetting", "Fensi")" class="btn btn-success pull-right">设置会员价格</a> 
+                    </div>
+                    </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead class="text-center">
+                            <tr>
+                                <th class="col-sm-1">
+                                    序号
+                                </th>
+                                <th class="col-sm-2">
+                                    客户Id
+                                </th>
+
+                                <th class="col-sm-2">
+                                    产品Id
+                                </th>
+                                <th class="col-sm-2">
+                                    订单状态
+                                </th>
+                                <th class="col-sm-2">
+                                    订单到期时间
+                                </th>
+
+                                <th class="col-sm-2">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @Html.AntiForgeryToken()
+                            @foreach (var item in Model)
+                            {
+                                 <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @PsyUserService.GetFensiUserNameById(item.Customer)
+                                    </td>
+                                    <td>
+                                        @PsyUserService.GetProductNameById(item.Product)
+                                    </td>
+                                    <td>
+                                       @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @if (DateTime.Compare(item.ExpiryTime, DateTime.Now) > 0)
+                                        {
+                                            <span class="label label-success">@item.ExpiryTime.ToString("yyyy-MM-dd")</span>
+                                        }
+                                        else
+                                        { 
+                                            <span class="label label-danger">@item.ExpiryTime.ToString("yyyy-MM-dd")</span>
+                                        }
+                                    </td>
+                                    <td>@Html.Raw(OrderService.GetFensiOrderActionById(item.Id))</td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("OrderListByCustomer", "Fensi", new { cid = Request.QueryString["cid"], page = page }),
+                            new PagedListRenderOptions
+                            {
+                                LinkToPreviousPageFormat = "上一页",
+                                LinkToNextPageFormat = "下一页",
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                MaximumPageNumbersToDisplay = 5,
+                                LinkToFirstPageFormat = "首页",
+                                LinkToLastPageFormat = "最后一页",
+                                PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+                            })
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+@section BottomScripts {
+<script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+
+<script type="text/javascript">
+
+    function setorderstatus(ac, oid) {
+        switch (ac) {
+            case "fukuan":
+                setorder(oid, "已付款");
+                break;
+            case "guoqi":
+                setorder(oid, "已过期");
+                break;
+            case "jinyong":
+                setorder(oid, "已禁用");
+                break;
+            case "close":
+                setorder(oid, "已关闭");
+                break;
+            case "jieshu":
+                alertconfirm('订单已关闭');
+                break;
+
+        }
+
+    }
+
+    function setorder(oid, status) {
+        var token = $('[name=__RequestVerificationToken]').val();
+        $.ajax({
+            type: 'POST',
+            url: "/Fensi/UpdateOrderStatus",
+            data: {
+                oid: oid,
+                status: status,
+                __RequestVerificationToken: token,
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.MessageStatus) {
+                    //  alert(data.MessageInfo);
+                    //alert("更新成功！");
+                    location.reload();
+                }
+                else { alert("更新失败！"); }
+
+            },
+            error: function () {
+                alert("远程更新失败");
+            }
+        });
+    }
+</script>
+    }

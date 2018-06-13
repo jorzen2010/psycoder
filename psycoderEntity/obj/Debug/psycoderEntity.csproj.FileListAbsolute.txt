@@ -19,6 +19,6 @@ D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.xml
 D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\EntityFramework.SqlServer.xml
 D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\MyPro\2018\psycoder\psycoderEntity\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\MyPro\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.dll
 D:\MyPro\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.pdb
-D:\MyPro\2018\psycoder\psycoderEntity\obj\Debug\psycoderEntity.csprojResolveAssemblyReference.cache

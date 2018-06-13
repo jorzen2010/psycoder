@@ -98,7 +98,7 @@ namespace psycoder.Controllers
             else if (ModelState.IsValid)
             {
                 setting.CreateTime = DateTime.Now;
-                unitOfWork.hudongSettingRepository.Insert(setting);
+                unitOfWork.hudongSettingRepository.Update(setting);
                 unitOfWork.Save();
                 return RedirectToAction(type, "HudongSet");
             }

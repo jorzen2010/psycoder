@@ -87,10 +87,11 @@ E:\2018\psycoder\psycoder\bin\PagedList.Mvc.xml
 E:\2018\psycoder\psycoder\bin\Newtonsoft.Json.pdb
 E:\2018\psycoder\psycoder\bin\psycoderService.dll
 E:\2018\psycoder\psycoder\bin\psycoderService.pdb
-D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\psycoder\bin\psycoder.dll.config
 D:\MyPro\2018\psycoder\psycoder\bin\psycoder.dll
 D:\MyPro\2018\psycoder\psycoder\bin\psycoder.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-core.dll
+D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-dysmsapi.dll
 D:\MyPro\2018\psycoder\psycoder\bin\Antlr3.Runtime.dll
 D:\MyPro\2018\psycoder\psycoder\bin\Common.dll
 D:\MyPro\2018\psycoder\psycoder\bin\EntityFramework.dll
@@ -174,7 +175,6 @@ D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.Facebook.res
 D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
 D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
 D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.dll
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.pdb
-D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-core.dll
-D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-dysmsapi.dll

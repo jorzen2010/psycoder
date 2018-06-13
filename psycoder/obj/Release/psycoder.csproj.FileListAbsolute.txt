@@ -176,3 +176,5 @@ E:\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.r
 E:\2018\psycoder\psycoder\obj\Release\psycoder.csprojResolveAssemblyReference.cache
 E:\2018\psycoder\psycoder\obj\Release\psycoder.dll
 E:\2018\psycoder\psycoder\obj\Release\psycoder.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-core.dll
+D:\MyPro\2018\psycoder\psycoder\bin\aliyun-net-sdk-dysmsapi.dll
