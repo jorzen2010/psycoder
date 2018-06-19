@@ -19,7 +19,7 @@ namespace psycoderDal
         }
 
         //使用说明
-        //var categorys = unitOfWork.categorysRepository.Get(filter: u => u.CategoryParentID == ParentID);
+        //var categorys = unitOfWork.categorysRepository.Get(filter: u => u.CategoryParentID == ParentID && u.id=id);
         //var categorys = unitOfWork.categorysRepository.Get(orderBy: q =>q.OrderBy(u=>u.CategoryId));
         //var categorys = unitOfWork.categorysRepository.Get(orderBy: q =>q.OrderByDescending(u=>u.CategoryId));
         
