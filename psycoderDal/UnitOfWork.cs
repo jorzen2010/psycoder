@@ -314,12 +314,6 @@ namespace psycoderDal
          }
 
 
-
-       
-
-     
-        
-
         public void Save()
         {
             context.SaveChanges();
