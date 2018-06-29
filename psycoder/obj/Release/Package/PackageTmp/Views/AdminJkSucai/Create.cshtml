@@ -37,6 +37,57 @@
                         <div class="box-body">
                             <div class="col-md-12">
 
+                                @if (ViewBag.type == "anli")
+                                { <div class="form-group">
+                                    @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                       <select name="Category" id="Catetory" class="form-control">
+                                           <option value="案例素材">案例素材</option>
+                                           <option value="互动游戏">互动游戏</option>
+                                           <option value="团体活动">团体活动</option>
+                                       </select>
+                                    </div>
+                                  </div>
+                                }
+                                else if (ViewBag.type == "tupian")
+                                {
+                                    <div class="form-group">
+                                    @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <select name="Category" id="Catetory" class="form-control">
+                                            <option value="图片素材">图片素材</option>
+                                            <option value="PPT内容素材">PPT内容素材</option>
+                                            <option value="PPT模板素材">PPT模板素材</option>
+                                        </select>
+                                    </div>
+                                  </div>
+                                    
+                                }
+                                else if (ViewBag.type == "shipin")
+                                {
+                                    <div class="form-group">
+                                    @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        <select name="Category" id="Catetory" class="form-control">
+                                            <option value="视频素材">视频素材</option>
+                                        </select>
+                                    </div>
+                                  </div>
+
+                                }
+                                else if (ViewBag.type == "yinpin")
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
+                                        <div class="col-sm-9">
+                                            <select name="Category" id="Catetory" class="form-control">
+                                                <option value="音频素材">音频素材</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                }
+
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
                                     <div class="col-sm-9">
@@ -304,7 +355,7 @@
         $("#txt_file").fileinput({
             language: 'zh', //设置语言
             uploadUrl: '/File/Upload?rootpath=Sucai&folder=tupiansucai', //上传的地址
-            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+            allowedFileExtensions: ['jpg', 'gif', 'png','doc','xls', 'ppt','pdf', 'docx', 'xlsx', 'pptx'],//接收的文件后缀
             showUpload: true, //是否显示上传按钮
             showCaption: false,//是否显示标题
             browseClass: "btn btn-primary", //按钮样式

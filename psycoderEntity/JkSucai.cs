@@ -18,8 +18,10 @@ namespace psycoderEntity
         public string Cover { get; set; }
         [Display(Name = "摘要")]
         public string Info { get; set; }
-         [Display(Name = "标签")]
+        [Display(Name = "标签")]
         public string Tags { get; set; }
+        [Display(Name = "分类")]
+        public string Category { get; set; }
         [Display(Name = "作者")]
         public string Author { get; set; }
         [Display(Name = "提供者")]
