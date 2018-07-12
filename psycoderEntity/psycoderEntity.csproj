@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
     <Compile Include="FensiUser.cs" />
     <Compile Include="Hudong.cs" />
     <Compile Include="Orders.cs" />

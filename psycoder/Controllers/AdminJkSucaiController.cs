@@ -8,6 +8,7 @@ using PagedList;
 using PagedList.Mvc;
 using psycoderDal;
 using psycoderEntity;
+using psycoderService;
 using Common;
 using AliyunVideo;
 
@@ -20,6 +21,7 @@ namespace psycoder.Controllers
         // GET: /JkSucai/
         public ActionResult Index(int? page,string type="anli")
         {
+            
             if (type == "anli")
             {
                 ViewBag.title = "案例素材";
@@ -61,6 +63,7 @@ namespace psycoder.Controllers
 
         public ActionResult deleteList(int? page, string type = "tuwen")
         {
+           
             if (type == "anli")
             {
                 ViewBag.title = "案例素材";
@@ -102,6 +105,7 @@ namespace psycoder.Controllers
 
         public ActionResult Create(string type="tuwen")
         {
+            CategoryService cateservice = new CategoryService();
             if (type == "anli")
             {
                 ViewBag.title = "案例素材";

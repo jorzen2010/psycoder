@@ -313,6 +313,21 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<Category> CategorysRepository;
+
+         public GenericRepository<Category> categorysRepository
+         {
+             get
+             {
+
+                 if (this.CategorysRepository == null)
+                 {
+                     this.CategorysRepository = new GenericRepository<Category>(context);
+                 }
+                 return CategorysRepository;
+             }
+         }
+
 
         public void Save()
         {

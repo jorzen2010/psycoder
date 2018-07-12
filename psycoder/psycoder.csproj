@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AdminQuestionController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\APIController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FensiController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -3118,6 +3119,7 @@
     <Content Include="Views\AdminUser\ZixunshiApp.cshtml" />
     <Content Include="Views\AdminOrder\PsyUserOrderList.cshtml" />
     <Content Include="Views\Fensi\OrderListByCustomer.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

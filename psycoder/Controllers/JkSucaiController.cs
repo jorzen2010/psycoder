@@ -114,8 +114,6 @@ namespace psycoder.Controllers
             string Action = "GetVideoPlayAuth";
             string SignatureNonce = CommonTools.EncryptToSHA1(CommonTools.GenerateRandomNumber(8));
 
-
-            //string VideoId = "c80b87bcb00d44c6883950605d798070";
             string VideoId = sucai.Content;
             ViewBag.VideoId = VideoId;
 
