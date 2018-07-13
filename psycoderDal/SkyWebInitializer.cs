@@ -240,6 +240,120 @@ namespace psycoderDal
             XCXSucaiList.ForEach(j => context.XCXSucais.Add(j));
             context.SaveChanges();
             #endregion 
+
+            #region 默认讲课素材
+
+            var CategoryList = new List<Category>
+            {
+                new Category{
+                    CategoryName="根目录",
+                    CategoryInfo="根目录",
+                    CategoryParentID=0,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                new Category{
+                    CategoryName="文章分类",
+                    CategoryInfo="文章分类",
+                    CategoryParentID=1,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                new Category{
+                    CategoryName="小程序素材分类",
+                    CategoryInfo="小程序素材分类",
+                    CategoryParentID=1,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                new Category{
+                    CategoryName="讲课素材分类",
+                    CategoryInfo="讲课素材分类",
+                    CategoryParentID=1,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                
+                new Category{
+                    CategoryName="通知公告",
+                    CategoryInfo="通知公告",
+                    CategoryParentID=2,
+                    CategoryStatus=true,
+                    CategorySort=0,
+                },
+                new Category{
+                    CategoryName="文案宣传",
+                    CategoryInfo="文案宣传",
+                    CategoryParentID=2,
+                    CategoryStatus=true,
+                    CategorySort=0,
+                },   
+           
+                 new Category{
+                    CategoryName="图文素材",
+                    CategoryInfo="图文素材",
+                    CategoryParentID=3,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                 new Category{
+                    CategoryName="音频素材",
+                    CategoryInfo="音频素材",
+                    CategoryParentID=3,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                 new Category{
+                    CategoryName="视频素材",
+                    CategoryInfo="视频素材",
+                    CategoryParentID=3,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+
+                 new Category{
+                    CategoryName="案例素材",
+                    CategoryInfo="案例素材",
+                    CategoryParentID=4,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                new Category{
+                    CategoryName="文件素材",
+                    CategoryInfo="文件素材",
+                    CategoryParentID=4,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                 new Category{
+                    CategoryName="音频素材",
+                    CategoryInfo="音频素材",
+                    CategoryParentID=4,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+                 new Category{
+                    CategoryName="视频素材",
+                    CategoryInfo="视频素材",
+                    CategoryParentID=4,
+                    CategoryStatus=true,
+                    CategorySort=0,
+
+                },
+            };
+            CategoryList.ForEach(j => context.Categorys.Add(j));
+            context.SaveChanges();
+            #endregion 
         }
     }
 }

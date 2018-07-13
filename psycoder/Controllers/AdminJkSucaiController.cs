@@ -22,6 +22,7 @@ namespace psycoder.Controllers
         public ActionResult Index(int? page,string type="anli")
         {
             
+            
             if (type == "anli")
             {
                 ViewBag.title = "案例素材";
@@ -105,29 +106,35 @@ namespace psycoder.Controllers
 
         public ActionResult Create(string type="tuwen")
         {
-            CategoryService cateservice = new CategoryService();
+            CategoryService cate = new CategoryService();
+            
             if (type == "anli")
             {
                 ViewBag.title = "案例素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(10);
             }
             else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(11);
             }
             else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(12);
 
             }
             else if (type == "tupian")
             {
                 ViewBag.title = "图片素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(13);
 
             }
             else
             {
                 type = "anli";
                 ViewBag.title = "案例素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(10);
             }
             ViewBag.type = type;
             return View();
@@ -148,28 +155,34 @@ namespace psycoder.Controllers
 
         public ActionResult Edit(int id,string type)
         {
+            CategoryService cate = new CategoryService();
             if (type == "anli")
             {
                 ViewBag.title = "案例素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(10);
             }
             else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(11);
             }
             else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(12);
 
             }
             else if (type == "tupian")
             {
                 ViewBag.title = "图片素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(13);
 
             }
             else
             {
                 type = "anli";
                 ViewBag.title = "案例素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(10);
             }
             ViewBag.type = type;
             JkSucai sucai = unitOfWork.jkSucaiRepository.GetByID(id);

@@ -328,6 +328,66 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<JksucaiChakanTongji> JksucaiChakanTongjisRepository;
+
+         public GenericRepository<JksucaiChakanTongji> jksucaiChakanTongjisRepository
+         {
+             get
+             {
+
+                 if (this.JksucaiChakanTongjisRepository == null)
+                 {
+                     this.JksucaiChakanTongjisRepository = new GenericRepository<JksucaiChakanTongji>(context);
+                 }
+                 return JksucaiChakanTongjisRepository;
+             }
+         }
+
+         private GenericRepository<JksucaiXihuanTongji> JksucaiXihuanTongjisRepository;
+
+         public GenericRepository<JksucaiXihuanTongji> jksucaiXihuanTongjisRepository
+         {
+             get
+             {
+
+                 if (this.JksucaiXihuanTongjisRepository == null)
+                 {
+                     this.JksucaiXihuanTongjisRepository = new GenericRepository<JksucaiXihuanTongji>(context);
+                 }
+                 return JksucaiXihuanTongjisRepository;
+             }
+         }
+
+         private GenericRepository<JksucaiShoucangTongji> JksucaiShoucangTongjisRepository;
+
+         public GenericRepository<JksucaiShoucangTongji> jksucaiShoucangTongjisRepository
+         {
+             get
+             {
+
+                 if (this.JksucaiShoucangTongjisRepository == null)
+                 {
+                     this.JksucaiShoucangTongjisRepository = new GenericRepository<JksucaiShoucangTongji>(context);
+                 }
+                 return JksucaiShoucangTongjisRepository;
+             }
+         }
+
+         private GenericRepository<JksucaiXiazaiTongji> JksucaiXiazaiTongjisRepository;
+
+         public GenericRepository<JksucaiXiazaiTongji> jksucaiXiazaiTongjisRepository
+         {
+             get
+             {
+
+                 if (this.JksucaiXiazaiTongjisRepository == null)
+                 {
+                     this.JksucaiXiazaiTongjisRepository = new GenericRepository<JksucaiXiazaiTongji>(context);
+                 }
+                 return JksucaiXiazaiTongjisRepository;
+             }
+         }
+
 
         public void Save()
         {

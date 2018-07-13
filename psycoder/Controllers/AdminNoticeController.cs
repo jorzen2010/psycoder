@@ -7,6 +7,7 @@ using PagedList;
 using PagedList.Mvc;
 using psycoderDal;
 using psycoderEntity;
+using psycoderService;
 using Common;
 
 namespace psycoder.Controllers
@@ -35,6 +36,8 @@ namespace psycoder.Controllers
 
         public ActionResult Create()
         {
+            CategoryService cate = new CategoryService();
+            ViewData["Categorylist"] = cate.GetCategorySelectList(2);
             
             return View();
         }
@@ -49,6 +52,7 @@ namespace psycoder.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index", "AdminNotice");
             }
+           
             return View(notice);
         }
 

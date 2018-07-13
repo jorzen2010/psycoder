@@ -1,16 +1,14 @@
-﻿@model StaticPagedList<psycoderEntity.Notice>
+﻿@model StaticPagedList<psycoderEntity.JksucaiShoucangTongji>
 @using PagedList;
 @using PagedList.Mvc;
 @using psycoderService;
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.title = "系统消息";
+    ViewBag.title = "统计日志";
 }
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
-
-
 }
 
 <div class="content-wrapper">
@@ -42,15 +40,17 @@
                                         序号
                                     </th>
                                     <th class="col-sm-2">
-                                        标题
+                                        App
                                     </th>
                                     <th class="col-sm-2">
-                                        作者
+                                        粉丝ID
                                     </th>
-                                    
-                                   
-                                    <th class="col-sm-2">操作</th>
-                                  
+                                    <th class="col-sm-2">
+                                        查看时间
+                                    </th>  
+                                    <th class="col-sm-2">
+                                        取消时间
+                                    </th>            
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,19 +61,17 @@
                                         @Html.DisplayFor(modelItem => item.Id)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
+                                        @Html.DisplayFor(modelItem => item.App)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Author)
+                                        @Html.DisplayFor(modelItem => item.fensiuser)
                                     </td>
-                                   
-                                    
                                     <td>
-                                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "AdminNotice", new { id=item.Id})"><i class="fa fa-pencil"></i> 编辑</a>
-                                        <button class="btn btn-danger btn-sm" type="button" onclick="delconfirm('@item.Id','/AdminNotice/DeleteConfirmed/','/AdminNotice/Index')"><span class="glyphicon glyphicon-trash"></span> 彻底删除</button>
-                                        @Html.AntiForgeryToken()
+                                        @Html.DisplayFor(modelItem => item.shoucangtime)
                                     </td>
-                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.canceltime)
+                                    </td>
 
                                 </tr>
 
@@ -85,7 +83,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { type = Request.QueryString["type"], page = page }),
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("JksucaiShoucangTongji", new { page = page }),
                             new PagedListRenderOptions
                             {
                                 LinkToPreviousPageFormat = "上一页",
@@ -116,61 +114,4 @@
 <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
 <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
 
-    <script type="text/javascript">
-
-        function DeleteItem(id,status, url, tourl) {
-            bootbox.confirm({
-                buttons: {
-                    confirm: {
-                        label: '删除',
-                        className: 'btn-danger'
-                    },
-                    cancel: {
-                        label: '取消',
-                        className: 'btn-default'
-                    }
-                },
-                message: '你确定要删除本条信息吗？',
-                callback: function (result) {
-                    if (result) {
-                        var token = $('[name=__RequestVerificationToken]').val();
-                        var headers = {};
-                        //防伪标记放入headers
-                        //也可以将防伪标记放入data
-                        headers["__RequestVerificationToken"] = token;
-                        $.ajax({
-                            url: url,
-                            headers: headers,
-                            type: 'post',
-                            timeout: 3000,
-                            data: {
-                                id: id,
-                                __RequestVerificationToken: token,
-                                status:status,
-                            },
-                            success: function (msg) {
-                                if (msg.MessageStatus == 'true') {
-                                    //window.location.reload();
-                                    window.location.href = tourl;
-                                }
-                                else {
-                                    alertconfirm('删除失败');
-                                }
-                            },
-                            error: function (e) {
-                                alertconfirm('出现意外错误，删除失败！');
-                            }
-                        });
-                    }
-                    else {
-                        // alertconfirm('您已经取消删除了');
-                    }
-                },
-                title: "删除确认提示框",
-            });
-        }
-
-
-      
-    </script>
 }

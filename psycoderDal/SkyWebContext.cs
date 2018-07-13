@@ -49,6 +49,10 @@ namespace psycoderDal
         public DbSet<Product> Products { get; set; }
         public DbSet<ZixunshiApp> ZixunshiApps { get; set; }
         public DbSet<Category> Categorys { get; set; }
+        public DbSet<JksucaiChakanTongji> JksucaiChakanTongjis { get; set; }
+        public DbSet<JksucaiXihuanTongji> JksucaiXihuanTongjis { get; set; }
+        public DbSet<JksucaiShoucangTongji> JksucaiShoucangTongjis { get; set; }
+        public DbSet<JksucaiXiazaiTongji> JksucaiXiazaiTongjis { get; set; }
 
 
 

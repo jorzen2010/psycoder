@@ -204,6 +204,7 @@
     <Compile Include="Controllers\AdminXCXSucaiController.cs" />
     <Compile Include="Controllers\HudongSetController.cs" />
     <Compile Include="Controllers\JkSucaiController.cs" />
+    <Compile Include="Controllers\AdminRizhi.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\AdminOrderController.cs" />
     <Compile Include="Controllers\PsyBaseController.cs" />
@@ -3120,6 +3121,10 @@
     <Content Include="Views\AdminOrder\PsyUserOrderList.cshtml" />
     <Content Include="Views\Fensi\OrderListByCustomer.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\AdminRizhi\JksucaiChakanTongji.cshtml" />
+    <Content Include="Views\AdminRizhi\JksucaiShoucangTongji.cshtml" />
+    <Content Include="Views\AdminRizhi\JksucaiXihuanTongji.cshtml" />
+    <Content Include="Views\AdminRizhi\JksucaiXiazaiTongji.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

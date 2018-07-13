@@ -55,6 +55,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="JkSucai.cs" />
+    <Compile Include="Tongji.cs" />
     <Compile Include="XCXModels.cs" />
     <Compile Include="ZixunshiUser.cs" />
     <Compile Include="XCXSucai.cs" />

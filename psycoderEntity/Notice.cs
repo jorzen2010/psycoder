@@ -19,6 +19,13 @@ namespace psycoderEntity
         [Display(Name = "标签")]
         public string Tags { get; set; }
 
+        [Display(Name = "封面")]
+        public string Cover { get; set; }
+
+        [Display(Name = "类别")]
+        [Required(ErrorMessage = "类别不能可为空")]
+        public int Category { get; set; }
+
         [Display(Name = "作者")]
         public string Author { get; set; }
 
