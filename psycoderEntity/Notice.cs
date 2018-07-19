@@ -35,5 +35,8 @@ namespace psycoderEntity
         [Display(Name = "内容")]
         public string Content { get; set; }
 
+        [Display(Name = "链接地址")]
+        public string HrefUrl { get; set; }
+
     }
 }

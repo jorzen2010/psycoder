@@ -70,5 +70,17 @@ namespace psycoderService
 
 
 
+        public Category GetCategoryByName(string cname)
+        {
+            var categorys = unitOfWork.categorysRepository.Get(filter: u => u.CategoryName == cname);
+
+            Category cate = unitOfWork.categorysRepository.GetByID(1);
+            if (categorys.Count() > 0)
+            {
+                cate = categorys.First();
+            }
+            return cate;
+        }
+
     }
 }

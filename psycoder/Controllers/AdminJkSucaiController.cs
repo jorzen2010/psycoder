@@ -113,23 +113,24 @@ namespace psycoder.Controllers
                 ViewBag.title = "案例素材";
                 ViewData["Categorylist"] = cate.GetCategorySelectList(10);
             }
+            else if (type == "tupian")
+            {
+                ViewBag.title = "图片素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(11);
+
+            }
             else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
-                ViewData["Categorylist"] = cate.GetCategorySelectList(11);
+                ViewData["Categorylist"] = cate.GetCategorySelectList(12);
             }
             else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
-                ViewData["Categorylist"] = cate.GetCategorySelectList(12);
-
-            }
-            else if (type == "tupian")
-            {
-                ViewBag.title = "图片素材";
                 ViewData["Categorylist"] = cate.GetCategorySelectList(13);
 
             }
+           
             else
             {
                 type = "anli";
@@ -161,23 +162,24 @@ namespace psycoder.Controllers
                 ViewBag.title = "案例素材";
                 ViewData["Categorylist"] = cate.GetCategorySelectList(10);
             }
+            else if (type == "tupian")
+            {
+                ViewBag.title = "图片素材";
+                ViewData["Categorylist"] = cate.GetCategorySelectList(11);
+
+            }
             else if (type == "yinpin")
             {
                 ViewBag.title = "音频素材";
-                ViewData["Categorylist"] = cate.GetCategorySelectList(11);
+                ViewData["Categorylist"] = cate.GetCategorySelectList(12);
             }
             else if (type == "shipin")
             {
                 ViewBag.title = "视频素材";
-                ViewData["Categorylist"] = cate.GetCategorySelectList(12);
-
-            }
-            else if (type == "tupian")
-            {
-                ViewBag.title = "图片素材";
                 ViewData["Categorylist"] = cate.GetCategorySelectList(13);
 
             }
+          
             else
             {
                 type = "anli";

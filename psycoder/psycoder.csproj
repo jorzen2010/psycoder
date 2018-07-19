@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AdminNoticeController.cs" />
     <Compile Include="Controllers\AdminQuestionController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
+    <Compile Include="Controllers\SucaiAPIController.cs" />
     <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FensiController.cs" />

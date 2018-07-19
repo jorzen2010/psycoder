@@ -72,6 +72,13 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HrefUrl, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.HrefUrl, new { @class = "form-control" })
+                                </div>
+                            </div>
+
                             @Html.HiddenFor(model => model.CreateTime, new{ @Value=DateTime.Now})
 
 
