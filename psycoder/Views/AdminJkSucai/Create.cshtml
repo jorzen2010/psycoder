@@ -142,12 +142,29 @@
 
                                     </div>
                                 </div>
+                                <hr>
+                                <h4>素材价格设置</h4>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @Value = "10" })
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Ticheng, new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.Ticheng, new { @class = "form-control", @Value = "40" })
+
+                                    </div>
+                                </div>
+
+
                                 @Html.HiddenFor(model => model.type, new { @Value = ViewBag.type })
                                 @Html.HiddenFor(model => model.CreateTime, new { @Value = DateTime.Now })
                                 @Html.HiddenFor(model => model.IfDelete, new { @Value = false })
                                 @Html.HiddenFor(model => model.Qanxian, new { @Value = true })
-                                @Html.HiddenFor(model => model.Price, new { @Value = "0" })
-                                @Html.HiddenFor(model => model.Ticheng, new { @Value = "40" })
 
 
 

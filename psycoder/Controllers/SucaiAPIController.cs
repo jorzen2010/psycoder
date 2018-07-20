@@ -121,6 +121,18 @@ namespace psycoder.Controllers
 
         }
 
+        public ActionResult GetTopJKSucai(int num,string table,string where,string orderby)
+        {
+            string sql = string.Empty;
+            sql = "select top " + num + " * from " + table + " where " + where + " order by " + orderby;
+            IList<JkSucai> List = unitOfWork.jkSucaiRepository.GetWithRawSql(sql) as IList<JkSucai>;
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { jksucai = List });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。 
+
+            return Content(json);
+        }
+
         
        
 	}
