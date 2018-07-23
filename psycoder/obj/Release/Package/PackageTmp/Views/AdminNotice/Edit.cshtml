@@ -1,7 +1,7 @@
 ﻿@model psycoderEntity.Notice
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.title = "通知公告";
+    ViewBag.title = "系统消息";
 }
 @section Topcss {
 <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
@@ -69,6 +69,13 @@
                                 @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
                                 <div class="col-sm-9">
                                     @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HrefUrl, new { @class = "control-label col-md-2" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.HrefUrl, new { @class = "form-control" })
                                 </div>
                             </div>
 

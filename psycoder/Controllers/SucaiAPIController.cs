@@ -133,6 +133,30 @@ namespace psycoder.Controllers
             return Content(json);
         }
 
+        public ActionResult OnLogin(string js_code, int pid)
+        {
+            //ZixunshiUser psyUser = new ZixunshiUser();
+            //psyUser = unitOfWork.zixunshiUsersRepository.GetByID(pid);
+
+            string json = string.Empty;
+            //这几个值都应该从数据库中获取。
+            ZixunshiApp app = new ZixunshiApp();
+            string appid = "wxee5a6a13000ac564";
+            string secret = "e52e4925d508339ca6c2d76a5262032a";
+            var apps = unitOfWork.zixunshiAppsRepositoryRepository.Get(filter: u => u.PsyUser == pid);
+            if (apps.Count() > 0)
+            {
+                app = apps.First();
+                appid = app.AppId;
+                secret = app.AppSecret;
+            }
+            string grant_type = "authorization_code";
+            json = XiaochengxuAPI.GetOpenidByWxlogin(appid, secret, js_code, grant_type);
+
+            return Content(json);
+
+        }
+
         
        
 	}

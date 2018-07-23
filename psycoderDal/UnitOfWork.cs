@@ -388,6 +388,36 @@ namespace psycoderDal
              }
          }
 
+         private GenericRepository<CeshiResult> CeshiResultsRepository;
+
+         public GenericRepository<CeshiResult> ceshiResultsRepository
+         {
+             get
+             {
+
+                 if (this.CeshiResultsRepository == null)
+                 {
+                     this.CeshiResultsRepository = new GenericRepository<CeshiResult>(context);
+                 }
+                 return CeshiResultsRepository;
+             }
+         }
+
+         private GenericRepository<CeshiFensiUser> CeshiFensiUsersRepository;
+
+         public GenericRepository<CeshiFensiUser> ceshiFensiUsersRepository
+         {
+             get
+             {
+
+                 if (this.CeshiFensiUsersRepository == null)
+                 {
+                     this.CeshiFensiUsersRepository = new GenericRepository<CeshiFensiUser>(context);
+                 }
+                 return CeshiFensiUsersRepository;
+             }
+         }
+
 
         public void Save()
         {

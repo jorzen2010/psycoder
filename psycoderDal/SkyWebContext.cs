@@ -54,6 +54,9 @@ namespace psycoderDal
         public DbSet<JksucaiShoucangTongji> JksucaiShoucangTongjis { get; set; }
         public DbSet<JksucaiXiazaiTongji> JksucaiXiazaiTongjis { get; set; }
 
+        public DbSet<CeshiFensiUser> CeshiFensiUsers { get; set; }
+        public DbSet<CeshiResult> CeshiResults { get; set; }
+
 
 
     }
