@@ -183,13 +183,6 @@ namespace psycoder.Controllers
 
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

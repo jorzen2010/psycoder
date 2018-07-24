@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Text;
 using System.Web.Security;
 using System.Web.Mvc;
 using System.Globalization;
@@ -102,6 +103,8 @@ namespace psycoder.Controllers
             result.ceshiUser = uid;
             result.result = rid;
             result.CreateTime = DateTime.Now;
+            unitOfWork.ceshiResultsRepository.Insert(result);
+            unitOfWork.Save();
 
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             string json = js.Serialize(new { CeshiResult = result });
@@ -109,6 +112,38 @@ namespace psycoder.Controllers
  
         }
 
+        public ActionResult GetNuliPaihang()
+        {
+            //string sql = string.Empty;
+
+            //sql = "SELECT top(10) CeshiResult.*,COUNT(distinct CeshiResult.result) as shili,CeshiFensiUser.* from CeshiResult left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) group by ceshiUser,nickName order by shili desc";
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" SELECT top(10) CeshiResult.ceshiuser,COUNT(distinct CeshiResult.result) as paihang,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+            sql.Append(" from CeshiResult ");
+            sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
+            sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+            sql.Append(" order by paihang desc ");
+            DataTable dt = CommonDal.GetSomeBySql(sql.ToString());
+
+            IList<paihangbang> List = DataConvertHelper<paihangbang>.ConvertToModel(dt);
+
+            string jsonname = "shilipaihang";
+
+            string json = JsonHelper.ListToJson(List, jsonname);
+            return Content(json);
+
+        }
+
 
 	}
+
+    public class paihangbang
+    {
+        public int ceshiuser { get; set; }
+        public int paihang { get; set; }
+        public string nickName { get; set; }
+        public string avatarUrl { get; set; }
+    }
+
 }

@@ -178,3 +178,5 @@ D:\MyPro\2018\psycoder\psycoder\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAcc
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.dll
 D:\MyPro\2018\psycoder\psycoder\obj\Debug\psycoder.pdb
+D:\MyPro\2018\psycoder\psycoder\bin\psycoder.dll.CodeAnalysisLog.xml
+D:\MyPro\2018\psycoder\psycoder\bin\psycoder.dll.lastcodeanalysissucceeded

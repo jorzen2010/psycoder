@@ -12,6 +12,8 @@ namespace psycoderDal
     {
         private SkyWebContext context = new SkyWebContext();
 
+
+
         private GenericRepository<SysUser> SysUsersRepository;
 
          public GenericRepository<SysUser> sysUsersRepository

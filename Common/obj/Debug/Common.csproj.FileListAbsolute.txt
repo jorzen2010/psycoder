@@ -57,6 +57,5 @@ D:\MyPro\2018\psycoder\Common\bin\Debug\PagedList.xml
 D:\MyPro\2018\psycoder\Common\bin\Debug\PagedList.Mvc.xml
 D:\MyPro\2018\psycoder\Common\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\MyPro\2018\psycoder\Common\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
-D:\MyPro\2018\psycoder\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\MyPro\2018\psycoder\Common\obj\Debug\Common.dll
 D:\MyPro\2018\psycoder\Common\obj\Debug\Common.pdb

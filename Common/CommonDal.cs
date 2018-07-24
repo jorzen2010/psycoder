@@ -342,5 +342,38 @@ namespace Common
         }
         #endregion
 
+
+        #region 用sql语句获取多个对象集合
+
+        public static DataTable GetSomeBySql(string sql)
+        {
+
+            SqlConnection myconn = null;
+            try
+            {
+                myconn = new SqlConnection(CommonDal.ConnectionString);
+                DataTable dt = null;
+                DataSet ds = SqlHelper.ExecuteDataset(myconn, CommandType.Text, sql);
+               // DataSet ds = SqlHelper.ExecuteDataset(myconn, CommandType.StoredProcedure, "getSomeByWhere", arParames);
+                dt = ds.Tables[0];
+
+
+                return dt;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                myconn.Close();
+                myconn.Dispose();
+            }
+
+
+        }
+        #endregion
+
     }
 }
