@@ -112,36 +112,103 @@ namespace psycoder.Controllers
  
         }
 
-        public ActionResult GetNuliPaihang()
+        public ActionResult GetPaihang(string type)
         {
-            //string sql = string.Empty;
-
-            //sql = "SELECT top(10) CeshiResult.*,COUNT(distinct CeshiResult.result) as shili,CeshiFensiUser.* from CeshiResult left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) group by ceshiUser,nickName order by shili desc";
-
             StringBuilder sql = new StringBuilder();
-            sql.Append(" SELECT top(10) CeshiResult.ceshiuser,COUNT(distinct CeshiResult.result) as paihang,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
-            sql.Append(" from CeshiResult ");
-            sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
-            sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
-            sql.Append(" order by paihang desc ");
+            if (type == "nuli")
+            {
+                
+                sql.Append(" SELECT top(10) CeshiResult.ceshiuser,COUNT(CeshiResult.Id) as paihang,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" from CeshiResult "); 
+                sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
+                sql.Append(" where CeshiResult.ceshiuser>0 ");
+                sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" order by paihang desc ");
+            }
+            else if (type == "shili")
+            {
+
+                sql.Append(" SELECT top(10) CeshiResult.ceshiuser,COUNT(distinct CeshiResult.result) as paihang,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" from CeshiResult ");
+                sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
+                sql.Append(" where CeshiResult.ceshiuser>0 ");
+                sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" order by paihang desc ");
+            }
+
+            else if (type == "yunqi")
+            {
+                sql.Append(" SELECT top(10) CeshiResult.ceshiuser,round((convert(float,COUNT(distinct CeshiResult.result))/convert(float,COUNT(CeshiResult.Id)))*100,0) as paihang,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" from CeshiResult ");
+                sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
+                sql.Append(" where CeshiResult.ceshiuser>0 ");
+                sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" order by paihang desc ");
+            }
+            else if (string.IsNullOrEmpty(type))
+            {
+                sql.Append(" SELECT top(10) CeshiResult.ceshiuser,COUNT(CeshiResult.Id) as paihang,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" from CeshiResult ");
+                sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
+                sql.Append(" where CeshiResult.ceshiuser>0 ");
+                sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+                sql.Append(" order by paihang desc ");
+ 
+            }
+
             DataTable dt = CommonDal.GetSomeBySql(sql.ToString());
 
             IList<paihangbang> List = DataConvertHelper<paihangbang>.ConvertToModel(dt);
 
-            string jsonname = "shilipaihang";
+            string jsonname = "paihang";
 
             string json = JsonHelper.ListToJson(List, jsonname);
             return Content(json);
 
         }
 
+         public ActionResult GetZhanji(string ceshiuser)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" SELECT CeshiResult.ceshiuser,round((convert(float,COUNT(distinct CeshiResult.result))/convert(float,COUNT(CeshiResult.Id)))*100,0) as yunqi,COUNT(CeshiResult.Id) as nuli,COUNT(distinct CeshiResult.result) as shili,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+            sql.Append(" from CeshiResult ");
+            sql.Append(" left join CeshiFensiUser on(CeshiResult.ceshiUser=CeshiFensiUser.Id) ");
+            sql.Append(" where CeshiResult.ceshiuser=" + ceshiuser);
+            sql.Append(" group by CeshiResult.ceshiUser ,CeshiFensiUser.nickName,CeshiFensiUser.avatarUrl ");
+            sql.Append(" order by shili desc ");
+
+            DataTable dt = CommonDal.GetSomeBySql(sql.ToString());
+
+            IList<zhanji> List = DataConvertHelper<zhanji>.ConvertToModel(dt);
+            zhanji zj = List[0];
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string json = js.Serialize(new { zhanji = zj });
+            return Content(json);
+         }
+
+
 
 	}
+
+
+
+
 
     public class paihangbang
     {
         public int ceshiuser { get; set; }
-        public int paihang { get; set; }
+        public Double paihang { get; set; }
+        public string nickName { get; set; }
+        public string avatarUrl { get; set; }
+    }
+
+    public class zhanji
+    {
+        public int ceshiuser { get; set; }
+        public Double nuli { get; set; }
+        public Double shili { get; set; }
+        public Double yunqi { get; set; }
         public string nickName { get; set; }
         public string avatarUrl { get; set; }
     }

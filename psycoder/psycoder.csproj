@@ -2911,6 +2911,8 @@
     <Content Include="puke\images\7.jpg" />
     <Content Include="puke\images\8.jpg" />
     <Content Include="puke\images\9.jpg" />
+    <Content Include="puke\music\result.mp3" />
+    <Content Include="puke\music\yyy.mp3" />
     <Content Include="Resource\css\SkyWeb.css" />
     <Content Include="Resource\img\234.jpg" />
     <Content Include="Resource\img\6364622362892549874063_200.jpg" />
