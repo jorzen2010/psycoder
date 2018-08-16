@@ -157,7 +157,30 @@ namespace psycoder.Controllers
 
         }
 
-        
+        public ActionResult GetJkVideoSucai(int cid)
+        {
+            JkSucai sucai = unitOfWork.jkSucaiRepository.GetByID(cid);
+
+
+            string ApiUrl = AliyunCommonParaConfig.ApiUrl;
+            // 注意这里需要使用UTC时间，比北京时间少8小时。
+            string Timestamp = DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", DateTimeFormatInfo.InvariantInfo);
+            string Action = "GetPlayInfo";
+            string SignatureNonce = CommonTools.EncryptToSHA1(CommonTools.GenerateRandomNumber(8));
+
+
+            string VideoId = sucai.Content;
+            ViewBag.VideoId = VideoId;
+            VideoUrlInfo videoUrlfo = new VideoUrlInfo();
+            videoUrlfo = AliyunVideoServices.VideoUrlInfo(ApiUrl, VideoId, Timestamp, Action, SignatureNonce);
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string strjson = js.Serialize(new { sucai = sucai, videoUrlfo = videoUrlfo });//将对象序列化成JSON字符串。匿名类。向浏览器返回多个JSON对象。  
+
+            //  string json = JsonHelper.JsonSerializerBySingleData(videoUrlfo);
+            return Content(strjson);
+        }
+
        
 	}
 }
