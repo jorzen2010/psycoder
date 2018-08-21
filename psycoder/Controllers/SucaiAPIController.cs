@@ -29,12 +29,24 @@ namespace psycoder.Controllers
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
+        public ActionResult GetSysNewsById(int sid)
+        {
+            Notice notice = new Notice();
+            notice = unitOfWork.noticesRepository.GetByID(sid);
+            string tag=string.Empty;
+            //string[] sArray = notice.Tags.Split(',');
+            //notice.Tags = sArray[0].ToString();
+            //把category作为tags使用也可以，。
+            string json = JsonHelper.JsonSerializerBySingleData(notice);
+            return Content(json);
+        }
+
         public ActionResult GetJkSucaiById(int sid)
         {
             JkSucai sucai = new JkSucai();
             sucai = unitOfWork.jkSucaiRepository.GetByID(sid);
-            string tag=string.Empty;
-            string[] sArray=sucai.Tags.Split(',');
+            string tag = string.Empty;
+            string[] sArray = sucai.Tags.Split(',');
             sucai.Tags = sArray[0].ToString();
             //把category作为tags使用也可以，。
             string json = JsonHelper.JsonSerializerBySingleData(sucai);
@@ -77,7 +89,7 @@ namespace psycoder.Controllers
 
             Pager pager = new Pager();
             pager.table = "JKSucai";
-            pager.strwhere = "CONTAINS(Tags,'"+keys+"')";
+            pager.strwhere = "Tags like '%"+keys+"%'";
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "Id";
