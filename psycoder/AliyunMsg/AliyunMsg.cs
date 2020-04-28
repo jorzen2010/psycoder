@@ -17,8 +17,8 @@ namespace AliyunMsg
         const String domain = "dysmsapi.aliyuncs.com";
 
         // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-        const String accessKeyId = "LTAIHmoHhNfb1Eujqazwsx";
-        const String accessKeySecret = "afCSAjYmNuVcPLTLuwxCtwvu4VvYrrqazwsx";
+        const String accessKeyId = "";
+        const String accessKeySecret = "";
 
         public static SendSmsResponse sendSms(AliyunSendMsgModel msg)
         {
