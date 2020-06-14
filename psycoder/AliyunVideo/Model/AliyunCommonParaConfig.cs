@@ -11,8 +11,8 @@ namespace AliyunVideo
         public const string ApiUrl = "vod.cn-shanghai.aliyuncs.com";
         public const string Format = "JSON";
         public const string Version = "2017-03-21";
-        public const string AccessKeyId = "";
-        public const string AccessKeySecret = "";
+        public const string AccessKeyId = "这里应该写ID，建议写道数据库里";
+        public const string AccessKeySecret = "这里应该写密钥，建议写道数据库里";
       
         public const string SignatureVersion = "1.0";
 
